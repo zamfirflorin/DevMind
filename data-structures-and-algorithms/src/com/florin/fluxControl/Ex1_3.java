@@ -61,6 +61,7 @@ public class Ex1_3 {
 		System.out.println("Numarul se termina in oricare dintre cifrele 3, 7 sau 9? R: " + goodEnding);
 		System.out.println("Numarul este o cifra? R: " + (numCount == 1));
 		System.out.println("Numarul contine cifra 1 si cifra 0? R: " + containsOneAndZero);
+		System.out.println("Numarul contine cifra 1 si cifra 0? R: " + (isOne && isZero));
 	}
 
 }
