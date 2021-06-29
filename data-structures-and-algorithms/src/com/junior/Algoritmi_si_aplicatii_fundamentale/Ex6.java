@@ -17,7 +17,7 @@ public class Ex6 {
 				int b = k * k;
 				int ip = a + b;
 				int rez = (int) Math.sqrt(ip); 
-				if (rez <= upper && rez - Math.sqrt(ip) == 0.0) {
+				if (rez <= upper && (double) rez == Math.sqrt(ip)) {
 					System.out.println(String.format("%s %s %s", i, k, rez));
 				}
 			}
