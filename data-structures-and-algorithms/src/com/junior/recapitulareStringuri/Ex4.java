@@ -2,7 +2,7 @@ package com.junior.recapitulareStringuri;
 
 import java.util.Arrays;
 
-//Filter: String template
+//Filter: String template tema
 public class Ex4 {
 
 	public static void main(String[] args) {
