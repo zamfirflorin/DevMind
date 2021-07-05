@@ -4,13 +4,12 @@ package com.junior.recapitulareStringuri;
 public class Ex1 {
 
 	public static void main(String[] args) {
-
+		charFreq("Becoming a programmer is like gaining super powers!");
 	}
 
-	/*
-	 * void charFreq(String s) {
+	public static void charFreq(String s) {
 	int[] count = new int[256];
-	s = s.toLower();
+	s = s.toLowerCase();
 	int nr = 0;
 	int Max = 0;
 	for (int i = 0; i < s.length(); ++i) {
@@ -18,7 +17,7 @@ public class Ex1 {
 			continue;
 
 		int x = s.charAt(i);
-		count[x]++;
+		count[x]++;	
 		if (Max < count[x]) {
 			Max = count[x];
 		}
@@ -28,9 +27,9 @@ public class Ex1 {
 		if (count[i] == Max) {
 			char aux = (char) i;
 			// sau aux = Character.toString(i);
-			System.out.print(aux + " ");
+			System.out.print("\n" +aux + " appears " + Max + " times");
 		}
 	}
-}
-	 */
+	}	
+
 }

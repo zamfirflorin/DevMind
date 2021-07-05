@@ -5,10 +5,12 @@ import java.util.Arrays;
 public class Ex2 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
 		anagramSolver("fairy tales!", "rail, safety");
 		anagramSolver("silver bullet", "sunny day");
 		anagramSolver("William Shakespeare", "I am a weakish speller!");
+		
+
 	}
 	
 	public static boolean anagramSolver(String s1, String s2) {
@@ -33,7 +35,7 @@ public class Ex2 {
 	
 	private static boolean areEquals(char[] c1, char[] c2) {
 		boolean flag = true;
-		for(int i = 0; i < c1.length; i++) {
+		for(int i = 0; i < c2.length; i++) {
 			if (c1[i] != c2[i]) {
 				flag = false;
 			}
@@ -57,13 +59,6 @@ public class Ex2 {
 	}
 	
 	//ex 3
-	public static int convertStringToNumber(String numberStr) {
-		  char[] digits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-		  int numValue = 0;
-		 
-		  // your code goes here
-		 
-		  return numValue;
-		}
+
 
 }
