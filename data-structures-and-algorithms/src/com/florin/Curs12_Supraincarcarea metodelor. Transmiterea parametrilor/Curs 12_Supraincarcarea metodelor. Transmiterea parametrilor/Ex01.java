@@ -1,4 +1,4 @@
-package com.florin.supraincarcareaMetodelor;
+
 
 /**
  * @author fszamfi
@@ -9,31 +9,27 @@ public class Ex01 {
 
 	public static void main(String[] args) {
 		
-		System.out.println(1*2*3*4*5);
-		System.out.println(factorialRecursivI(5));
-		System.out.println(factorialIterativI(5));
+		String sent = "Never underestimate a TALeNTED person Who Is willing TO SUCCeed!";
+		 
+		int counter = 0;
+		int localCounter = 0;
+		for (int i = 0; i < sent.length(); i++) {
+		  char ch = sent.charAt(i);
+		  if (!Character.isLetter(ch)) {
+		    counter += (localCounter > 0 ? 1 : 0);
+		    localCounter = 0;
+		    continue;
+		  }
+		 
+		  if(Character.isUpperCase(ch)) {
+		    localCounter++;
+		  } else {
+		    localCounter--;
+		  }
+		}
+		 
+		System.out.println(counter);
 	}
 
-	public static int factorialIterativI(int n) {
-		int result = 1; 
-		
-		for (int i = 2; i <= n; i++) {
-			result *= i;
-		}
-		return result;	
-	}
 	
-	public static int factorialRecursivI(int n) {
-		 
-		if (n == 0 || n == 1) {
-			return 1;
-		} 
-		
-		return n * factorialRecursivI(n-1);
-	
-	}
-	
-	//Se observa ca numerele returnate de metoda factorial sunt numere intregi, mari. Ce tip de date va returna metoda?
-	
-	//Raspuns: int
 }

@@ -1,4 +1,4 @@
-package FunctionalinterfacesAndPredicates;
+package com.florin.FunctionalinterfacesAndPredicates;
 
 /**
  * Created by timbuchalka on 1/09/2016.

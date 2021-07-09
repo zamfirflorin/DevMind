@@ -1,4 +1,4 @@
-package FunctionalinterfacesAndPredicates;
+package com.florin.FunctionalinterfacesAndPredicates;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.florin.claseSiObiecte.ex1;
+package com.florin.Curs13_Clase_si_obiecte.ex1;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package com.florin.claseSiObiecte.ex2;
+package com.florin.Curs13_Clase_si_obiecte.ex2;
 
 public class TestareProfilUtilizator {
 

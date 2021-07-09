@@ -29,16 +29,15 @@ public class Exercitii {
 		names.clear();
 		System.out.println(names.size());
 		System.out.println(names);
-		
-		
 
 	}
 	
+	//frecventa maxima
 	public static int maxFreq(String str) {
-		ArrayList<Character> counter = new ArrayList<>();
+		ArrayList<String> counter = new ArrayList<>(strList);
 		for (int i = 0; i < counter.size(); i++) {
 			
 		}
 	}
-
+                                                                                                                                                                                                                                                                              
 }
