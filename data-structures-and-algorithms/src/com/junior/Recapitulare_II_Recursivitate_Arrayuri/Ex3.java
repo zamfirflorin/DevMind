@@ -24,7 +24,7 @@ public class Ex3 {
 		while (i >= 0) {
 			if (a[i] == 0) {
 				--i;
-				cnt++;
+				//cnt++;
 				continue;
 			}
 			a[k] = a[i];
@@ -32,9 +32,9 @@ public class Ex3 {
 			k--;
 		}
 
-		while (cnt != 0) {
+		while (k >= 0) {
 			a[k] = 0;
-			cnt--;
+			//cnt--;
 			k--;
 		}
 		for (int n : a) {

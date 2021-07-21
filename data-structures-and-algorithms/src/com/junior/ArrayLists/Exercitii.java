@@ -5,7 +5,6 @@ import java.util.Arrays;
 
 public class Exercitii {
 
-	
 	public static void printCharWithMaxFrequency(String s) {
 		s = s.toLowerCase();
 		ArrayList<Character> result = new ArrayList<Character>();
@@ -19,28 +18,8 @@ public class Exercitii {
 		for (int i = 0; i < s.length(); i++) {
 			if (Character.isWhitespace(s.charAt(i))) {
 				continue;
-			}
-			
-			int charFreq = 0;
-			for (int j = i; j < s.length(); j++) {
-				if (s.charAt(i) == s.charAt(j)) {
-					charFreq++;
-				}
+		}
 
-			}
-			
-			if (charFreq == maxFreq) {
-				result.add(s.charAt(i));
-			} else if (charFreq > maxFreq) {
-				result.clear();
-				result.add(s.charAt(i));
-				maxFreq = charFreq;
-			}
-		}
-		for(char c: result) {
-			System.out.println(c + " appears " + maxFreq + " times.");
-		}
-	}
 
 	public static void main(String[] args) {
 			String s = "Becoming a programmer is like gaining super powers!";
@@ -48,3 +27,4 @@ public class Exercitii {
 	}
 
 }
+                                                                                                                                                                                                                                                                              
