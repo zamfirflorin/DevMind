@@ -1,44 +1,50 @@
 package com.junior.ArrayLists;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Exercitii {
 
-	public static void main(String[] args) {
-		
-		ArrayList<String> names = new ArrayList<>();
-		names.ensureCapacity(10);
-		names.add("Florin");
-		names.add(1, "Elena");
-		System.out.println(names.size());
-
-		names.add("Ana");
-
-		System.out.println(names);
-		
-		String ana = names.get(2);
-		System.out.println(ana);
-		int idx = names.indexOf("Florin");
-		System.out.println("idx = " + idx);
-		int lastIdx = names.lastIndexOf(ana);
-		System.out.println("lastIdx = " + lastIdx);
-		names.set(0, "Corneliu");
-		System.out.println(names);
-		names.remove(2);
-		System.out.println(names);
-		names.clear();
-		System.out.println(names.size());
-		System.out.println(names);
-		
-		
-
-	}
 	
-	public static int maxFreq(String str) {
-		ArrayList<Character> counter = new ArrayList<>();
-		for (int i = 0; i < counter.size(); i++) {
-			
+	public static void printCharWithMaxFrequency(String s) {
+		s = s.toLowerCase();
+		ArrayList<Character> result = new ArrayList<Character>();
+		int maxFreq = 0;
+		char[] aux = s.toCharArray();
+		Arrays.sort(aux);
+		s = "";
+		for(int i = 0; i < aux.length; i++) {
+			s = s + aux[i];
 		}
+		for (int i = 0; i < s.length(); i++) {
+			if (Character.isWhitespace(s.charAt(i))) {
+				continue;
+			}
+			
+			int charFreq = 0;
+			for (int j = i; j < s.length(); j++) {
+				if (s.charAt(i) == s.charAt(j)) {
+					charFreq++;
+				}
+
+			}
+			
+			if (charFreq == maxFreq) {
+				result.add(s.charAt(i));
+			} else if (charFreq > maxFreq) {
+				result.clear();
+				result.add(s.charAt(i));
+				maxFreq = charFreq;
+			}
+		}
+		for(char c: result) {
+			System.out.println(c + " appears " + maxFreq + " times.");
+		}
+	}
+
+	public static void main(String[] args) {
+			String s = "Becoming a programmer is like gaining super powers!";
+			printCharWithMaxFrequency(s);
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.junior.Recapitulare_II_Recursivitate_Arrayuri;
 
+import java.util.ArrayList;
+
 public class Ex1 {
 
 	public static void main(String[] args) {
@@ -43,6 +45,10 @@ public class Ex1 {
 		}
 		return reversed;
 	}
+	
+
+	
+
 	
 
 }
