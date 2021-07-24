@@ -17,7 +17,6 @@ public class BankAccount {
 		this.accountType = typeOfAccount;
 	}
 	
-	
 	//the branch argument is true if the customer is performing the transaction at a branch with a teller
 	//false if performing transaction at ATM
 	public double deposit(double amount, boolean branch) {
@@ -26,6 +25,9 @@ public class BankAccount {
 	}
 	
 	public double withdraw(double amount, boolean branch) {
+		if (amount > 500 && !branch) {
+			throw new IllegalArgumentException();
+		}
 		this.balance -= amount; 
 		return this.balance;
 	}
