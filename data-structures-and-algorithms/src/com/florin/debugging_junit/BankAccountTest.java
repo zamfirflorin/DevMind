@@ -2,6 +2,7 @@ package com.florin.debugging_junit;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -39,8 +40,18 @@ class BankAccountTest {
 	
 	@org.junit.Test(expected = IllegalArgumentException.class)
 	public void withdraw_notBranch() throws Exception {
-		double balance = account.withdraw(600, false);
-		assertEquals(400.00, balance, 0);
+		account.withdraw(600, false);
+		fail("SHould have thrown IllegalArgumentException");
+	}
+	
+	@org.junit.Test
+	public void withdraw_notBranch_withTryCatch() throws Exception {
+		try {
+			account.withdraw(600, true);
+			fail("SHould have thrown IllegalArgumentException");
+		} catch (IllegalArgumentException e) {
+
+		}
 	}
 	
 	@Test
