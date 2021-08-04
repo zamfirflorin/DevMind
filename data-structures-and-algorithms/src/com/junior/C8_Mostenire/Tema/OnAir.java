@@ -2,8 +2,8 @@ package com.junior.C8_Mostenire.Tema;
 
 public class OnAir extends Vehicle{
 
-	int noTurbines = 2;
-	boolean hasFirstClass;
+	private int noTurbines = 2;
+	private boolean hasFirstClass;
 	
 	OnAir(String serialNumber, int noPersons) {
 		super(serialNumber, noPersons);

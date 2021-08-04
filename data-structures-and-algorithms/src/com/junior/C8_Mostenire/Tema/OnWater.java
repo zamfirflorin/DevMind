@@ -2,8 +2,8 @@ package com.junior.C8_Mostenire.Tema;
 
 public class OnWater extends Vehicle {
 
-	int noEngines = 2;
-	double cargoCapacity;
+	private int noEngines = 2;
+	private double cargoCapacity;
 	
 	OnWater(String serialNumber, int noPersons) {
 		super(serialNumber, noPersons);

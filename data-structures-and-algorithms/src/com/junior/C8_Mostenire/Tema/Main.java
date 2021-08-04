@@ -14,15 +14,16 @@ public class Main {
 		
 		OnAir plane = new OnAir("BC325987DFKJS34", 20, "Wavess", 2, false);
 		plane.printInfo();
-		
+		plane.goTo(12, 40);
 		plane.addFuel(9000);
+
 		myCar.addFuel(34);
 		plane.goTo(34, 24);
 		
 		String florin = "florin";
-		String costi = "costi";
+		String costin = "costin";
 		
-		boolean check = florin.equals(costi);
+		boolean check = florin.equals(costin);
 	}
 
 }
