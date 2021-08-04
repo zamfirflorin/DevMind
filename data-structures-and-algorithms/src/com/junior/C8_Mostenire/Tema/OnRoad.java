@@ -2,8 +2,8 @@ package com.junior.C8_Mostenire.Tema;
 
 public class OnRoad extends Vehicle{
 
-	int noWheels = 4;
-	int noDoors = 4;
+	private int noWheels = 4;
+	private int noDoors = 4;
 	
 	OnRoad(String serialNumber, int noPersons) {
 		super(serialNumber, noPersons);

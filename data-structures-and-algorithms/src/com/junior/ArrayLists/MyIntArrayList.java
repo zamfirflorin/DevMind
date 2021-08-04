@@ -37,7 +37,7 @@ public class MyIntArrayList {
 		}
 		elements[index] = element;
 		this.size++;
-		elements = Arrays.copyOf(this.elements, size);
+		//elements = Arrays.copyOf(this.elements, size);
 	}
 
 	public boolean add(int e) {
@@ -47,7 +47,7 @@ public class MyIntArrayList {
 
 		this.elements[size] = e;
 		this.size++;
-		this.elements = Arrays.copyOf(elements, size);
+		//this.elements = Arrays.copyOf(elements, size);
 		return true;
 	}
 
@@ -173,9 +173,10 @@ public class MyIntArrayList {
 	}
 
 	public void ensureCapacity(int minCapacity) {
-		if (this.elements.length <= minCapacity) {
-			this.elements = Arrays.copyOf(this.elements, this.elements.length + minCapacity);
-		}
+
+			this.elements = Arrays.copyOf(this.elements,  minCapacity);
+			
+		
 	}
 	
 	public void trimToSize() {
