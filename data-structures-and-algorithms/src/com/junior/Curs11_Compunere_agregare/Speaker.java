@@ -36,4 +36,22 @@ public class Speaker {
 		this.crtVolume = 0;
 	}
 
+	public int getMaxVolume() {
+		return maxVolume;
+	}
+
+	public void setMaxVolume(int maxVolume) {
+		this.maxVolume = maxVolume;
+	}
+
+	public int getCrtVolume() {
+		return crtVolume;
+	}
+
+	public void setCrtVolume(int crtVolume) {
+		this.crtVolume = crtVolume;
+	}
+	
+	
+
 }
