@@ -7,7 +7,7 @@ public class Dimension {
 	int depth;
 	
 	public Dimension(int width, int length, int depth) {
-		super();
+
 		this.width = width;
 		this.length = length;
 		this.depth = depth;

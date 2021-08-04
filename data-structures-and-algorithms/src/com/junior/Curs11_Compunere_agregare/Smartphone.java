@@ -91,4 +91,8 @@ public class Smartphone {
 	public void setSilenceMode() {
 		this.theSpeaker.setSilenceMode();
 	}
+	
+	public void getSpeakerVolume() {
+		System.out.println("speaker volume is " + this.theSpeaker.getCrtVolume());
+	}
 }
