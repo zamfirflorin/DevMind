@@ -2,7 +2,7 @@ package com.junior.formeGeometrice;
 
 import java.util.Objects;
 
-public  abstract class Shape {
+public  class Shape {
 
 	public String text;
 	public String material;
