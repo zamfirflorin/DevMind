@@ -6,6 +6,18 @@ public class Zebra extends Terrestrial {
 		super(carnivore, weight, size, species, legs, eyes);
 	}
 
+	@Override
+	public void saySomething() {
+		
+		
+	}
+
+	@Override
+	public void specialCharacteristic() {
+		
+		
+	}
+
 
 
 }

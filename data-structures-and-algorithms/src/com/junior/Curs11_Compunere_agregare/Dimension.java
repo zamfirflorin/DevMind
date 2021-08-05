@@ -1,6 +1,6 @@
 package com.junior.Curs11_Compunere_agregare;
 
-public class Dimension {
+public  class Dimension {
 
 	int width;
 	int length;

@@ -1,6 +1,6 @@
 package com.junior.C8_Mostenire;
 
-public class Terrestrial extends Animal {
+public abstract class Terrestrial extends Animal {
 
 	private int legs;
 	private int eyes;
@@ -16,10 +16,8 @@ public class Terrestrial extends Animal {
 		this.eyes = eyes;
 	}
 
-	@Override
-	public void description() {
-		System.out.println("The terrestrial animal has: " + this.legs + " legs and " + this.eyes + " eyes");
-		super.description();
-	}
+	public abstract void saySomething();
+	
+	public abstract void specialCharacteristic();
 
 }
