@@ -1,6 +1,6 @@
 package com.junior.C8_Mostenire;
 
-public class Animal {
+public abstract class Animal {
 	// The class has 4 fields:
 	private boolean carnivore;
 	private int weight;
