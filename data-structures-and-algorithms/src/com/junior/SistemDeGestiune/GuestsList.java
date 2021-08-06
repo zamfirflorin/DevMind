@@ -111,7 +111,7 @@ public class GuestsList {
 	
 	private void notifyGuestWaitingList(Guest guest) {
 		System.out.println("Te-ai inscris cu succes in lista de asteptare si ai primit numarul de ordine "
-				+ this.waitingList.indexOf(guest) + ". Te vom notifica daca un loc devine disponibil.");
+				+ (this.waitingList.indexOf(guest) + 1) + ". Te vom notifica daca un loc devine disponibil.");
 	}
 	
 	public boolean isGuestRegistered(Guest guest) {
@@ -132,7 +132,11 @@ public class GuestsList {
 		return false;
 	}
 	
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!
+	//not respecting single responsability principle, searches and shows at the same time
 	public void search(String keyword) {
+		//!!!!!!!!!!!!
+		//created 2 new arrayLists
 		ArrayList<Guest> searchPool = new ArrayList<Guest>();
 		searchPool.addAll(participantsList);
 		searchPool.addAll(waitingList);
@@ -143,10 +147,13 @@ public class GuestsList {
 				|| containsIgnoreCase(g.getEmail(), keyword) 
 				|| containsIgnoreCase(g.getPhoneNumber(), keyword)) {
 				results.add(g);
+				System.out.println(g.getFirstName() + " " + g.getLastName() + " " + g.getEmail() + " " + g.getPhoneNumber());
 			}
 		}
+		if (searchPool.isEmpty()) {
+			System.out.println("Nu exista nicio persoana conform criteriilor cautate");
+		}
 	}
-	
 	private static boolean containsIgnoreCase(String word, String keyword) {
 		String baseWord = word.toLowerCase();
 		String searchedWord = keyword.toLowerCase();
@@ -155,5 +162,4 @@ public class GuestsList {
 		}
 		return false;
 	}
-
 }
