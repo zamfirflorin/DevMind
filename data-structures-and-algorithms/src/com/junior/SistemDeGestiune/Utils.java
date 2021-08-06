@@ -25,60 +25,93 @@ public class Utils {
 	}
 
 	public static void checkGuest(GuestsList guestList) {
+		Guest guest = getGuestOnCriteria();
+		if (guest != null && guestList.isGuestRegistered(guest)) {
+			System.out.println("The guest is already registered");
+		} else {
+			System.out.println("The guest is not registered");
+		}
+	}
+
+	public static void removeGuest(GuestsList guestList) {
+		Guest guest = getGuestOnCriteria();
+		guestList.removeGuest(guest);
+	}
+	
+	public static void updateGuest(GuestsList guestList) {
+		Guest guest = getGuestOnCriteria();
+		if (guest == null || !guestList.isGuestRegistered(guest)) {
+			System.out.println("The guest is not registered");
+		} else {
+			System.out.println("Ce camp doriti sa modificati? : " 
+					+ "\n1. nume "
+					+ "\n2. prenume\r\n"
+					+ "3. email\r\n"
+					+ "4. phoneNumber");
+			Scanner sc = new Scanner(System.in);
+			int selection = sc.nextInt();
+			switch (selection) {
+				case 1:
+					System.out.println("Introduceti numele de familie:");
+					String lastName = sc.next();
+					guestList.updateGuestLastName(guest, lastName);
+					break;
+				case 2: 
+					System.out.println("Introduceti prenumele:");
+					String firstName = sc.next();
+					guestList.updateGuestFirstName(guest, firstName);
+					break;
+				case 3:
+					System.out.println("Introduceti email:");
+					String email = sc.next();
+					guestList.updateGuestEmail(guest, email);
+					break;
+				case 4:
+					System.out.println("Introduceti numar de telefon (format „+40733386463“):");
+					String phoneNumber = sc.next();
+					guestList.updateGuestPhoneNumber(guest, phoneNumber);
+					break;
+				default:
+					System.out.println("Alegerea nu este valida!");
+					break;
+			}
+		}
+	}
+	
+	public static Guest getGuestOnCriteria() {
 		System.out.println("Pe ce criteriu veti face cautarea? : " 
 				+ "\n1. nume si prenume\r\n"
 				+ "2. email\r\n"
 				+ "3. phoneNumber");
 		Scanner sc = new Scanner(System.in);
+		Guest guest;
 		int selection = sc.nextInt();
 		switch (selection) {
-			case 1: 
+			case 1:
+				System.out.println("Introduceti numele de familie:");
+				String lastName = sc.next();
+				System.out.println("Introduceti prenumele:");
+				String firstName = sc.next();
+				guest = new Guest(lastName, firstName);
 				break;
 			case 2:
+				System.out.println("Introduceti email:");
+				String email = sc.next();
+				guest = Guest.getGuestByEmail(email);
 				break;
 			case 3:
+				System.out.println("Introduceti numar de telefon (format „+40733386463“):");
+				String phoneNumber = sc.next();
+				guest = Guest.getGuestByPhoneNumber(phoneNumber);
 				break;
 			default:
+				guest = null;
 				break;
 		}
-		System.out.println("Introduceti numele de familie:");
-		String lastName = sc.next();
-		System.out.println("Introduceti prenumele:");
-		String firstName = sc.next();
-		System.out.println("Introduceti email:");
-		String email = sc.next();
-		System.out.println("Introduceti numar de telefon (format „+40733386463“):");
-		String phoneNumber = sc.next();
 		sc.close();
-		Guest guest = new Guest(lastName, firstName, email, phoneNumber);
-		if (guestList.isGuestRegistered(guest)) {
-			System.out.println("The guest is already registered");
-		} else {
-			System.out.println("The guest is not registered");
-		}
-		
+		return guest;
 	}
-
-	public static void removeGuest(GuestsList guestList) {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Introduceti numele de familie:");
-		String lastName = sc.next();
-		System.out.println("Introduceti prenumele:");
-		String firstName = sc.next();
-		System.out.println("Introduceti email:");
-		String email = sc.next();
-		System.out.println("Introduceti numar de telefon (format „+40733386463“):");
-		String phoneNumber = sc.next();
-		sc.close();
-		Guest guest = new Guest(lastName, firstName, email, phoneNumber);
-		
-	}
-
-	public static void updateGuest(GuestsList guestList) {
-		
-		
-	}
-
+	
 	public static void guests(GuestsList guestList) {
 		
 		

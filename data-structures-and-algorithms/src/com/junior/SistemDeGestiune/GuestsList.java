@@ -39,8 +39,52 @@ public class GuestsList {
 		this.guestsList = guestsList;
 	}
 	
-	public void updateGuestInformation(String detail) {
-		
+	public void updateGuestFirstName(Guest guest, String firstName) {
+		if (this.guestsList.contains(guest)) {
+			int index = guestsList.indexOf(guest);
+			guest = guestsList.get(index);
+			guest.setFirstName(firstName);
+		} else if (this.waitingList.contains(guest)) {
+			int index = waitingList.indexOf(guest);
+			guest = waitingList.get(index);
+			guest.setFirstName(firstName);
+		}
+	}
+	
+	public void updateGuestLastName(Guest guest, String lastName) {
+		if (this.guestsList.contains(guest)) {
+			int index = guestsList.indexOf(guest);
+			guest = guestsList.get(index);
+			guest.setLastName(lastName);
+		} else if (this.waitingList.contains(guest)) {
+			int index = waitingList.indexOf(guest);
+			guest = waitingList.get(index);
+			guest.setLastName(lastName);
+		}
+	}
+	
+	public void updateGuestEmail(Guest guest, String email) {
+		if (this.guestsList.contains(guest)) {
+			int index = guestsList.indexOf(guest);
+			guest = guestsList.get(index);
+			guest.setEmail(email);
+		} else if (this.waitingList.contains(guest)) {
+			int index = waitingList.indexOf(guest);
+			guest = waitingList.get(index);
+			guest.setEmail(email);
+		}
+	}
+	
+	public void updateGuestPhoneNumber(Guest guest, String phoneNumber) {
+		if (this.guestsList.contains(guest)) {
+			int index = guestsList.indexOf(guest);
+			guest = guestsList.get(index);
+			guest.setPhoneNumber(phoneNumber);
+		} else if (this.waitingList.contains(guest)) {
+			int index = waitingList.indexOf(guest);
+			guest = waitingList.get(index);
+			guest.setPhoneNumber(phoneNumber);
+		}
 	}
 
 	public int addGuest(Guest guest) {
@@ -100,10 +144,5 @@ public class GuestsList {
 		}
 		return false;
 	}
-	
-	
-	
-	
-	
 
 }
