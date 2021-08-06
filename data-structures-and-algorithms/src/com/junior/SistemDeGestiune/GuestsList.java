@@ -106,7 +106,7 @@ public class GuestsList {
 	}
 	
 	private void notifyGuestConfirmation(Guest guest) {
-		System.out.println("Felicitari! Locul tau la eveniment este confirmat. Te asteptam!.");
+		System.out.println(guest.getLastName() + " " + guest.getFirstName() + " Felicitari! Locul tau la eveniment este confirmat. Te asteptam!.");
 	}
 	
 	private void notifyGuestWaitingList(Guest guest) {

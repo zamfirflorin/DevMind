@@ -19,8 +19,10 @@ public class Main {
 		String command = sc.next();
 		while(!command.equals("quit")) {
 			getCommand(command, guestList);
+			System.out.println("Asteapta comanda: (help - Afiseaza lista de comenzi)");
 			command = sc.next();
 		}
+		System.out.println("- Aplicatia se va inchide. Va multumim!");
 	}
 
 	private static void getCommand(String command, GuestsList guestList ) {
@@ -42,35 +44,27 @@ public class Main {
 					+ "quit - Inchide aplicatia");
 			break;
 		case "add":
-			System.out.println("Se adauga o noua persoana…)");
 			Utils.addGuest(guestList);
 			break;
 		case "check": 
-			System.out.println("- Verifica daca o persoana este inscrisa la eveniment\r\n");
 			Utils.checkGuest(guestList);
 			break;
 		case "remove":
-			System.out.println("- Sterge o persoana existenta din lista\r\n");
 			Utils.removeGuest(guestList);
 			break;
 		case "update": 
-			System.out.println("- Actualizeaza detaliile unei persoane");
 			Utils.updateGuest(guestList);
 			break;
 		case "guests":
-			System.out.println("- Lista de persoane care participa la eveniment");
 			Utils.guests(guestList);
 			break;
 		case "waitlist": 
-			System.out.println("- Persoanele din lista de asteptare");
 			Utils.waitlist(guestList);
 			break;
 		case "available":
-			System.out.println("- Numarul de locuri libere");
 			Utils.available(guestList);
 			break;
 		case "guests_no": 
-			System.out.println("- Numarul de persoane care participa la eveniment");
 			Utils.guests_no(guestList);
 			break;
 		case "waitlist_no":
@@ -83,7 +77,6 @@ public class Main {
 			Utils.search(guestList);
 			break;
 		case "quit":
-			System.out.println("- Aplicatia se va inchide. Va multumim!");
 			break;
 		default:
 			System.out.println("- Nu ati introdus o comanda valabila. Va rugam reincercat!");
