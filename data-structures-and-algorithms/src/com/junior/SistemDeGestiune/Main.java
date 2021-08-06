@@ -10,6 +10,7 @@ public class Main {
 		int availableSpots = sc.nextInt();
 		GuestsList guestList = Utils.createGuestsList(availableSpots);
 		runCommands(guestList);
+		sc.close();
 	}
 	
 	public static void runCommands(GuestsList guestList) {
@@ -20,7 +21,6 @@ public class Main {
 			getCommand(command, guestList);
 			command = sc.next();
 		}
-		sc.close();
 	}
 
 	private static void getCommand(String command, GuestsList guestList ) {
