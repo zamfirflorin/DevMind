@@ -46,11 +46,11 @@ public class Main {
 			Utils.addGuest(guestList);
 			break;
 		case "check": 
-			System.out.println("- Afiseaza aceasta lista de comenzi");
+			System.out.println("- AVerifica daca o persoana este inscrisa la eveniment\\r\\n");
 			Utils.checkGuest(guestList);
 			break;
 		case "remove":
-			System.out.println("- Adauga o noua persoana (inscriere)");
+			System.out.println("- Sterge o persoana existenta din lista\\r\\n");
 			Utils.removeGuest(guestList);
 			break;
 		case "update": 
@@ -74,7 +74,6 @@ public class Main {
 			Utils.guests_no(guestList);
 			break;
 		case "waitlist_no":
-			System.out.println("- Adauga o noua persoana (inscriere)");
 			Utils.waitlist_no(guestList);
 			break;
 		case "subscribe_no": 
@@ -86,10 +85,11 @@ public class Main {
 			Utils.search(guestList);
 			break;
 		case "quit":
-			System.out.println("- Adauga o noua persoana (inscriere)");
+			System.out.println("- Aplicatia se va inchide. Va multumim!");
 			break;
 		default:
 			System.out.println("- Nu ati introdus o comanda valabila. Va rugam reincercat!");
+			break;
 		}
 	}
 
