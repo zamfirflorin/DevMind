@@ -46,42 +46,40 @@ public class Main {
 			Utils.addGuest(guestList);
 			break;
 		case "check": 
-			System.out.println("- AVerifica daca o persoana este inscrisa la eveniment\\r\\n");
+			System.out.println("- Verifica daca o persoana este inscrisa la eveniment\r\n");
 			Utils.checkGuest(guestList);
 			break;
 		case "remove":
-			System.out.println("- Sterge o persoana existenta din lista\\r\\n");
+			System.out.println("- Sterge o persoana existenta din lista\r\n");
 			Utils.removeGuest(guestList);
 			break;
 		case "update": 
-			System.out.println("- Afiseaza aceasta lista de comenzi");
+			System.out.println("- Actualizeaza detaliile unei persoane");
 			Utils.updateGuest(guestList);
 			break;
 		case "guests":
-			System.out.println("- Adauga o noua persoana (inscriere)");
+			System.out.println("- Lista de persoane care participa la eveniment");
 			Utils.guests(guestList);
 			break;
 		case "waitlist": 
-			System.out.println("- Afiseaza aceasta lista de comenzi");
+			System.out.println("- Persoanele din lista de asteptare");
 			Utils.waitlist(guestList);
 			break;
 		case "available":
-			System.out.println("- Adauga o noua persoana (inscriere)");
+			System.out.println("- Numarul de locuri libere");
 			Utils.available(guestList);
 			break;
 		case "guests_no": 
-			System.out.println("- Afiseaza aceasta lista de comenzi");
+			System.out.println("- Numarul de persoane care participa la eveniment");
 			Utils.guests_no(guestList);
 			break;
 		case "waitlist_no":
 			Utils.waitlist_no(guestList);
 			break;
 		case "subscribe_no": 
-			System.out.println("- Afiseaza aceasta lista de comenzi");
 			Utils.subscribe_no(guestList);
 			break;
 		case "search":
-			System.out.println("- Adauga o noua persoana (inscriere)");
 			Utils.search(guestList);
 			break;
 		case "quit":

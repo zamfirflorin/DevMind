@@ -111,7 +111,7 @@ public class GuestsList {
 	
 	private void notifyGuestWaitingList(Guest guest) {
 		System.out.println("Te-ai inscris cu succes in lista de asteptare si ai primit numarul de ordine "
-				+ this.waitingList.indexOf(guest) + ". Te vom notifica daca un loc devine disponibil.");
+				+ (this.waitingList.indexOf(guest) + 1) + ". Te vom notifica daca un loc devine disponibil.");
 	}
 	
 	public boolean isGuestRegistered(Guest guest) {
@@ -144,6 +144,9 @@ public class GuestsList {
 				|| containsIgnoreCase(g.getPhoneNumber(), keyword)) {
 				results.add(g);
 			}
+		}
+		for (Guest g: results) {
+			System.out.println(g.getFirstName() + " " + g.getLastName() + " " + g.getEmail() + " " + g.getPhoneNumber());
 		}
 	}
 	
