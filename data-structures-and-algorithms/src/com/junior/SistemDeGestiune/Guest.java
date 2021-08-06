@@ -21,7 +21,6 @@ public class Guest {
 		Guest guest = new Guest("", "", email, "");
 		return guest;
 	}
-
 	public Guest() {
 		
 	}
@@ -29,8 +28,6 @@ public class Guest {
 		Guest guest = new Guest("", "", "", phoneNumber);
 		return guest;
 	}
-	
-	
 	public String getLastName() {
 		return lastName;
 	}
@@ -55,7 +52,4 @@ public class Guest {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
-	
-
 }

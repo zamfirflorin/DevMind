@@ -21,7 +21,6 @@ public class Utils {
 		String phoneNumber = sc.next();
 		Guest guest = new Guest(lastName, firstName, email, phoneNumber);
 		guestList.addGuest(guest);
-		sc.close();
 	}
 
 	public static void checkGuest(GuestsList guestList) {
@@ -41,7 +40,7 @@ public class Utils {
 	public static void updateGuest(GuestsList guestList) {
 		Guest guest = getGuestOnCriteria();
 		if (guest == null || !guestList.isGuestRegistered(guest)) {
-			System.out.println("The guest is not registered");
+			System.out.println("The guest is not registered!");
 		} else {
 			System.out.println("Ce camp doriti sa modificati? : " 
 					+ "\n1. nume "
@@ -108,43 +107,42 @@ public class Utils {
 				guest = null;
 				break;
 		}
-		sc.close();
 		return guest;
 	}
 	
 	public static void guests(GuestsList guestList) {
-		
-		
+		for (Guest guest : guestList.getParticipantsList()) {
+			System.out.println(guest.getFirstName() + " " + guest.getLastName());
+		}
 	}
 
 	public static void waitlist(GuestsList guestList) {
-		
-		
+		for (Guest guest : guestList.getWaitingList()) {
+			System.out.println(guest.getFirstName() + " " + guest.getLastName());
+		}
 	}
 
 	public static void available(GuestsList guestList) {
-		
-		
+		System.out.println("Numarul de locuri disponibile este : " + guestList.getAvailableSpots());
 	}
 
 	public static void guests_no(GuestsList guestList) {
-		
-		
+		System.out.println("Numarul de persoane participante este : " + guestList.getParticipantsList().size());
 	}
 
 	public static void waitlist_no(GuestsList guestList) {
-		
-		
+		System.out.println("Numarul de persoane din lista de asteptare este : " + guestList.getWaitingList().size());
 	}
 
 	public static void subscribe_no(GuestsList guestList) {
-		
-		
+		System.out.println("Numarul total de persoane este : " + guestList.getWaitingList().size() + guestList.getParticipantsList().size());	
 	}
 
 	public static void search(GuestsList guestList) {
-		
-		
+		System.out.println("Incepe cautarea");
+		Scanner sc = new Scanner(System.in);
+		String keyword = sc.next();
+		guestList.search(keyword);
 	}
 	
 }

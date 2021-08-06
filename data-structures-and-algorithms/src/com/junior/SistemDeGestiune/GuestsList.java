@@ -5,44 +5,36 @@ import java.util.ArrayList;
 public class GuestsList {
 	
 	private int availableSpots;
-	
-	private ArrayList<Guest> guestsList;
+	private ArrayList<Guest> participantsList;
 	private ArrayList<Guest> waitingList;
 	
 	public GuestsList(int availableSpots) {
 		this.availableSpots = availableSpots;
-		guestsList = new ArrayList<>(availableSpots);
+		participantsList = new ArrayList<>(availableSpots);
 		waitingList = new ArrayList<>();
 	}
-
 	public ArrayList<Guest> getWaitingList() {
 		return waitingList;
 	}
-
 	public void setWaitingList(ArrayList<Guest> waitingList) {
 		this.waitingList = waitingList;
 	}
-
 	public int getAvailableSpots() {
-		return availableSpots - guestsList.size();
+		return availableSpots - participantsList.size();
 	}
-
 	public void setAvailableSpots(int availableSpots) {
 		this.availableSpots = availableSpots;
 	}
-
-	public ArrayList<Guest> getGuestsList() {
-		return guestsList;
+	public ArrayList<Guest> getParticipantsList() {
+		return participantsList;
 	}
-
-	public void setGuestsList(ArrayList<Guest> guestsList) {
-		this.guestsList = guestsList;
+	public void setParticipantsList(ArrayList<Guest> guestsList) {
+		this.participantsList = guestsList;
 	}
-	
 	public void updateGuestFirstName(Guest guest, String firstName) {
-		if (this.guestsList.contains(guest)) {
-			int index = guestsList.indexOf(guest);
-			guest = guestsList.get(index);
+		if (this.participantsList.contains(guest)) {
+			int index = participantsList.indexOf(guest);
+			guest = participantsList.get(index);
 			guest.setFirstName(firstName);
 		} else if (this.waitingList.contains(guest)) {
 			int index = waitingList.indexOf(guest);
@@ -50,11 +42,10 @@ public class GuestsList {
 			guest.setFirstName(firstName);
 		}
 	}
-	
 	public void updateGuestLastName(Guest guest, String lastName) {
-		if (this.guestsList.contains(guest)) {
-			int index = guestsList.indexOf(guest);
-			guest = guestsList.get(index);
+		if (this.participantsList.contains(guest)) {
+			int index = participantsList.indexOf(guest);
+			guest = participantsList.get(index);
 			guest.setLastName(lastName);
 		} else if (this.waitingList.contains(guest)) {
 			int index = waitingList.indexOf(guest);
@@ -62,11 +53,10 @@ public class GuestsList {
 			guest.setLastName(lastName);
 		}
 	}
-	
 	public void updateGuestEmail(Guest guest, String email) {
-		if (this.guestsList.contains(guest)) {
-			int index = guestsList.indexOf(guest);
-			guest = guestsList.get(index);
+		if (this.participantsList.contains(guest)) {
+			int index = participantsList.indexOf(guest);
+			guest = participantsList.get(index);
 			guest.setEmail(email);
 		} else if (this.waitingList.contains(guest)) {
 			int index = waitingList.indexOf(guest);
@@ -74,11 +64,10 @@ public class GuestsList {
 			guest.setEmail(email);
 		}
 	}
-	
 	public void updateGuestPhoneNumber(Guest guest, String phoneNumber) {
-		if (this.guestsList.contains(guest)) {
-			int index = guestsList.indexOf(guest);
-			guest = guestsList.get(index);
+		if (this.participantsList.contains(guest)) {
+			int index = participantsList.indexOf(guest);
+			guest = participantsList.get(index);
 			guest.setPhoneNumber(phoneNumber);
 		} else if (this.waitingList.contains(guest)) {
 			int index = waitingList.indexOf(guest);
@@ -86,27 +75,25 @@ public class GuestsList {
 			guest.setPhoneNumber(phoneNumber);
 		}
 	}
-
 	public int addGuest(Guest guest) {
-		if (guestsList.size() < availableSpots && !guestsList.contains(guest)) {
-			guestsList.add(guest);
+		if (participantsList.size() < availableSpots && !participantsList.contains(guest)) {
+			participantsList.add(guest);
 			notifyGuestConfirmation(guest);
 			return 0;
-		} else if (guestsList.size() == this.availableSpots) {
+		} else if (participantsList.size() == this.availableSpots) {
 			waitingList.add(guest);
 			notifyGuestWaitingList(guest);
 			return waitingList.indexOf(guest);
-		} else if (guestsList.contains(guest)) {
+		} else if (participantsList.contains(guest)) {
 			return -1;
 		}
 		return 2;
 	}
-	
 	public boolean removeGuest(Guest guest) {
 		if (isGuestRegistered(guest)) {
-			if (guestsList.contains(guest)) {
-				guestsList.remove(guest);
-				guestsList.add(waitingList.get(0));
+			if (participantsList.contains(guest)) {
+				participantsList.remove(guest);
+				participantsList.add(waitingList.get(0));
 				waitingList.remove(0);
 				notifyGuestConfirmation(guest);
 				return true;
@@ -128,7 +115,7 @@ public class GuestsList {
 	}
 	
 	public boolean isGuestRegistered(Guest guest) {
-		if (isGuestInList(guest, this.guestsList) || isGuestInList(guest, this.waitingList)) {
+		if (isGuestInList(guest, this.participantsList) || isGuestInList(guest, this.waitingList)) {
 			return true;
 		}
 		return false;
@@ -136,11 +123,35 @@ public class GuestsList {
 	
 	private boolean isGuestInList(Guest guest, ArrayList<Guest> list) {
 		for (Guest g: list) {
-			if (g.getFirstName().equalsIgnoreCase(guest.getFirstName()) &&  g.getLastName().equalsIgnoreCase(guest.getLastName()) 
+			if (g.getFirstName().equalsIgnoreCase(guest.getFirstName()) && g.getLastName().equalsIgnoreCase(guest.getLastName()) 
 				|| (g.getEmail().equalsIgnoreCase(guest.getEmail()) 
 				|| (g.getPhoneNumber().equalsIgnoreCase(guest.getPhoneNumber())))) {
 				return true;
 			}
+		}
+		return false;
+	}
+	
+	public void search(String keyword) {
+		ArrayList<Guest> searchPool = new ArrayList<Guest>();
+		searchPool.addAll(participantsList);
+		searchPool.addAll(waitingList);
+		ArrayList<Guest> results = new ArrayList<Guest>();
+		for (Guest g: searchPool) {
+			if (containsIgnoreCase(g.getFirstName(), keyword)
+				|| containsIgnoreCase(g.getLastName(), keyword) 
+				|| containsIgnoreCase(g.getEmail(), keyword) 
+				|| containsIgnoreCase(g.getPhoneNumber(), keyword)) {
+				results.add(g);
+			}
+		}
+	}
+	
+	private static boolean containsIgnoreCase(String word, String keyword) {
+		String baseWord = word.toLowerCase();
+		String searchedWord = keyword.toLowerCase();
+		if (baseWord.contains(searchedWord)) {
+			return true;
 		}
 		return false;
 	}
