@@ -162,4 +162,45 @@ public class GuestsList {
 		}
 		return false;
 	}
+	
+	public Guest getGuestByFirstNameAndLastName(String firstName, String lastName) {
+		for (Guest guest: this.participantsList) {
+			if (guest.getFirstName().equalsIgnoreCase(firstName) && guest.getLastName().equalsIgnoreCase(lastName)) {
+				return guest;
+			}
+		}
+		for (Guest guest: this.waitingList) {
+			if (guest.getFirstName().equalsIgnoreCase(firstName) && guest.getLastName().equalsIgnoreCase(lastName)) {
+				return guest;
+			}
+		}
+		return null;
+	}
+	
+	public Guest getGuestByEmail(String email) {
+		for (Guest guest: this.participantsList) {
+			if (guest.getEmail().equalsIgnoreCase(email)) {
+				return guest;
+			}
+		}
+		for (Guest guest: this.waitingList) {
+			if (guest.getEmail().equalsIgnoreCase(email)) {
+				return guest;
+			}
+		}
+		return null;
+	}
+	public Guest getGuestByPhoneNumber(String phoneNumber) {
+		for (Guest guest: this.participantsList) {
+			if (guest.getPhoneNumber().equalsIgnoreCase(phoneNumber)) {
+				return guest;
+			}
+		}
+		for (Guest guest: this.participantsList) {
+			if (guest.getPhoneNumber().equalsIgnoreCase(phoneNumber)) {
+				return guest;
+			}
+		}
+		return null;
+	}
 }
