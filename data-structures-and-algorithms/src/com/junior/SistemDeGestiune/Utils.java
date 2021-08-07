@@ -17,20 +17,20 @@ public class Utils {
 		String firstName = sc.next();
 		System.out.println("Introduceti email:");
 		String email = sc.next();
+		while (!isEmailAddressValid(email)) {
+			email = sc.next();
+		}
 		System.out.println("Introduceti numar de telefon (format „+40733386463“):");
 		String phoneNumber = sc.next();
 		while (!isPhoneNumberValid(phoneNumber)) {
-			System.out.println("Numarul de telefon introdus nu este valid va rugam reincercati");
 			phoneNumber = sc.next();
 		}
-
-	
 		Guest guest = new Guest(lastName, firstName, email, phoneNumber);
 		guestList.addGuest(guest);
 	}
 
 	public static void checkGuest(GuestsList guestList) {
-		Guest guest = getGuestOnCriteria();
+		Guest guest = getGuestOnCriteria(guestList);
 		if (guest != null && guestList.isGuestRegistered(guest)) {
 			System.out.println("The guest is already registered");
 		} else {
@@ -39,12 +39,12 @@ public class Utils {
 	}
 
 	public static void removeGuest(GuestsList guestList) {
-		Guest guest = getGuestOnCriteria();
+		Guest guest = getGuestOnCriteria(guestList);
 		guestList.removeGuest(guest);
 	}
 
 	public static void updateGuest(GuestsList guestList) {
-		Guest guest = getGuestOnCriteria();
+		Guest guest = getGuestOnCriteria(guestList);
 		if (guest == null || !guestList.isGuestRegistered(guest)) {
 			System.out.println("The guest is not registered!");
 		} else {
@@ -80,7 +80,7 @@ public class Utils {
 		}
 	}
 
-	public static Guest getGuestOnCriteria() {
+	public static Guest getGuestOnCriteria(GuestsList guestList) {
 		System.out.println("Pe ce criteriu veti face cautarea? : " + "\n1. nume si prenume\r\n" + "2. email\r\n"
 				+ "3. phoneNumber");
 		Scanner sc = new Scanner(System.in);
@@ -92,17 +92,24 @@ public class Utils {
 			String lastName = sc.next();
 			System.out.println("Introduceti prenumele:");
 			String firstName = sc.next();
-			guest = new Guest(lastName, firstName);
+			guest = guestList.getGuestByFirstNameAndLastName(firstName, lastName);
 			break;
 		case 2:
 			System.out.println("Introduceti email:");
 			String email = sc.next();
-			guest = Guest.getGuestByEmail(email);
+			while (!isEmailAddressValid(email)) {
+				email = sc.next();
+			}
+			guest = guestList.getGuestByEmail(email);
 			break;
 		case 3:
 			System.out.println("Introduceti numar de telefon (format „+40733386463“):");
 			String phoneNumber = sc.next();
-			guest = Guest.getGuestByPhoneNumber(phoneNumber);
+			while (!isPhoneNumberValid(phoneNumber)) {
+			
+				phoneNumber = sc.next();
+			}
+			guest = guestList.getGuestByPhoneNumber(phoneNumber);
 			break;
 		default:
 			guest = null;
@@ -130,19 +137,19 @@ public class Utils {
 	}
 
 	public static void available(GuestsList guestList) {
-		System.out.println("Numarul de locuri disponibile este : " + guestList.getAvailableSpots());
+		System.out.println("Numarul de locuri disponibile este : " + (int) guestList.getAvailableSpots());
 	}
 
 	public static void guests_no(GuestsList guestList) {
-		System.out.println("Numarul de persoane participante este : " + guestList.getParticipantsList().size());
+		System.out.println("Numarul de persoane participante este : " + (int) guestList.getParticipantsList().size());
 	}
 
 	public static void waitlist_no(GuestsList guestList) {
-		System.out.println("Numarul de persoane din lista de asteptare este : " + guestList.getWaitingList().size());
+		System.out.println("Numarul de persoane din lista de asteptare este : " + (int) guestList.getWaitingList().size());
 	}
 
 	public static void subscribe_no(GuestsList guestList) {
-		System.out.println("Numarul total de persoane este : " + guestList.getWaitingList().size()
+		System.out.println("Numarul total de persoane este : " + (int) guestList.getWaitingList().size()
 				+ guestList.getParticipantsList().size());
 	}
 
@@ -158,6 +165,15 @@ public class Utils {
 				&& (phoneNumber.startsWith("07") || phoneNumber.startsWith("+407"))) {
 			return true;
 		}
+		System.out.println("Numarul de telefon introdus nu este valid va rugam reincercati");
+		return false;
+	}
+	
+	private static boolean isEmailAddressValid(String email) {
+		if (email.contains("@") && (email.endsWith(".com") || email.endsWith("ro"))) {
+			return true;
+		}
+		System.out.println("Adresa de email introdusa nu este valida va rugam reincercati");
 		return false;
 	}
 

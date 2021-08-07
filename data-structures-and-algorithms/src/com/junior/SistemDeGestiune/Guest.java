@@ -17,17 +17,10 @@ public class Guest {
 		this.lastName = lastName;
 		this.firstName = firstName;
 	}
-	public static Guest getGuestByEmail(String email) {
-		Guest guest = new Guest("", "", email, "");
-		return guest;
-	}
 	public Guest() {
 		
 	}
-	public static Guest getGuestByPhoneNumber(String phoneNumber) {
-		Guest guest = new Guest("", "", "", phoneNumber);
-		return guest;
-	}
+
 	public String getLastName() {
 		return lastName;
 	}
