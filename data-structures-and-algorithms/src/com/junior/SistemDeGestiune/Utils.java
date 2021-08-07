@@ -1,5 +1,6 @@
 package com.junior.SistemDeGestiune;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Utils {
@@ -85,7 +86,7 @@ public class Utils {
 				+ "3. phoneNumber");
 		Scanner sc = new Scanner(System.in);
 		Guest guest;
-		int selection = sc.nextInt();
+		int selection = getOption();
 		switch (selection) {
 		case 1:
 			System.out.println("Introduceti numele de familie:");
@@ -112,10 +113,31 @@ public class Utils {
 			guest = guestList.getGuestByPhoneNumber(phoneNumber);
 			break;
 		default:
+			selection = sc.nextInt();
 			guest = null;
 			break;
 		}
 		return guest;
+	}
+	
+	private static int getOption() {
+		Scanner sc = new Scanner(System.in);
+		int selection = (int) sc.nextInt();
+		while (!isOptionValid(selection)) {
+			System.out.println("Nu ati facut o alegere valida, reincercati");
+			selection = sc.nextInt();
+		}
+		return selection;
+	}
+	
+	private static boolean isOptionValid(int selection) {
+		int[] options = {1, 2, 3};
+		for (int i : options) {
+			if (selection == i) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public static void guests(GuestsList guestList) {
@@ -123,7 +145,7 @@ public class Utils {
 			System.out.println("Nu exista niciun participant in acest moment");
 		}
 		for (Guest guest : guestList.getParticipantsList()) {
-			System.out.println(guest.getFirstName() + " " + guest.getLastName());
+			System.out.println(guest.toString());
 		}
 	}
 
@@ -132,7 +154,7 @@ public class Utils {
 			System.out.println("Nu exista nicio persoana in lista de asteptare in acest moment");
 		}
 		for (Guest guest : guestList.getWaitingList()) {
-			System.out.println(guest.getFirstName() + " " + guest.getLastName());
+			System.out.println(guest.toString());
 		}
 	}
 
@@ -149,8 +171,8 @@ public class Utils {
 	}
 
 	public static void subscribe_no(GuestsList guestList) {
-		System.out.println("Numarul total de persoane este : " + (int) guestList.getWaitingList().size()
-				+ guestList.getParticipantsList().size());
+		System.out.println("Numarul total de persoane este : " + (int) (guestList.getWaitingList().size()
+				+ guestList.getParticipantsList().size()));
 	}
 
 	public static void search(GuestsList guestList) {
