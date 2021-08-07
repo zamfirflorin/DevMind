@@ -45,4 +45,10 @@ public class Guest {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+	@Override
+	public String toString() {
+		return "Guest  Nume : " + lastName + ", Prenume : " + firstName + ", email : " + email + ", telefon : "
+				+ phoneNumber + "]";
+	}
+	
 }
