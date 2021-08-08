@@ -130,6 +130,8 @@ public class Utils {
 		return selection;
 	}
 	
+	//????????????????????
+	//nu am mers sa compar in while daca selection != 1 sau selection != 2 sau diferit de 3
 	private static boolean isOptionValid(int selection) {
 		int[] options = {1, 2, 3};
 		for (int i : options) {
