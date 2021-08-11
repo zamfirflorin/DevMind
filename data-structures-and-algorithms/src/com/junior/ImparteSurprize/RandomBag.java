@@ -32,4 +32,10 @@ public class RandomBag implements IBag {
 		return 0;
 	}
 
+
+	public static IBag generate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

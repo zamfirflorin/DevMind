@@ -7,5 +7,6 @@ public interface IBag {
 	boolean isEmpty();
 	ISurprise takeOut();
 	int size();
+
 	
 }

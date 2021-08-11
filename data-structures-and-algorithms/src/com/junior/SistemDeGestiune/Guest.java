@@ -1,5 +1,7 @@
 package com.junior.SistemDeGestiune;
 
+import java.util.Objects;
+
 public class Guest {
 	
 	private String lastName;
@@ -50,5 +52,22 @@ public class Guest {
 		return "Guest  Nume : " + lastName + ", Prenume : " + firstName + ", email : " + email + ", telefon : "
 				+ phoneNumber + "]";
 	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(email, firstName, lastName, phoneNumber);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Guest other = (Guest) obj;
+		return Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName)
+				&& Objects.equals(lastName, other.lastName) && Objects.equals(phoneNumber, other.phoneNumber);
+	}
+	
 	
 }

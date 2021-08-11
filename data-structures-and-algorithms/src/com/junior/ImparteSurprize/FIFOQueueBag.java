@@ -39,6 +39,12 @@ public class FIFOQueueBag implements IBag{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
+	public static IBag generate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	
