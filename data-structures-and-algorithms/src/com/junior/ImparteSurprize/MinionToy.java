@@ -4,7 +4,7 @@ public class MinionToy implements ISurprise {
 	
 	private String name;
 	private static String[] minionToys = {"Dave", "Carl", "Kevin", "Stuart", "Jerry", "Tim"};
-	private static int index;
+	private static int counter;
 	
 	public MinionToy(String name) {
 		this.name = name;
@@ -16,11 +16,11 @@ public class MinionToy implements ISurprise {
 	}
 
 	static MinionToy generate() {
-		if (index >= minionToys.length) {
-			index = 0;
+		if (counter >= minionToys.length) {
+			counter = 0;
 		}
-		String minion = minionToys[index];
-		index++;
+		String minion = minionToys[counter];
+		counter++;
 		return new MinionToy(minion);
 	}
 }

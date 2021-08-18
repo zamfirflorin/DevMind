@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class LifoStackBag {
 
-	ArrayList<Integer> stack;
-	int index = stack.size();
+	private ArrayList<Integer> stack;
+	private int index = stack.size();
 	
 	public LifoStackBag() {
 		stack = new ArrayList<Integer>();
