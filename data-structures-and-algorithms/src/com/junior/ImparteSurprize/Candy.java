@@ -6,9 +6,11 @@ public class Candy implements ISurprise {
 
 	int nbCandies;
 	String type;
+	static String[] candies = {"chocolate", "jelly", "fruits", "vanilla"};
 
-	private Candy(int nbCandies) {
+	private Candy(int nbCandies, String type) {
 		this.nbCandies = nbCandies;
+		this.type = type;
 	}
 
 	@Override
@@ -18,7 +20,9 @@ public class Candy implements ISurprise {
 	
 	static Candy generate() {
 		Random random = new Random();
-		Candy candy = new Candy(random.nextInt());
-		return candy;
+		int nbCandies = random.nextInt();
+		int candiesIndex = random.nextInt(candies.length);
+		String candyType = candies[candiesIndex];
+		return new Candy(nbCandies, candyType);
 	}
 }
