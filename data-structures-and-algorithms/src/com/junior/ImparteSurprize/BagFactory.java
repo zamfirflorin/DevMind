@@ -9,7 +9,9 @@ public class BagFactory implements IBagFactory{
 			case "RANDOM":
 				return RandomBag.generate();
 			case "Fifo":
-				return FIFOQueueBag.generate();		
+				return FIFOQueueBag.generate();
+			case "Lifo":
+				return LifoStackBag.generate();	
 		}
 		return null;
 	}

@@ -2,13 +2,18 @@ package com.junior.ImparteSurprize;
 
 
 //Singleton
-public class GatherSurprises {
+public final class GatherSurprises {
 
-	public ISurprise[] gather(int number) {
-		return null;
+	private GatherSurprises() {
+		
 	}
 	
-	public ISurprise gather() {
+	public static ISurprise[] gather(int number) {
+		return new ISurprise[number];
+	}
+	
+	public static ISurprise gather() {
 		return null;
 	}
 }
+	
