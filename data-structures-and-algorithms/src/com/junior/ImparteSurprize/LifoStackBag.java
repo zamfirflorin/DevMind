@@ -10,9 +10,9 @@ public class LifoStackBag {
 	public LifoStackBag() {
 		stack = new ArrayList<Integer>();
 	}
-	
-	void add() {
-		stack.add(index);
+	void add(Integer n) {
+		index++;
+		stack.add(n);
 	}
 	Integer takeOut() {
 		return stack.remove(index);

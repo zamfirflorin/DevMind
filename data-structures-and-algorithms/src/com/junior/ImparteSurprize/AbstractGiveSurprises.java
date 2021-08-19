@@ -1,6 +1,6 @@
 package com.junior.ImparteSurprize;
 
-public abstract class GiveSurprises {
+public abstract class AbstractGiveSurprises {
 
 	abstract void put();
 	abstract void give();
