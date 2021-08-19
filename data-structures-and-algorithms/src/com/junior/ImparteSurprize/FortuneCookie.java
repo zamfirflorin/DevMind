@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class FortuneCookie implements ISurprise {
 	
-	String message;
-	String[] fortuneMessage = {"If winter comes, can spring be far behind?", 
+	private String message;
+	private static String[] fortuneMessage = {"If winter comes, can spring be far behind?", 
 			"You learn from your mistakes... You will learn a lot today.",
 			"You will marry your lover.",
 			"Everyone agrees. You are the best.",
@@ -27,7 +27,7 @@ public class FortuneCookie implements ISurprise {
 			"You will travel to many exotic places in your lifetime.",
 			"Give yourself some peace and quiet for at least a few hours."};
 
-	public FortuneCookie(String message) {
+	private FortuneCookie(String message) {
 		this.message = message;
 	}
 
@@ -37,12 +37,10 @@ public class FortuneCookie implements ISurprise {
 		
 	}
 	
-	public FortuneCookie generate() {
+	public static FortuneCookie generate() {
 		Random random = new Random();
 		int index = random.nextInt(fortuneMessage.length);
 		return new FortuneCookie(fortuneMessage[index]);
 	}
-	
-	
-	
+
 }

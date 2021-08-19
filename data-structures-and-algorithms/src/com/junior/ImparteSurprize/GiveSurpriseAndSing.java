@@ -1,6 +1,6 @@
 package com.junior.ImparteSurprize;
 
-public class GiveSurpriseAndSing extends GiveSurprises {
+public class GiveSurpriseAndSing extends AbstractGiveSurprises {
 
 	@Override
 	void put() {

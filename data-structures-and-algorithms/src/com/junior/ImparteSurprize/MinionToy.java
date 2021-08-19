@@ -6,7 +6,7 @@ public class MinionToy implements ISurprise {
 	private static String[] minionToys = {"Dave", "Carl", "Kevin", "Stuart", "Jerry", "Tim"};
 	private static int counter;
 	
-	public MinionToy(String name) {
+	private MinionToy(String name) {
 		this.name = name;
 	}
 
