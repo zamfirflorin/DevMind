@@ -2,5 +2,6 @@ package com.junior.ImparteSurprize;
 
 public interface IBagFactory {
 
-	IBag makeBag(String bag);
+	  // Create a new container, according to the specified type
+	  IBag makeBag(String type);
 }
