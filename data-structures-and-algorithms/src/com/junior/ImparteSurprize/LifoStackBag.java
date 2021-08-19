@@ -17,4 +17,9 @@ public class LifoStackBag {
 	Integer takeOut() {
 		return stack.remove(index);
 	}
+	public static IBag generate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }
