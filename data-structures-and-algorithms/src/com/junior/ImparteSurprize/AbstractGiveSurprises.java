@@ -1,5 +1,7 @@
 package com.junior.ImparteSurprize;
 
+import java.util.ArrayList;
+
 public abstract class AbstractGiveSurprises {
 
 	private IBag bag;
@@ -9,14 +11,18 @@ public abstract class AbstractGiveSurprises {
 		this.bag = BagFactory.getInstance().makeBag(type);
 		this.waitTime = waitTime;
 	}
-	public void give() {
-		
+	public ISurprise give() {
+		return bag.takeOut();
 	}
-	public void giveAll() {
-		
+	public ArrayList<ISurprise> giveAll() {
+		ArrayList<ISurprise> list = new ArrayList<ISurprise>();
+		while (!bag.isEmpty()) {
+			list.add(bag.takeOut());
+		}
+		return list;
 	}
 	public boolean isEmpty() {
-		return true;
+		return bag.isEmpty();
 	}
 	void put(ISurprise newSurprise) {
 		bag.put(newSurprise);

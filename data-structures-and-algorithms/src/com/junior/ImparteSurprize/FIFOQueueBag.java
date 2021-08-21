@@ -13,7 +13,6 @@ public class FIFOQueueBag implements IBag{
 	@Override
 	public void put(ISurprise surprise) {
 		queue.add(surprise);
-		
 	}
 
 	@Override
