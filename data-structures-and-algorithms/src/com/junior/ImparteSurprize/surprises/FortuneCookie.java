@@ -1,6 +1,8 @@
-package com.junior.ImparteSurprize;
+package com.junior.ImparteSurprize.surprises;
 
 import java.util.Random;
+
+import com.junior.ImparteSurprize.ISurprise;
 
 public class FortuneCookie implements ISurprise {
 	

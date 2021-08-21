@@ -1,4 +1,6 @@
-package com.junior.ImparteSurprize;
+package com.junior.ImparteSurprize.surprises;
+
+import com.junior.ImparteSurprize.ISurprise;
 
 public class MinionToy implements ISurprise {
 	
@@ -15,7 +17,7 @@ public class MinionToy implements ISurprise {
 		System.out.println("Acesta este un minion toy cu mesajul" + this.name);
 	}
 
-	static MinionToy generate() {
+	public static MinionToy generate() {
 		if (counter >= minionToys.length) {
 			counter = 0;
 		}

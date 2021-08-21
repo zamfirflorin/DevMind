@@ -5,20 +5,18 @@ import java.util.ArrayList;
 public class LifoStackBag implements IBag {
 
 	private ArrayList<ISurprise> stack;
-	private int index = stack.size();
+
 	
 	public LifoStackBag() {
 		stack = new ArrayList<ISurprise>();
 	}
 	@Override
 	public void put(ISurprise surprise) {
-		index++;
 		stack.add(surprise);
 	}
 	@Override
 	public ISurprise takeOut() {
-		ISurprise surprise = stack.get(index);
-		return stack.remove(index);
+		return stack.remove(stack.size() - 1);
 	}
 	@Override
 	public void put(IBag bagOfSurprises) {
@@ -33,9 +31,5 @@ public class LifoStackBag implements IBag {
 	public int size() {
 		return stack.size();
 	}
-	public static IBag generate() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
+
 }

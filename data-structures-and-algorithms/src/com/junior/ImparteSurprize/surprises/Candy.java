@@ -1,12 +1,14 @@
-package com.junior.ImparteSurprize;
+package com.junior.ImparteSurprize.surprises;
 
 import java.util.Random;
+
+import com.junior.ImparteSurprize.ISurprise;
 
 public class Candy implements ISurprise {
 
 	int nbCandies;
-	String type;
-	static String[] candies = {"chocolate", "jelly", "fruits", "vanilla"};
+	private String type;
+	private static String[] candies = {"chocolate", "jelly", "fruits", "vanilla"};
 
 	private Candy(int nbCandies, String type) {
 		this.nbCandies = nbCandies;
@@ -15,10 +17,10 @@ public class Candy implements ISurprise {
 
 	@Override
 	public void enjoy() {
-	
+		
 	}
-	
-	static Candy generate() {
+
+	public static Candy generate() {
 		Random random = new Random();
 		int nbCandies = random.nextInt();
 		int candiesIndex = random.nextInt(candies.length);
