@@ -84,7 +84,7 @@ public class GuestsList {
 			waitingList.add(guest);
 			notifyGuestWaitingList(guest);
 			return waitingList.indexOf(guest);
-		} else if (participantsList.contains(guest)) {
+		} else if(participantsList.contains(guest) || waitingList.contains(guest)) {
 			return -1;
 		}
 		return 2;
@@ -196,7 +196,7 @@ public class GuestsList {
 				return guest;
 			}
 		}
-		for (Guest guest: this.participantsList) {
+		for (Guest guest: this.waitingList) {
 			if (guest.getPhoneNumber().equalsIgnoreCase(phoneNumber)) {
 				return guest;
 			}

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class FIFOQueueBag implements IBag{
 	
-	ArrayList<Integer> queue;
+	ArrayList<ISurprise> queue;
 
 	public FIFOQueueBag() {
 		queue = new ArrayList<>();
@@ -40,12 +40,5 @@ public class FIFOQueueBag implements IBag{
 		return 0;
 	}
 
-
-	public static IBag generate() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
 	
 }

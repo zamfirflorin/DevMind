@@ -1,7 +1,13 @@
 package com.junior.ImparteSurprize;
 
+import java.util.ArrayList;
+
 public class RandomBag implements IBag {
 
+	
+	private ArrayList<Integer> bag;
+	private int index;
+	
 	@Override
 	public void put(ISurprise surprise) {
 		// TODO Auto-generated method stub

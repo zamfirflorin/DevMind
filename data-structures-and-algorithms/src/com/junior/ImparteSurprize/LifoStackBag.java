@@ -2,24 +2,34 @@ package com.junior.ImparteSurprize;
 
 import java.util.ArrayList;
 
-public class LifoStackBag {
+public class LifoStackBag implements IBag {
 
-	private ArrayList<Integer> stack;
-	private int index = stack.size();
+	private ArrayList<ISurprise> stack;
+
 	
 	public LifoStackBag() {
-		stack = new ArrayList<Integer>();
+		stack = new ArrayList<ISurprise>();
 	}
-	void add(Integer n) {
-		index++;
-		stack.add(n);
+	@Override
+	public void put(ISurprise surprise) {
+		stack.add(surprise);
 	}
-	Integer takeOut() {
-		return stack.remove(index);
+	@Override
+	public ISurprise takeOut() {
+		return stack.remove(stack.size() - 1);
 	}
-	public static IBag generate() {
+	@Override
+	public void put(IBag bagOfSurprises) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
-	
+	@Override
+	public boolean isEmpty() {
+		return stack.isEmpty();
+	}
+	@Override
+	public int size() {
+		return stack.size();
+	}
+
 }
