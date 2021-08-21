@@ -1,47 +1,41 @@
 package com.junior.ImparteSurprize;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class RandomBag implements IBag {
 
-	
-	private ArrayList<Integer> bag;
+	private static final Random random = new Random();
+	private ArrayList<ISurprise> bag;
 	private int index;
 	
 	@Override
 	public void put(ISurprise surprise) {
-		// TODO Auto-generated method stub
-
+		bag.add(surprise);
 	}
 
 	@Override
-	public void put(IBag bag) {
-		// TODO Auto-generated method stub
-
+	public void put(IBag baggy) {
+		while (!baggy.isEmpty()) {
+			bag.add(baggy.takeOut());
+		}
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return bag.isEmpty();
 	}
 
 	@Override
 	public ISurprise takeOut() {
-		// TODO Auto-generated method stub
-		return null;
+		int index = random.nextInt(bag.size());
+		return bag.remove(index);
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return bag.size();
 	}
 
-
-	public static IBag generate() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

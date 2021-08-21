@@ -19,9 +19,10 @@ public class LifoStackBag implements IBag {
 		return stack.remove(stack.size() - 1);
 	}
 	@Override
-	public void put(IBag bagOfSurprises) {
-		// TODO Auto-generated method stub
-		
+	public void put(IBag bag) {
+		while (!bag.isEmpty()) {
+			stack.add(bag.takeOut());
+		}
 	}
 	@Override
 	public boolean isEmpty() {

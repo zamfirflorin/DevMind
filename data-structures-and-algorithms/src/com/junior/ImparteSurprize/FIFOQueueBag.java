@@ -12,32 +12,30 @@ public class FIFOQueueBag implements IBag{
 
 	@Override
 	public void put(ISurprise surprise) {
-		// TODO Auto-generated method stub
+		queue.add(surprise);
 		
 	}
 
 	@Override
 	public void put(IBag bag) {
-		// TODO Auto-generated method stub
-		
+		while (!bag.isEmpty()) {
+			queue.add(bag.takeOut());
+		}
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return queue.isEmpty();
 	}
 
 	@Override
 	public ISurprise takeOut() {
-		// TODO Auto-generated method stub
-		return null;
+		return queue.remove(0);
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return queue.size();
 	}
 
 	
