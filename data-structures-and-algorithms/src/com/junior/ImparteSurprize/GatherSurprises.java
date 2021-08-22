@@ -30,7 +30,18 @@ public final class GatherSurprises {
 	}
 	
 	public static ISurprise gather() {
-		return null;
+		ISurprise suprise = null;
+			Random r = new Random();
+			int value = r.nextInt(3);
+			switch(value) {
+				case 0:
+					suprise = MinionToy.generate();
+				case 1:
+					suprise = FortuneCookie.generate();
+				case 2:
+					suprise = Candy.generate();
+			}
+		return suprise;
 	}
 }
 	

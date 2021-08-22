@@ -11,9 +11,11 @@ public abstract class AbstractGiveSurprises {
 		this.bag = BagFactory.getInstance().makeBag(type);
 		this.waitTime = waitTime;
 	}
+
 	public ISurprise give() {
 		return bag.takeOut();
 	}
+
 	public ArrayList<ISurprise> giveAll() {
 		ArrayList<ISurprise> list = new ArrayList<ISurprise>();
 		while (!bag.isEmpty()) {
@@ -21,15 +23,18 @@ public abstract class AbstractGiveSurprises {
 		}
 		return list;
 	}
+
 	public boolean isEmpty() {
 		return bag.isEmpty();
 	}
+
 	void put(ISurprise newSurprise) {
 		bag.put(newSurprise);
 	}
+
 	void put(IBag surprises) {
 		bag.put(surprises);
 	}
+
 	protected abstract void giveWithPassion();
 }
-

@@ -4,7 +4,11 @@ package com.junior.ImparteSurprize;
 public class BagFactory implements IBagFactory{
 	
 	private static BagFactory bag;
-
+	
+	private BagFactory() {
+		
+	}
+	
 	@Override
 	public IBag makeBag(String name) {
 		switch (name) {
@@ -17,11 +21,7 @@ public class BagFactory implements IBagFactory{
 		}
 		return null;
 	}
-	
-	private BagFactory() {
-		
-	}
-	
+
 	public static BagFactory getInstance() {
 		if (bag == null) {
 			bag = new BagFactory();

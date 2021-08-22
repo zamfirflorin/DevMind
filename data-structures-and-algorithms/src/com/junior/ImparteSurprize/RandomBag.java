@@ -7,7 +7,6 @@ public class RandomBag implements IBag {
 
 	private static final Random random = new Random();
 	private ArrayList<ISurprise> bag;
-	private int index;
 	
 	@Override
 	public void put(ISurprise surprise) {
