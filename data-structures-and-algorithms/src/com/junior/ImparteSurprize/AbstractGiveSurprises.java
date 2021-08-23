@@ -1,6 +1,7 @@
 package com.junior.ImparteSurprize;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractGiveSurprises {
 
@@ -21,6 +22,13 @@ public abstract class AbstractGiveSurprises {
 		while (!bag.isEmpty()) {
 			list.add(bag.takeOut());
 		}
+		try {
+			  TimeUnit.SECONDS.sleep(waitTime); // number of seconds to sleep
+			} catch (InterruptedException e) {
+			  // TODO Auto-generated catch block
+			  e.printStackTrace();
+			}
+		
 		return list;
 	}
 
@@ -28,11 +36,11 @@ public abstract class AbstractGiveSurprises {
 		return bag.isEmpty();
 	}
 
-	void put(ISurprise newSurprise) {
+	public void put(ISurprise newSurprise) {
 		bag.put(newSurprise);
 	}
 
-	void put(IBag surprises) {
+	public void put(IBag surprises) {
 		bag.put(surprises);
 	}
 
