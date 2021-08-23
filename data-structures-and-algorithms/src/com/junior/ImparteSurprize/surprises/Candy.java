@@ -17,7 +17,7 @@ public class Candy implements ISurprise {
 
 	@Override
 	public void enjoy() {
-		
+		System.out.println("Acesta este un candy de tipul " + this.type);
 	}
 
 	public static Candy generate() {

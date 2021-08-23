@@ -35,7 +35,7 @@ public class FortuneCookie implements ISurprise {
 
 	@Override
 	public void enjoy() {
-		// TODO Auto-generated method stub
+		System.out.println("Acesta este un fortune cookie cu mesajul" + this.message);
 		
 	}
 	

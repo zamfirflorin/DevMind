@@ -7,13 +7,12 @@ public class GiveSurpriseAndApplaud extends AbstractGiveSurprises {
 
 	public GiveSurpriseAndApplaud(String type, int waitTime) {
 		super(type, waitTime);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	protected void giveWithPassion() {
+		super.give();
 		System.out.println("Loud applause to you… For it is in giving that we receive.");
-		
 	}
 
 }
