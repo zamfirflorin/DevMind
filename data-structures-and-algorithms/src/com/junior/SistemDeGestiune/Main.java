@@ -8,7 +8,7 @@ public class Main {
 		System.out.println("Bun venit! Introduceti numarul de locuri disponibile:");
 		Scanner sc = new Scanner(System.in);
 		int availableSpots = sc.nextInt();
-		GuestsList guestList = Utils.createGuestsList(availableSpots);
+		GuestsList guestList = GuestService.createGuestsList(availableSpots);
 		runCommands(guestList);
 		sc.close();
 	}
@@ -44,37 +44,37 @@ public class Main {
 					+ "quit - Inchide aplicatia");
 			break;
 		case "add":
-			Utils.addGuest(guestList);
+			GuestService.addGuest(guestList);
 			break;
 		case "check": 
-			Utils.checkGuest(guestList);
+			GuestService.checkGuest(guestList);
 			break;
 		case "remove":
-			Utils.removeGuest(guestList);
+			GuestService.removeGuest(guestList);
 			break;
 		case "update": 
-			Utils.updateGuest(guestList);
+			GuestService.updateGuest(guestList);
 			break;
 		case "guests":
-			Utils.guests(guestList);
+			GuestService.guests(guestList);
 			break;
 		case "waitlist": 
-			Utils.waitlist(guestList);
+			GuestService.waitlist(guestList);
 			break;
 		case "available":
-			Utils.available(guestList);
+			GuestService.available(guestList);
 			break;
 		case "guests_no": 
-			Utils.guests_no(guestList);
+			GuestService.guests_no(guestList);
 			break;
 		case "waitlist_no":
-			Utils.waitlist_no(guestList);
+			GuestService.waitlist_no(guestList);
 			break;
 		case "subscribe_no": 
-			Utils.subscribe_no(guestList);
+			GuestService.subscribe_no(guestList);
 			break;
 		case "search":
-			Utils.search(guestList);
+			GuestService.search(guestList);
 			break;
 		case "quit":
 			break;
