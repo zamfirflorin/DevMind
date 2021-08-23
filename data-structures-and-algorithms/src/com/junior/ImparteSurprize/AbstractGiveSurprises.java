@@ -23,11 +23,12 @@ public abstract class AbstractGiveSurprises {
 			list.add(bag.takeOut());
 		}
 		try {
-			  TimeUnit.SECONDS.sleep(10); // number of seconds to sleep
+			  TimeUnit.SECONDS.sleep(waitTime); // number of seconds to sleep
 			} catch (InterruptedException e) {
 			  // TODO Auto-generated catch block
 			  e.printStackTrace();
 			}
+		
 		return list;
 	}
 
@@ -35,11 +36,11 @@ public abstract class AbstractGiveSurprises {
 		return bag.isEmpty();
 	}
 
-	void put(ISurprise newSurprise) {
+	public void put(ISurprise newSurprise) {
 		bag.put(newSurprise);
 	}
 
-	void put(IBag surprises) {
+	public void put(IBag surprises) {
 		bag.put(surprises);
 	}
 
