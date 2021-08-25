@@ -20,7 +20,9 @@ public abstract class AbstractGiveSurprises {
 	public ArrayList<ISurprise> giveAll() {
 		ArrayList<ISurprise> list = new ArrayList<ISurprise>();
 		while (!bag.isEmpty()) {
+			
 			list.add(bag.takeOut());
+			
 		}
 		try {
 			  TimeUnit.SECONDS.sleep(waitTime); // number of seconds to sleep

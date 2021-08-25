@@ -3,7 +3,7 @@ package com.junior.SistemDeGestiune;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Utils {
+public class GuestService {
 
 	public static GuestsList createGuestsList(int availableSpots) {
 		GuestsList guestsList = new GuestsList(availableSpots);
@@ -44,7 +44,7 @@ public class Utils {
 		guestList.removeGuest(guest);
 	}
 
-	public static void updateGuest(GuestsList guestList) {
+	public static  void updateGuest(GuestsList guestList) {
 		Guest guest = getGuestOnCriteria(guestList);
 		if (guest == null || !guestList.isGuestRegistered(guest)) {
 			System.out.println("The guest is not registered!");
