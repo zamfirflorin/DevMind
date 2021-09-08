@@ -21,7 +21,7 @@ public class Matrix {
 			for (int j = 0; j < matrix.get(i).size(); j++) {
 				System.out.print(matrix.get(i).get(j) + "\t");
 			}
-			System.out.println();
+			System.out.println("\n");
 		}
 
 	}

@@ -6,31 +6,43 @@ import java.util.Random;
 public class MatrixOperations {
 
 	public static void main(String[] args) {
-		ArrayList<ArrayList<Integer>> matrixA = new ArrayList<>(2);
-		ArrayList<ArrayList<Integer>> matrixB = new ArrayList<>(3);
+		int n = 2;
+		int m = 3;
+		ArrayList<ArrayList<Integer>> matrixA = new ArrayList<ArrayList<Integer>>(n);
+		ArrayList<ArrayList<Integer>> matrixB = new ArrayList<ArrayList<Integer>>(m);
 		Random random = new Random();
 
-		for (int i = 0; i < matrixA.size(); i++) {
-			ArrayList<Integer> row = new ArrayList<>(3);
-			for (int j = 0; j < row.size(); j++) {
-				row.add(random.nextInt(10));
+		for (int i = 0; i < n; i++) {
+			ArrayList<Integer> row = new ArrayList<>(m);
+			for (int j = 0; j < m; j++) {
+				row.add(0);
 			}
 			matrixA.add(row);
 		}
-		for (int i = 0; i < matrixB.size(); i++) {
-			ArrayList<Integer> row = new ArrayList<>(2);
-			for (int j = 0; j < row.size(); j++) {
-				row.add(random.nextInt(10));
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < matrixA.get(i).size(); j++) {
+				System.out.print(matrixA.get(i).get(j) + "\t");
+			}
+			System.out.println("\n");
+		}
+		System.out.println("\n");
+		for (int i = 0; i < m; i++) {
+			ArrayList<Integer> row = new ArrayList<>(n);
+			for (int j = 0; j < n; j++) {
+				row.add(0);
 			}
 			matrixB.add(row);
 		}
-		//A X B
-		
-		for (int i = 0; i < matrixA.size(); i++) {
-			for (int j = 0; j < matrixB.size(); j++) {
-				
+
+		for (int i = 0; i < m; i++) {
+			for (int j = 0; j < matrixB.get(i).size(); j++) {
+				System.out.print(matrixB.get(i).get(j) + "\t");
 			}
+			System.out.println("\n");
 		}
+		//Aplicatii - operatii matematice cu matrici
+		//Adunarea
+
 	}
 
 }
