@@ -6,18 +6,15 @@ import java.util.Scanner;
 public class SquareMatrix {
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+
 		int matrixDimension = 5; //sc.nextInt();
 		int mainDiagValue = 1; // sc.nextInt();
 		int sndDiagValue = 2; //sc.nextInt();
-		
 
-		
 		int leftValue = 4; //sc.nextInt();
 		int upValue = 5; // sc.nextInt();
 		int rightValue = 6; //sc.nextInt();
 		int bottomValue = 7; //sc.nextInt();
-		
 		
 		ArrayList<ArrayList<Integer>> matrix = new ArrayList<ArrayList<Integer>>(matrixDimension);
 		
@@ -29,7 +26,6 @@ public class SquareMatrix {
 			matrix.add(newRow);
 		}
 		
-
 		int left = 0;
 		int up = 0;
 		int right = matrixDimension - 1;
@@ -73,10 +69,9 @@ public class SquareMatrix {
 		for (int i = 0; i < matrixDimension; i++) {
 				matrix.get(i).set(indexJ, sndDiagValue);
 				indexJ--;
-			
 		}
 		if (matrixDimension % 2 != 0) {
-			int centerValue = sc.nextInt();
+			int centerValue = 8;
 			matrix.get(matrixDimension / 2).set(matrixDimension / 2, centerValue);
 		}
 		for (int i = 0; i < matrix.size(); i++) {
