@@ -13,25 +13,33 @@ public abstract class AbstractGiveSurprises {
 		this.waitTime = waitTime;
 	}
 
-	public ISurprise give() {
-		return bag.takeOut();
+	public void give() {
+		if (this.bag.isEmpty()) {
+			System.out.println("The bag is empty");
+			return;
+		}
+		
+		this.bag.takeOut().enjoy();
+		this.giveWithPassion();
 	}
 
-	public ArrayList<ISurprise> giveAll() {
-		ArrayList<ISurprise> list = new ArrayList<ISurprise>();
-		while (!bag.isEmpty()) {
-			
-			list.add(bag.takeOut());
-			
+	public void giveAll() {
+		if (bag.isEmpty()) {
+			System.out.println("The bag is empty");
+			return;
 		}
-		try {
-			  TimeUnit.SECONDS.sleep(waitTime); // number of seconds to sleep
+		int limit = this.bag.size();
+		while (limit > 0) {
+			try {
+				this.give();
+				TimeUnit.SECONDS.sleep(waitTime); // number of seconds to sleep
 			} catch (InterruptedException e) {
-			  // TODO Auto-generated catch block
-			  e.printStackTrace();
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		
-		return list;
+			limit--;
+		}
+
 	}
 
 	public boolean isEmpty() {

@@ -12,7 +12,7 @@ public class GiveSurpriseAndApplaud extends AbstractGiveSurprises {
 	@Override
 	protected void giveWithPassion() {
 		super.give();
-		System.out.println("Loud applause to you… For it is in giving that we receive.");
+		System.out.println("Loud applause to you… For it is in giving that we receive.\n");
 	}
 
 }

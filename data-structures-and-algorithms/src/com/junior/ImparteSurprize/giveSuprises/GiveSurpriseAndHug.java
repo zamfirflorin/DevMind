@@ -11,7 +11,7 @@ public class GiveSurpriseAndHug extends AbstractGiveSurprises {
 
 	@Override
 	protected void giveWithPassion() {
-		System.out.println("Warm wishes and a big hug!");
+		System.out.println("Warm wishes and a big hug!..\n");
 		
 	}
 

@@ -13,16 +13,19 @@ public final class GatherSurprises {
 	}
 	
 	public static ISurprise[] gather(int number) {
+		//edge case - daca number == -1 sau number == 0
 		ISurprise[] suprises = new ISurprise[number];
 		for (ISurprise s : suprises) {
 			Random r = new Random();
-			int value = r.nextInt(3);
+			int value = r.nextInt(2);
 			switch(value) {
 				case 0:
 					s = MinionToy.generate();
+					break;
 				case 1:
 					s = FortuneCookie.generate();
-				case 2:
+					break;
+				default:
 					s = Candy.generate();
 			}
 		}
@@ -32,13 +35,15 @@ public final class GatherSurprises {
 	public static ISurprise gather() {
 		ISurprise suprise = null;
 			Random r = new Random();
-			int value = r.nextInt(3);
+			int value = r.nextInt(2);
 			switch(value) {
 				case 0:
 					suprise = MinionToy.generate();
+					break;
 				case 1:
 					suprise = FortuneCookie.generate();
-				case 2:
+					break;
+				default:
 					suprise = Candy.generate();
 			}
 		return suprise;

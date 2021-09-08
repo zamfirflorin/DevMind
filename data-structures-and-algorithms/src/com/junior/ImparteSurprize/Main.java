@@ -8,21 +8,28 @@ import com.junior.ImparteSurprize.surprises.MinionToy;
 public class Main {
 
 	public static void main(String[] args) {
+		exGiveSurprisesAndApplauseFIFO();
+
+	}
+	
+	public static void exGiveSurprisesAndApplauseFIFO() {
+		ISurprise s1 = GatherSurprises.gather();
+		ISurprise s2 = GatherSurprises.gather();
+		ISurprise s3 = GatherSurprises.gather();
+		ISurprise s4 = GatherSurprises.gather();
 		
-		IBag fifoBag = BagFactory.getInstance().makeBag("FIFO");
-		IBag lifoBag = BagFactory.getInstance().makeBag("LIFO");
-		IBag randomBag = BagFactory.getInstance().makeBag("RANDOM");
 		
-		ISurprise candy = Candy.generate();
-		ISurprise cookie = FortuneCookie.generate();
-		ISurprise toy = MinionToy.generate();
-		fifoBag.put(candy);
-		fifoBag.put(cookie);
-		fifoBag.put(toy);
+		System.out.println(s1);
+		System.out.println(s2);
+		System.out.println(s3);
+		System.out.println(s4);
 		
-		GiveSurpriseAndApplaud giveSurprise = new  GiveSurpriseAndApplaud("LIFO", 10);
-		giveSurprise.put(fifoBag);
-		giveSurprise.giveAll();
+		GiveSurpriseAndApplaud g = new GiveSurpriseAndApplaud("FIFO", 2);
+		g.put(s1);
+		g.put(s2);
+		g.put(s3);
+		g.put(s4);
+		g.giveAll();
 	}
 
 }
