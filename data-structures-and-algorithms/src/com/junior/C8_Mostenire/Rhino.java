@@ -24,7 +24,6 @@ public class Rhino extends Terrestrial {
 	  }
 	 
 	  @Override
-	@Override
 	  public void specialCharacteristic() {
 	    System.out.println("I have a strong horn!");
 	  }

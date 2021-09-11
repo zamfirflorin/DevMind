@@ -17,7 +17,7 @@ public final class GatherSurprises {
 		ISurprise[] suprises = new ISurprise[number];
 		for (ISurprise s : suprises) {
 			Random r = new Random();
-			int value = r.nextInt(2);
+			int value = r.nextInt(3);
 			switch(value) {
 				case 0:
 					s = MinionToy.generate();
@@ -35,7 +35,7 @@ public final class GatherSurprises {
 	public static ISurprise gather() {
 		ISurprise suprise = null;
 			Random r = new Random();
-			int value = r.nextInt(2);
+			int value = r.nextInt(3);
 			switch(value) {
 				case 0:
 					suprise = MinionToy.generate();
