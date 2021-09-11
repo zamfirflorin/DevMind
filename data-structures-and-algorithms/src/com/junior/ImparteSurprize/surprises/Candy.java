@@ -8,7 +8,7 @@ public class Candy implements ISurprise {
 
 	int nbCandies;
 	private String type;
-	
+	private static Random random = new Random();
 	//ar putea fi un enum
 	//vector de string, ar putea fi un enum
 	private static String[] candies = {"chocolate", "jelly", "fruits", "vanilla"};
@@ -24,7 +24,6 @@ public class Candy implements ISurprise {
 	}
 
 	public static Candy generate() {
-		Random random = new Random();
 		int nbCandies = random.nextInt(30);
 		int candiesIndex = random.nextInt(candies.length);
 		String candyType = candies[candiesIndex];
