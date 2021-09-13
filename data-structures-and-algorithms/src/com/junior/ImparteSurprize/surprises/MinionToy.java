@@ -14,7 +14,7 @@ public class MinionToy implements ISurprise {
 
 	@Override
 	public void enjoy() {
-		System.out.println("Acesta este un minion toy pe nume " + this.name);
+		System.out.println("Acesta este un minion toy pe nume [ " + this.name + " ]");
 	}
 
 	public static MinionToy generate() {
@@ -28,7 +28,7 @@ public class MinionToy implements ISurprise {
 
 	@Override
 	public String toString() {
-		return "[MinionToy] name=" + name + "";
+		return "[MinionToy] name = [ " + name + " ]";
 	}
 	
 }

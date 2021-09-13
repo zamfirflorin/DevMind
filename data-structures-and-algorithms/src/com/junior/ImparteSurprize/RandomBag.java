@@ -8,6 +8,11 @@ public class RandomBag implements IBag {
 	private static final Random random = new Random();
 	private ArrayList<ISurprise> bag;
 	
+	
+	public RandomBag() {
+		bag = new ArrayList<>();
+	}
+	
 	@Override
 	public void put(ISurprise surprise) {
 		bag.add(surprise);

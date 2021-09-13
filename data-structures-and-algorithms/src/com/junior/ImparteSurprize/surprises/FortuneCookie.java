@@ -35,7 +35,7 @@ public class FortuneCookie implements ISurprise {
 
 	@Override
 	public void enjoy() {
-		System.out.println("Acesta este un fortune cookie cu mesajul " + this.message);
+		System.out.println("Acesta este un fortune cookie cu mesajul :  [ " + this.message +  " ]");
 		
 	}
 	
@@ -47,7 +47,7 @@ public class FortuneCookie implements ISurprise {
 
 	@Override
 	public String toString() {
-		return "[FortuneCookie] message = " + message + "";
+		return "[FortuneCookie] message = [" + message + " ]";
 	}
 	
 
