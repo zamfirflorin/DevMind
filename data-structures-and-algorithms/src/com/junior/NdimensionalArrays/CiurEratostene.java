@@ -7,8 +7,8 @@ public class CiurEratostene {
 
 	public static void main(String[] args) {
 		
-		ArrayList<ArrayList<Integer>> matrix = generateMatrix(120);
-		printMatrix(matrix);
+		ArrayList<ArrayList<Integer>> matrix = generateMatrix(1000);
+		//printMatrix(matrix);
 		ArrayList<ArrayList<Integer>> primes = getPrimes(matrix);
 		System.out.println();
 		printMatrix(primes);
