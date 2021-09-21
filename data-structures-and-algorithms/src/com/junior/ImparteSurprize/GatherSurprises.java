@@ -8,6 +8,12 @@ import com.junior.ImparteSurprize.surprises.MinionToy;
 
 public final class GatherSurprises {
 
+	private static final GatherSurprises instance = new GatherSurprises();
+	
+    public static GatherSurprises getInstance(){
+        return instance;
+    }
+	
 	private GatherSurprises() {
 		
 	}

@@ -111,7 +111,7 @@ public class MatrixOperations {
 		
 		System.out.println("========== 4. Matrix A x Matrix D=========\n");
 
-		matrixAxD = multiplyArray(matrixD, matrixA);
+		matrixAxD = multiplyArray(matrixA, matrixD);
 		for (int i = 0; i < matrixAxD.size(); i++) {
 			for (int j = 0; j < matrixAxD.get(i).size(); j++) {
 				System.out.print(matrixAxD.get(i).get(j) + "\t");
