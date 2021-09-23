@@ -16,6 +16,7 @@ public class MatrixOperations {
 		ArrayList<ArrayList<Integer>> matrixScalar = new ArrayList<ArrayList<Integer>>(n);
 		ArrayList<ArrayList<Integer>> matrixAxD = new ArrayList<ArrayList<Integer>>(n);
 		ArrayList<ArrayList<Integer>> matrixD = new ArrayList<ArrayList<Integer>>(m);
+		
 		Random random = new Random();
 
 		System.out.println("========== Matrix A =========\n");
