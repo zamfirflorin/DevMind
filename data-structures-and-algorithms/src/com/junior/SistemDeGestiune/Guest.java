@@ -69,5 +69,10 @@ public class Guest {
 				&& Objects.equals(lastName, other.lastName) && Objects.equals(phoneNumber, other.phoneNumber);
 	}
 	
+	static int compareCase;
+	//if compare case = 1 compar email
+	// else if case = 2 -> compar first name
+	//si fac compare inainte sa fac getByemail... 
+	
 	
 }
