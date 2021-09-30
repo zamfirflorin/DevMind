@@ -1,25 +1,30 @@
 package com.junior.LinkedList;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class TestOrderedList {
 	  public static void main(String[] args) {
 	 
-	    OrderedList<String> orderedTownsList = new OrderedList<>();
+	    LinkedList<String> orderedTownsList = new LinkedList<>();
 	 
 	    // populate list with towns:
-	    orderedTownsList.addInOrderedList("Suceava");
-	    orderedTownsList.addInOrderedList("Cluj");
-	    orderedTownsList.addInOrderedList("Targu Jiu");
-	    orderedTownsList.addInOrderedList("Bucuresti");
+	    orderedTownsList.add("Suceava");
+	    orderedTownsList.add("Cluj");
+	    orderedTownsList.add("Targu Jiu");
+	    orderedTownsList.add("Bucuresti");
 	 
 	    System.out.println(orderedTownsList);
 	 
-	    orderedTownsList.addInOrderedList("Brasov");
-	    orderedTownsList.addInOrderedList("Bacau");
-	    orderedTownsList.addInOrderedList("Suceava");
-	    orderedTownsList.addInOrderedList("Bucuresti");
-	    orderedTownsList.addInOrderedList("Brasov");
-	    orderedTownsList.addInOrderedList("Brasov");
+	    orderedTownsList.add("Brasov");
+	    orderedTownsList.add("Bacau");
+	    orderedTownsList.add("Suceava");
+	    orderedTownsList.add("Bucuresti");
+	    orderedTownsList.add("Brasov");
+	    orderedTownsList.add("Brasov");
 	 
 	    System.out.println(orderedTownsList);
+	    
+	    IteratorExample.iterate(orderedTownsList);
 	  }
 	}
