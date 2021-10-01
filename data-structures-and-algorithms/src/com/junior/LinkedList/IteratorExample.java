@@ -15,7 +15,7 @@ public class IteratorExample {
 	                        "\t2 - previous element\n" + 
 	                        "\t3 - this list\n");
 	}
-	 
+	 //littile change
 	public static void iterate(LinkedList<String> towns) {
 	  ListIterator<String> li = towns.listIterator();
 	  printManual();
