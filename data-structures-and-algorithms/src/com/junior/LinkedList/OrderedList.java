@@ -7,10 +7,10 @@ import java.util.ListIterator;
  
 public class OrderedList<T extends Comparable<T>> {
  
-  private List<T> elements = new LinkedList<>();
+  private List<Town> elements = new LinkedList<>();
  
-  public boolean addInOrderedList(T newElement) {
-    ListIterator<T> li = elements.listIterator();
+  public boolean addInOrderedList(Town newElement) {
+    ListIterator<Town> li = elements.listIterator();
  
     while (li.hasNext()) {
       int comparison = li.next().compareTo(newElement);
@@ -33,20 +33,20 @@ public class OrderedList<T extends Comparable<T>> {
     return true;
   }
   
-	public  int countOccurrences(List<String> list, String key) {
+	public  int countOccurrences(List<Town> list, String key) {
 		int counter = 0;
-		for (String el : list) {
-			if (el.equals(key)) {
+		for (Town el : list) {
+			if (el.getName().equals(key)) {
 				counter++;
 			}
 		}
 		return counter;
 	}
 
-	public  int countOccurrencesIter(List<String> list, String key) {
+	public  int countOccurrencesIter(List<Town> list, String key) {
 		int counter = 0;
-		for (Iterator<String> it = list.iterator(); it.hasNext();) {
-			if (it.next().equals(key)) {
+		for (Iterator<Town> it = list.iterator(); it.hasNext();) {
+			if (it.next().getName().equals(key)) {
 				counter++;
 			}
 		}
@@ -57,18 +57,18 @@ public class OrderedList<T extends Comparable<T>> {
   
   
  
-  public List<T> getElements() {
+  public List<Town> getElements() {
 		return elements;
 	}
 
-	public void setElements(List<T> elements) {
+	public void setElements(List<Town> elements) {
 		this.elements = elements;
 	}
 
 @Override
   public String toString() {
     String ret = "";
-    for(T el : elements) {
+    for(Town el : elements) {
       ret += el + " ";
     }
     return ret;
