@@ -8,7 +8,7 @@ public class LinkedListTema {
 
 	public static void main(String[] args) {
 		LinkedList<Integer> list = new LinkedList<Integer>();
-		
+
 		list.add(1);
 		list.add(1);
 		list.add(1);
@@ -21,17 +21,12 @@ public class LinkedListTema {
 		list.add(11);
 		list.add(11);
 		list.add(11);
-		
-
 		System.out.print("intput : ");
 		printList(list);
-		
 		//removeDuplicates2(list);
 		removeDuplicates(list);
-		
 		System.out.print("result : ");  
 		printList(list);
-	
 	}
 	
 	public static void printList(LinkedList<Integer> list) {
