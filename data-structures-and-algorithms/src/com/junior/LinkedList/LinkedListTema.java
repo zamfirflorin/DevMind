@@ -2,6 +2,7 @@ package com.junior.LinkedList;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 public class LinkedListTema {
 
@@ -9,15 +10,22 @@ public class LinkedListTema {
 		LinkedList<Integer> list = new LinkedList();
 		
 		list.add(1);
+		list.add(1);
+		list.add(1);
 		list.add(2);
 		list.add(2);
-		list.add(9);
+		list.add(2);
 		list.add(9);
 		list.add(10);
+		list.add(10);
+		list.add(11);
+		list.add(11);
+		list.add(11);
 		
-		printList(list);
-		removeDuplicates2(list);
-		printList(list);
+		System.out.print("intput : ");printList(list);
+		//removeDuplicates2(list);
+		removeDuplicates(list);
+		System.out.print("result : ");  printList(list);
 	
 	}
 	
@@ -31,42 +39,60 @@ public class LinkedListTema {
 	}
 	
 	
-	public static void removeDuplicates(LinkedList<Integer> list) {
-		int firstIndex = 0;
-		int secondIndex = 1;
-		int lastIndex = list.lastIndexOf(list.getLast());
-		
-		while (secondIndex <= lastIndex) {
-			if (list.get(firstIndex) == list.get(secondIndex)) {
-				list.remove(secondIndex);
-				lastIndex--;
-			} else {
-				firstIndex++;
-				secondIndex++;
-			}
-		}
-		
-	}
-	
 	public static void removeDuplicates2(LinkedList<Integer> list) {
-		int firstIndex = 0;
-		int secondIndex = 1;
-		int lastIndex = list.lastIndexOf(list.getLast());
-		
-		while (secondIndex <= lastIndex) {
-			if (list.get(firstIndex) == list.get(secondIndex)) {
-				list.remove(firstIndex);
-				list.remove(firstIndex);
-				lastIndex--;
-				lastIndex--;
-			} else {
-				firstIndex++;
-				secondIndex++;
+		ListIterator<Integer> it = (ListIterator<Integer>) list.iterator();
+		int first;
+		int second = 0;
+
+		while (it.hasNext()) {
+			first = it.next();
+
+			if (it.hasNext()) {
+				second = it.next();
+
+				if (first == second) {
+					it.previous();
+					it.previous();
+					it.remove();
+					second = it.next();
+					it.previous();
+					while (it.hasNext() && second == it.next()) {
+						it.remove();
+						
+					}
+					it.previous();
+					
+				}
+				if (it.hasPrevious()) {
+				it.previous();
+				}
 			}
+
+			
 		}
-		
+
 	}
 	
-	
+	public static void removeDuplicates(LinkedList<Integer> list) {
+		ListIterator<Integer> it = (ListIterator<Integer>) list.iterator();
+		int first;
+		int second = 0;
 
+		while (it.hasNext()) {
+			first = it.next();
+
+			if (it.hasNext()) {
+				second = it.next();
+
+				if (first == second) {
+					it.remove();
+				}
+				it.previous();
+			}
+
+			
+		}
+
+	}
+	
 }
