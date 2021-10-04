@@ -8,7 +8,7 @@ public class LinkedListTema {
 
 	public static void main(String[] args) {
 		LinkedList<Integer> list = new LinkedList<Integer>();
-		
+
 		list.add(1);
 		list.add(1);
 		list.add(1);
@@ -21,16 +21,12 @@ public class LinkedListTema {
 		list.add(11);
 		list.add(11);
 		list.add(11);
-		
-		Iterator<Integer> it = (ListIterator<Integer>) list.iterator();
-		
-		System.out.println(((ListIterator<Integer>) it).previous());
-	
-		System.out.print("intput : ");printList(list);
+		System.out.print("intput : ");
+		printList(list);
 		//removeDuplicates2(list);
 		removeDuplicates(list);
-		System.out.print("result : ");  printList(list);
-	
+		System.out.print("result : ");  
+		printList(list);
 	}
 	
 	public static void printList(LinkedList<Integer> list) {
@@ -47,6 +43,8 @@ public class LinkedListTema {
 		ListIterator<Integer> it = (ListIterator<Integer>) list.iterator();
 		int first;
 		int second = 0;
+		
+		
 
 		while (it.hasNext()) {
 			first = it.next();
