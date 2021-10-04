@@ -1,29 +1,96 @@
 package com.junior.LinkedList;
 
+import java.util.LinkedList;
+import java.util.ListIterator;
+
 public class BigNumbers {
 
-	public int[] sum(int[] op1, int[] op2) {
-		
+	public LinkedList<Integer> sum(LinkedList<Integer> op1, LinkedList<Integer> op2) {
+		  ListIterator<Integer> aIter =  op1.listIterator(op1.size());
+		  ListIterator<Integer> bIter =  op2.listIterator(op2.size());
+		  int cat = 0;
+		  int first;
+		  int second;
+		  while (aIter.hasPrevious() && bIter.hasPrevious()) {
+			  first = aIter.previous();
+			  second = bIter.previous();
+			  
+			  int lastDigit = (first + second + cat ) % 10;
+			  cat = (first + second + cat) / 10;
+			  aIter.set(lastDigit);
+		  }
+		  
+		  if (cat != 0) {
+			  if (aIter.hasPrevious()) {
+				  int element = aIter.previous();
+				  if (element != 9) {
+					  aIter.set(element + cat);
+				  } else {
+					  aIter.set(0);
+					  if (aIter.hasPrevious()) {
+						  aIter.set(aIter.previous() + 1);
+					  }
+					  else {
+						  aIter.add(1);
+					  }
+				  } 
+			  } else {
+				  while (bIter.hasPrevious()) {
+					  int element = bIter.previous();
+					  if (element == 9) {
+						  aIter.add((element + cat) % 10);
+						  cat = (element + cat) / 10;
+	
+						  if (!bIter.hasPrevious()) {
+							  op1.addFirst(1);
+							  cat = 0;
+						  }
+					  } else {
+						  aIter.add(element + cat);
+						  cat = (element + cat) / 10;
+					  }
+			  }
+		  }
+		  }
+		  return op1;
 	}
 
 	public static void main(String[] args) {
 		System.out.println("Checking input...");
 
-		int[] op1 = { 2, 1, 7, 8 };
-		int[] op2 = { 5, 9, 6 };
-
+		LinkedList<Integer> op1 = new LinkedList<>();
+		op1.add(3);
+		op1.add(1);
+		op1.add(7);
+		op1.add(0);
+		LinkedList<Integer> op2 =new LinkedList<>();
+		op2.add(9);
+		op2.add(9);
+		op2.add(9);
+		op2.add(5);
+		op2.add(9);
+		op2.add(6);
 		BigNumbers bn = new BigNumbers();
-		int[] rez = bn.sum(op1, op2);
-		int[] correct = { 2, 7, 7, 4 };
+		System.out.println(noToString(op1));
+		System.out.println(noToString(op2));
+		LinkedList<Integer> rez = bn.sum(op1, op2);
+		System.out.println(noToString(op1));
+		LinkedList<Integer> correct = new LinkedList<>();
+		correct.add(2);
+		correct.add(7);
+		correct.add(7);
+		correct.add(4);
 		System.out.println(
 				noToString(op1) + " + " + noToString(op2) + " = " 
 							+ noToString(rez) + " C: " + noToString(correct));
 	}
 
-	private static String noToString(int[] no) {
+	private static String noToString(LinkedList<Integer> op1) {
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < no.length; i++) {
-			sb.append(no[i]);
+		ListIterator<Integer> it = op1.listIterator();
+		while(it.hasNext()) {
+			
+			sb.append(it.next());
 		}
 		return sb.toString();
 	}
