@@ -32,7 +32,6 @@ public class CiurEratostene {
 					}
 				}
 			}
-
 			mainMatrix.add(row);
 		}
 		return mainMatrix;

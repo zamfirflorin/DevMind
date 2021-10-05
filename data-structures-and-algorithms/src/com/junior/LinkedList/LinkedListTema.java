@@ -44,7 +44,6 @@ public class LinkedListTema {
 		int first;
 		int second = 0;
 		
-		
 
 		while (it.hasNext()) {
 			first = it.next();
