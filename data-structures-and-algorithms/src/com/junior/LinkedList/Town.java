@@ -6,10 +6,8 @@ public class Town implements Comparable<Town>{
 	
 	private String name;
 	private int kilometers;
-	
-	
+
 	public Town(String name, int kilometers) {
-		super();
 		this.name = name;
 		this.kilometers = kilometers;
 	}
