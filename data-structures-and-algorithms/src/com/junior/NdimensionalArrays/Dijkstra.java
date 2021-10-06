@@ -9,23 +9,22 @@ public class Dijkstra {
 	public static void main(String[] args) {
 		String str = "3+(2+1)*2^3^2-8/(5-1*2/2)";
 		evalRPN(str);
+		
+		//queue = 3 
+		//stack
 	}
 
 	public static ArrayDeque<Character> evalRPN(String tokens) {
 		ArrayDeque<Character> queue = new ArrayDeque<>();
 		LinkedList<Character> stack = new LinkedList<>();
 
-		int counter = 0;
-
 		for (Character str : tokens.toCharArray()){
 			if (isNumeric(str)) {
 				queue.add(str);
 			} else if (isOperator(str)) {
-
-				while (stack.peek() != null && stack.peek() != '(' && (precedenta(str) < precedenta(stack.peek())
+				while (isOperator(stack.peek()) && stack.peek() != '(' && (precedenta(str) < precedenta(stack.peek())
 						|| precedenta(str) == precedenta(stack.peek()) && precedenta(stack.peek()) != 13)) {
 					queue.add(stack.pop());
-
 				}
 				stack.add(str);
 			}
@@ -44,13 +43,11 @@ public class Dijkstra {
 				if (stack.isEmpty()) {
 					System.out.println("expresia avea paranteze gresite");
 					return queue;
-
 				}
 				// 1.5.3
 				stack.pop();
 			}
 		}
-
 		while (!stack.isEmpty()) {
 			if (stack.peek() == '(') {
 				System.out.println("expresia avea paranteze gresite");
@@ -58,7 +55,6 @@ public class Dijkstra {
 			}
 			queue.add(stack.pop());
 		}
-
 		for (Character str : queue) {
 			System.out.print(str + "");
 		}
