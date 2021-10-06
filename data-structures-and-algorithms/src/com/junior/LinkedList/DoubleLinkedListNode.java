@@ -1,45 +1,45 @@
 package com.junior.LinkedList;
 
-public class DoubleLinkedListNode {
-	 private int value;
-	  private DoubleLinkedListNode next;
-	  private DoubleLinkedListNode previous;
+public class DoubleLinkedListNode<E> {
+	 private E value;
+	  private DoubleLinkedListNode<E> next;
+	  private DoubleLinkedListNode<E> previous;
 	 
-	  public DoubleLinkedListNode(int value, 
-	      DoubleLinkedListNode next, 
-	      DoubleLinkedListNode previous) {
+	  public DoubleLinkedListNode(E value, 
+	      DoubleLinkedListNode<E> next, 
+	      DoubleLinkedListNode<E> previous) {
 	    this.value = value;
 	    this.next = next;
 	    this.previous = previous;
 	  }
 	 
-	  public DoubleLinkedListNode(int value) {
+	  public DoubleLinkedListNode(E value) {
 	    this(value, null, null);
 	  }
 	 
 	  public DoubleLinkedListNode() {}
 	 
-	  public void value(int value) {
+	  public void value(E value) {
 	    this.value = value;
 	  }
 	 
-	  public int value() {
+	  public E value() {
 	    return value;
 	  }
 	 
-	  public DoubleLinkedListNode next() {
+	  public DoubleLinkedListNode<E> next() {
 	    return next;
 	  }
 	 
-	  public void next(DoubleLinkedListNode next) {
+	  public void next(DoubleLinkedListNode<E> next) {
 	    this.next = next;
 	  }
 	 
-	  public DoubleLinkedListNode prev() {
+	  public DoubleLinkedListNode<E> prev() {
 	    return previous;
 	  }
 	 
-	  public void prev(DoubleLinkedListNode previous) {
+	  public void prev(DoubleLinkedListNode<E> previous) {
 	    this.previous = previous;
 	  }
 }
