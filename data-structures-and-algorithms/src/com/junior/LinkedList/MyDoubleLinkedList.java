@@ -123,8 +123,12 @@ public class MyDoubleLinkedList<E> {
 		DoubleLinkedListNode<E> prev = node.prev();
 		DoubleLinkedListNode<E> next = node.next();
 		
+		if (prev != null) {
 		prev.next(next);
+		} 
+		if (next != null) {
 		next.prev(prev);
+		}
 		node.prev(null);
 		node.next(null);
 		
@@ -140,20 +144,8 @@ public class MyDoubleLinkedList<E> {
 			}
 			count++;
 		}
+		remove(node.value());
 		
-		DoubleLinkedListNode<E> prev = node.prev(); 
-		DoubleLinkedListNode<E> next = node.next();
-		
-		if (prev != null) {
-		prev.next(next);
-		} 
-		if (next != null) {
-		next.prev(prev);
-		}
-		node.prev(null);
-		node.next(null);
-		
-		size--;
 		return node.value();
 	}
 	void clear() {
