@@ -1,4 +1,4 @@
-package com.junior.NdimensionalArrays;
+package com.junior.QueuesStacks;
 
 import java.util.ArrayDeque;
 import java.util.LinkedList;
