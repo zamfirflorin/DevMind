@@ -174,13 +174,41 @@ public class MyDoubleLinkedList<E> {
 		current.value(e); 
 		return current.value();
 	}
-	boolean addAll(MyIntLinkedList c) {
-		
+	public boolean addAll(MyDoubleLinkedList<E> c) {
+		DoubleLinkedListNode<E> newHead = c.head;
+		tail.next(newHead);
+		newHead.prev(tail);
+		return true;
 	}
-	boolean addAll(int index, MyIntLinkedList c) {
-		
+	public boolean addAll(int index, MyDoubleLinkedList<E> c) {
+		int count = 0; 
+		DoubleLinkedListNode<E> current = head;
+		while (current != null) {
+			if (count == index) {
+				break;
+			}
+			current = current.next();
+			count++;
+		}
+		DoubleLinkedListNode<E> prev = current.prev();
+		if (prev != null) {
+		prev.next(c.head);
+		c.head.prev(prev);
+		current.prev(c.tail);
+		c.tail.next(current);
+		} else {
+			head = c.head;
+		}
+		return true;
 	} 
-	int[] toArray() {
-		
+	
+	public E[] toArray() {
+		E[] elements = (E[]) new Object[this.size];
+		DoubleLinkedListNode<E> current = head;
+		int index = 0;
+		while (current != null) {
+			elements[index++] = current.value();
+		}
+		return elements;
 	}
 }
