@@ -21,6 +21,9 @@ public class TestDoubleLinkedList {
         System.out.println("contains 3: " + doubleLinkedList.contains(3));
 
         System.out.println("last idx of 3: " + doubleLinkedList.lastIndexOf(3));
+        
+        
+        int
 
 
     }

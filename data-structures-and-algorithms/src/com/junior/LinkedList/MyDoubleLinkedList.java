@@ -10,13 +10,13 @@ public class MyDoubleLinkedList<E> {
 		return size;
 	}
  
-	MyDoubleLinkedList() {
+	public MyDoubleLinkedList() {
 		head = null;
 		tail = null;
 		size = 0;
 	}
  
-	MyDoubleLinkedList(MyDoubleLinkedList<E> list) {
+	public MyDoubleLinkedList(MyDoubleLinkedList<E> list) {
 		DoubleLinkedListNode<E> copyHead = list.head;
 		while (copyHead != null) {
 			add(copyHead.value());
@@ -46,6 +46,7 @@ public class MyDoubleLinkedList<E> {
 		current.prev(newNode);
 		size++;
 	}
+	
 	public boolean add(E e) {
 		DoubleLinkedListNode<E> node = new  DoubleLinkedListNode<E>(e);
 		if (head == null) {
@@ -59,10 +60,12 @@ public class MyDoubleLinkedList<E> {
 		size++;
 		return true;
 	}
+	
 	int size() {
 		return this.size;
 	}
-	boolean contains(E e) {
+	
+	public boolean contains(E e) {
 		DoubleLinkedListNode<E> node = head;
 		while (node!= null) {
 			if (node.value().equals(e)) {
@@ -72,7 +75,8 @@ public class MyDoubleLinkedList<E> {
 		}
 		return false;
 	}
-	DoubleLinkedListNode<E>  get(int index) {
+	
+	public DoubleLinkedListNode<E>  get(int index) {
 		DoubleLinkedListNode<E> node = head;
 		int count = 0;
 		while (node!= null) {
@@ -85,7 +89,8 @@ public class MyDoubleLinkedList<E> {
 		return node;
 		
 	}
-	int indexOf(E e) {
+	
+	public int indexOf(E e) {
 		DoubleLinkedListNode<E> node = head;
 		int count = 0;
 		while (node!= null) {
@@ -98,7 +103,8 @@ public class MyDoubleLinkedList<E> {
 		return count;
 		
 	}
-	int lastIndexOf(E e) {
+	
+	public int lastIndexOf(E e) {
 		DoubleLinkedListNode<E> node = head;
 		int index = 0;
 		int count = 0;
@@ -111,13 +117,15 @@ public class MyDoubleLinkedList<E> {
 		}
 		return count;
 	}
-	boolean remove(E e) {
+	
+	public boolean remove(E e) {
 		DoubleLinkedListNode<E> node = head;
 		
-		while (head != null) {
+		while (node != null) {
 			if (node == e) {
 				break;
 			}
+			node.next();
 		}
 		
 		DoubleLinkedListNode<E> prev = node.prev();
@@ -135,7 +143,8 @@ public class MyDoubleLinkedList<E> {
 		size--;
 		return true;
 	}
-	E removeElementAtIndex(int index) {
+	
+	public E removeElementAtIndex(int index) {
 		DoubleLinkedListNode<E> node = head;
 		int count = 0;
 		while (head != null) {
@@ -208,6 +217,7 @@ public class MyDoubleLinkedList<E> {
 		int index = 0;
 		while (current != null) {
 			elements[index++] = current.value();
+			current = current.next();
 		}
 		return elements;
 	}
