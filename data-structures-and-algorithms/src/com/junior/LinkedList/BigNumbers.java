@@ -8,6 +8,7 @@ public class BigNumbers {
 	public LinkedList<Integer> sum(LinkedList<Integer> op1, LinkedList<Integer> op2) {
 		  ListIterator<Integer> aIter =  op1.listIterator(op1.size());
 		  ListIterator<Integer> bIter =  op2.listIterator(op2.size());
+		  LinkedList<Integer> result = new LinkedList<Integer>();
 		  int cat = 0;
 		  int first;
 		  int second;
@@ -17,42 +18,42 @@ public class BigNumbers {
 			  
 			  int lastDigit = (first + second + cat ) % 10;
 			  cat = (first + second + cat) / 10;
-			  aIter.set(lastDigit);
+			  result.addFirst(lastDigit);
 		  }
 		  
 		  if (cat != 0) {
 			  if (aIter.hasPrevious()) {
 				  int element = aIter.previous();
 				  if (element != 9) {
-					  aIter.set(element + cat);
+					  result.addFirst(element + cat);
 				  } else {
-					  aIter.set(0);
+					  result.addFirst(0);
 					  if (aIter.hasPrevious()) {
-						  aIter.set(aIter.previous() + 1);
+						  result.addFirst(aIter.previous() + 1);
 					  }
 					  else {
-						  aIter.add(1);
+						  result.addFirst(1);
 					  }
 				  } 
 			  } else {
 				  while (bIter.hasPrevious()) {
 					  int element = bIter.previous();
 					  if (element == 9) {
-						  aIter.add((element + cat) % 10);
+						  result.addFirst((element + cat) % 10);
 						  cat = (element + cat) / 10;
 	
 						  if (!bIter.hasPrevious()) {
-							  op1.addFirst(1);
+							  result.addFirst(1);
 							  cat = 0;
 						  }
 					  } else {
-						  aIter.add(element + cat);
+						  result.addFirst(element + cat);
 						  cat = (element + cat) / 10;
 					  }
 			  }
 		  }
 		  }
-		  return op1;
+		  return result;
 	}
 
 	public static void main(String[] args) {
