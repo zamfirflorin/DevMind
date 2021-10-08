@@ -50,7 +50,7 @@ public class MyDoubleLinkedList<E> {
 		DoubleLinkedListNode<E> node = new  DoubleLinkedListNode<E>(e);
 		if (head == null) {
 			head = node;
-			tail = head;
+			tail = node;
 		} else {
 			tail.next(node);
 			node.prev(tail);
@@ -65,7 +65,7 @@ public class MyDoubleLinkedList<E> {
 	boolean contains(E e) {
 		DoubleLinkedListNode<E> node = head;
 		while (node!= null) {
-			if (node.value() == e) {
+			if (node.value().equals(e)) {
 				return true;
 			}
 			node = node.next();
@@ -103,7 +103,7 @@ public class MyDoubleLinkedList<E> {
 		int index = 0;
 		int count = 0;
 		while (node!= null) {
-			if (node == e) {
+			if (node.value() == e) {
 				count = index;
 			}
 			node = node.next();
@@ -193,6 +193,14 @@ public class MyDoubleLinkedList<E> {
 		}
 		return true;
 	} 
+	
+	public void print() {
+		DoubleLinkedListNode<E> current = head;
+		while (current != null) {
+			System.out.print(current.value() + " ");
+			current = current.next();
+		}
+	}
 	
 	public E[] toArray() {
 		E[] elements = (E[]) new Object[this.size];
