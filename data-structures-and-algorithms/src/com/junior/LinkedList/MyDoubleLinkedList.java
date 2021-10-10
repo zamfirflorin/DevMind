@@ -28,6 +28,10 @@ public class MyDoubleLinkedList<E> {
 		DoubleLinkedListNode<E> current = head;
 		DoubleLinkedListNode<E> newNode = new  DoubleLinkedListNode<E>(e);
 		int count = 0;
+		if (index > size || index < 0) {
+			System.out.println("Index out of bounds");
+			return;
+		}
 
 		while (current != null) {
 			if (count == index) {
@@ -39,11 +43,17 @@ public class MyDoubleLinkedList<E> {
 		
 
 		DoubleLinkedListNode<E> prev = current.prev();
-		
-		prev.next(newNode);
-		newNode.prev(prev);
-		newNode.next(current);
-		current.prev(newNode);
+		if (prev != null) {
+			prev.next(newNode);
+			newNode.prev(prev);
+			newNode.next(current);
+			current.prev(newNode);
+		} else {
+			newNode.next(current);
+			current.prev(newNode);
+			newNode.prev(null);
+			head = newNode;
+		}
 		size++;
 	}
 	
@@ -238,6 +248,10 @@ public class MyDoubleLinkedList<E> {
 		return true;
 	}
 	public boolean addAll(int index, MyDoubleLinkedList<E> c) {
+		if (index >= size || index < 0) {
+			System.out.println("Index out of bounds");
+			return false;
+		}
 		int count = 0; 
 		DoubleLinkedListNode<E> current = head;
 		while (current != null) {
@@ -247,14 +261,10 @@ public class MyDoubleLinkedList<E> {
 			current = current.next();
 			count++;
 		}
-		DoubleLinkedListNode<E> prev = current.prev();
-		if (prev != null) {
-		prev.next(c.head);
-		c.head.prev(prev);
-		current.prev(c.tail);
-		c.tail.next(current);
-		} else {
-			head = c.head;
+		DoubleLinkedListNode<E> cPointer = c.head;
+		while (cPointer != null) {
+			add(count, cPointer.value());
+			cPointer = cPointer.next();
 		}
 		return true;
 	} 
