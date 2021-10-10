@@ -93,23 +93,24 @@ public class MyDoubleLinkedList<E> {
 	public int indexOf(E e) {
 		DoubleLinkedListNode<E> node = head;
 		int count = 0;
-		while (node!= null) {
-			if (node == e) {
-				break;
+		while (node != null) {
+			if (node.value().equals(e)) {
+				return count;
 			}
 			node = node.next();
 			count++;
 		}
-		return count;
+
+		return -1;
 		
 	}
-	
+	//1 -> 2 -> 3 -> 3 -> 4
 	public int lastIndexOf(E e) {
 		DoubleLinkedListNode<E> node = head;
 		int index = 0;
-		int count = 0;
-		while (node!= null) {
-			if (node.value() == e) {
+		int count = -1;
+		while (node != null) {
+			if (node.value().equals(e)) {
 				count = index;
 			}
 			node = node.next();
@@ -120,26 +121,48 @@ public class MyDoubleLinkedList<E> {
 	
 	public boolean remove(E e) {
 		DoubleLinkedListNode<E> node = head;
-		
+
 		while (node != null) {
-			if (node == e) {
+			if (node.value().equals(e)) {
 				break;
 			}
-			node.next();
+			node = node.next();
 		}
-		
+		if (node == null) {
+			return false;
+		}
+
+		// if node head
+		if (node.prev() == null) {
+			// if node is not also tail
+			if (node.next() != null) {
+				head = node.next();
+				node.next(null);
+				head.prev(null);
+				size--;
+				return true;
+			} else {
+				head = null;
+				tail = null;
+				size--;
+				return true;
+			}
+		}
+		if (node.next() == null) {
+			tail = node.prev();
+			tail.next(null);
+			node.prev(null);
+			size--;
+			return true;
+		}
+
 		DoubleLinkedListNode<E> prev = node.prev();
 		DoubleLinkedListNode<E> next = node.next();
-		
-		if (prev != null) {
+
 		prev.next(next);
-		} 
-		if (next != null) {
 		next.prev(prev);
-		}
-		node.prev(null);
 		node.next(null);
-		
+		node.prev(null);
 		size--;
 		return true;
 	}
@@ -147,15 +170,48 @@ public class MyDoubleLinkedList<E> {
 	public E removeElementAtIndex(int index) {
 		DoubleLinkedListNode<E> node = head;
 		int count = 0;
-		while (head != null) {
+		while (node != null) {
 			if (index == count) {
 				break;
 			}
+			node = node.next();
 			count++;
 		}
-		remove(node.value());
+		E result = node.value();
 		
-		return node.value();
+		//if node head
+		if (node.prev() == null) {
+			//if node is not also tail
+			if (node.next() != null) {
+				head = node.next();
+				node.next(null);
+				head.prev(null);
+				size--;
+				return result;
+			} else {
+				head = null;
+				tail = null;
+				size--;
+				return result;
+			}
+		} 
+		if (node.next() == null) {
+			tail = node.prev();
+			tail.next(null);
+			node.prev(null);
+			size--;
+			return result;
+		}
+		
+		DoubleLinkedListNode<E> prev  = node.prev();
+		DoubleLinkedListNode<E> next  = node.next();
+		
+		prev.next(next);
+		next.prev(prev);
+		node.next(null);
+		node.prev(null);
+		size--;
+		return result;
 	}
 	void clear() {
 		head = null;
@@ -209,6 +265,7 @@ public class MyDoubleLinkedList<E> {
 			System.out.print(current.value() + " ");
 			current = current.next();
 		}
+		System.out.println();
 	}
 	
 	public E[] toArray() {

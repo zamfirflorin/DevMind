@@ -42,4 +42,11 @@ public class DoubleLinkedListNode<E> {
 	  public void prev(DoubleLinkedListNode<E> previous) {
 	    this.previous = previous;
 	  }
+
+	@Override
+	public String toString() {
+		return "value = " + value;
+	}
+	  
+	  
 }
