@@ -245,10 +245,11 @@ public class MyDoubleLinkedList<E> {
 		DoubleLinkedListNode<E> newHead = c.head;
 		tail.next(newHead);
 		newHead.prev(tail);
+		size += c.size;
 		return true;
 	}
 	public boolean addAll(int index, MyDoubleLinkedList<E> c) {
-		if (index >= size || index < 0) {
+		if (index > size || index < 0) {
 			System.out.println("Index out of bounds");
 			return false;
 		}
@@ -263,7 +264,12 @@ public class MyDoubleLinkedList<E> {
 		}
 		DoubleLinkedListNode<E> cPointer = c.head;
 		while (cPointer != null) {
-			add(count, cPointer.value());
+			if (count == size) {
+				add(cPointer.value());
+			} else {
+				add(count, cPointer.value());
+			}
+			count++;
 			cPointer = cPointer.next();
 		}
 		return true;
