@@ -23,8 +23,8 @@ public class LinkedListTema {
 		list.add(11);
 		System.out.print("intput : ");
 		printList(list);
-		//removeDuplicates2(list);
-		removeDuplicates(list);
+	removeDuplicates2(list);
+		//removeDuplicates(list);
 		System.out.print("result : ");  
 		printList(list);
 	}

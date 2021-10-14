@@ -6,7 +6,7 @@ import java.util.ListIterator;
 public class BigNumbers {
 
 	
-	//O ( n + m) time | O (n + m) space;
+	//O (max(n, m) time | O (max(n, m) space;
 	public LinkedList<Integer> sum(LinkedList<Integer> op1, LinkedList<Integer> op2) {
 		  ListIterator<Integer> aIter =  op1.listIterator(op1.size());
 		  ListIterator<Integer> bIter =  op2.listIterator(op2.size());
