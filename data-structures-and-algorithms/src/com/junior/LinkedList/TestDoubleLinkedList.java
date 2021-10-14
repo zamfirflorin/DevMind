@@ -4,7 +4,11 @@ public class TestDoubleLinkedList {
 
     public static void main(String[] args) {
         MyDoubleLinkedList<Integer> list = new MyDoubleLinkedList<>();
+        MyDoubleLinkedList<Integer> thirdList = new MyDoubleLinkedList<>();
 
+        thirdList.add(100);
+        thirdList.add(99);
+        
         list.add(1);
         list.add(2);
         list.add(3);
@@ -70,11 +74,18 @@ public class TestDoubleLinkedList {
         anotherList.print();
         System.out.println("\nList size " + list.size());
         System.out.println("Adding elements of another list at the end==========");
+        anotherList.print();
         list.addAll(12, anotherList);
+        //list.addAll(12, thirdList);
         list.print();
         System.out.println("\nList size " + list.size());
         System.out.println("Printing another list");
         anotherList.print();
+        System.out.println("Clearing list");list.clear();
+        
+        System.out.println("\nList size " + list.size());
+        System.out.println("Printing empty list :");
+        list.print();
         
         
     }

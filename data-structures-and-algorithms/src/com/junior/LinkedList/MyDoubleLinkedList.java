@@ -1,5 +1,7 @@
 package com.junior.LinkedList;
 
+import java.util.ArrayList;
+
 public class MyDoubleLinkedList<E> {
 	
 	private DoubleLinkedListNode<E> head = null;
@@ -65,7 +67,7 @@ public class MyDoubleLinkedList<E> {
 		} else {
 			tail.next(node);
 			node.prev(tail);
-			tail = tail.next();
+			tail = node;
 		}
 		size++;
 		return true;
@@ -77,7 +79,7 @@ public class MyDoubleLinkedList<E> {
 	
 	public boolean contains(E e) {
 		DoubleLinkedListNode<E> node = head;
-		while (node!= null) {
+		while (node != null) {
 			if (node.value().equals(e)) {
 				return true;
 			}
@@ -89,7 +91,7 @@ public class MyDoubleLinkedList<E> {
 	public DoubleLinkedListNode<E>  get(int index) {
 		DoubleLinkedListNode<E> node = head;
 		int count = 0;
-		while (node!= null) {
+		while (node != null) {
 			if (index == count) {
 				return node;
 			}
@@ -226,6 +228,7 @@ public class MyDoubleLinkedList<E> {
 	void clear() {
 		head = null;
 		tail = null;
+		size = 0;
 	} 
 	E set(int index, E e) {
 		DoubleLinkedListNode<E> current = head;
@@ -253,8 +256,11 @@ public class MyDoubleLinkedList<E> {
 			System.out.println("Index out of bounds");
 			return false;
 		}
+		c.print();
+		
 		int count = 0; 
 		DoubleLinkedListNode<E> current = head;
+		
 		while (current != null) {
 			if (count == index) {
 				break;
@@ -262,12 +268,17 @@ public class MyDoubleLinkedList<E> {
 			current = current.next();
 			count++;
 		}
+		
 		DoubleLinkedListNode<E> cPointer = c.head;
 		while (cPointer != null) {
-			if (count == size) {
-				add(cPointer.value());
+			if (index == size) {
+				System.out.println(cPointer.value());
+				this.add(cPointer.value());
+				System.out.println("add fara index");
 			} else {
-				add(count, cPointer.value());
+				System.out.println(cPointer.value());
+				this.add(count, cPointer.value());
+				System.out.println("add cu index");
 			}
 			count++;
 			cPointer = cPointer.next();
@@ -276,6 +287,10 @@ public class MyDoubleLinkedList<E> {
 	} 
 	
 	public void print() {
+		if (size == 0) {
+			System.out.println("The list is empty");
+			return;
+		}
 		DoubleLinkedListNode<E> current = head;
 		while (current != null) {
 			System.out.print(current.value() + " ");
@@ -285,13 +300,13 @@ public class MyDoubleLinkedList<E> {
 	}
 	
 	public E[] toArray() {
-		E[] elements = (E[]) new Object[this.size];
+		ArrayList<E> elements = new ArrayList<>();
 		DoubleLinkedListNode<E> current = head;
 		int index = 0;
 		while (current != null) {
-			elements[index++] = current.value();
+			elements.add(current.value());
 			current = current.next();
 		}
-		return elements;
+		return (E[]) elements.toArray();
 	}
 }
