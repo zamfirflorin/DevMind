@@ -245,10 +245,13 @@ public class MyDoubleLinkedList<E> {
 		return current.value();
 	}
 	public boolean addAll(MyDoubleLinkedList<E> c) {
-		DoubleLinkedListNode<E> newHead = c.head;
-		tail.next(newHead);
-		newHead.prev(tail);
-		size += c.size;
+		DoubleLinkedListNode<E> it = c.head;
+		
+		while (it  != null) {
+			add(it.value());
+			it = it.next();
+		}
+
 		return true;
 	}
 	public boolean addAll(int index, MyDoubleLinkedList<E> c) {
@@ -256,7 +259,7 @@ public class MyDoubleLinkedList<E> {
 			System.out.println("Index out of bounds");
 			return false;
 		}
-		c.print();
+
 		
 		int count = 0; 
 		DoubleLinkedListNode<E> current = head;
@@ -274,6 +277,7 @@ public class MyDoubleLinkedList<E> {
 			if (index == size) {
 				System.out.println(cPointer.value());
 				this.add(cPointer.value());
+				index++;
 				System.out.println("add fara index");
 			} else {
 				System.out.println(cPointer.value());

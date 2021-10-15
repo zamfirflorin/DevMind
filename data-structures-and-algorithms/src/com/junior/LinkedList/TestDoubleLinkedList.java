@@ -75,8 +75,8 @@ public class TestDoubleLinkedList {
         System.out.println("\nList size " + list.size());
         System.out.println("Adding elements of another list at the end==========");
         anotherList.print();
-        list.addAll(12, anotherList);
-        //list.addAll(12, thirdList);
+        //list.addAll(12, anotherList);
+        list.addAll(12, thirdList);
         list.print();
         System.out.println("\nList size " + list.size());
         System.out.println("Printing another list");
