@@ -1,5 +1,4 @@
-package com.florin.Metode;
-
+package com.florin;
 import java.util.Scanner;
 
 /**
@@ -31,9 +30,9 @@ public class Ex4 {
 		int aux = n;
 		int number = 0;
 		
-		while (aux != 0) {
+		while (aux >= 0) {
 			number = number * 10 + aux % 10;
-			aux /=10;
+			aux /= 10;
 		}
 		
 		if (number == n) {

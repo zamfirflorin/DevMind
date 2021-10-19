@@ -1,4 +1,4 @@
-package com.florin.supraincarcareaMetodelor;
+package com.florin;
 
 /**
  * @author fszamfi
