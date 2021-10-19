@@ -9,9 +9,6 @@ public class Dijkstra {
 	public static void main(String[] args) {
 		String str = "3+(2+1)*2^3^2-8/(5-1*2/2)";
 		evalRPN(str);
-		
-		//queue = 3 
-		//stack
 	}
 
 	public static ArrayDeque<Character> evalRPN(String tokens) {
@@ -24,13 +21,15 @@ public class Dijkstra {
 			} else if (isOperator(str)) {
 				while (isOperator(stack.peek()) && stack.peek() != '(' && (precedenta(str) < precedenta(stack.peek())
 						|| precedenta(str) == precedenta(stack.peek()) && precedenta(stack.peek()) != 13)) {
+					//1.3.1.1
 					queue.add(stack.pop());
 				}
-				stack.add(str);
+				//1.3.2
+				stack.addFirst(str);
 			}
 			// 1.4
 			else if (str == '(') {
-				stack.add(str);
+				stack.addFirst(str);
 			}
 			// 1.5
 			else if (str == ')') {
@@ -72,10 +71,10 @@ public class Dijkstra {
 	}
 
 	private static boolean isNumeric(Character str) {
-	
-			if (!Character.isDigit(str))
-				return false;
-		
+
+		if (!Character.isDigit(str))
+			return false;
+
 		return true;
 	}
 
