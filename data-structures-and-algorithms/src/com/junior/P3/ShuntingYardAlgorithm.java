@@ -1,4 +1,4 @@
-package com.junior.QueuesStacks;
+package com.junior.P3;
 
 import java.util.ArrayDeque;
 import java.util.LinkedList;
