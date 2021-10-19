@@ -1,5 +1,5 @@
 
-
+package com.florin;
 /**
  * @author fszamfi
  *Factorialul unui numar (i.e. n! - citit „n factorial“) este egal cu produsul: n! = 1 * 2 * 3 * … * (n - 2) * (n - 1) * n. 

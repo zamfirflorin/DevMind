@@ -1,4 +1,4 @@
-package com.florin.Metode;
+package com.florin;
 
 /**
  * @author fszamfi
