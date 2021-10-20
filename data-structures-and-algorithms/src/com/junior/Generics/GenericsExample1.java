@@ -25,10 +25,10 @@ public class GenericsExample1 {
 		 
 		    // I. trying to be more specific
 		    // Comment this section after observing the compile error.
-		    for (String el : fishNames) {// Error: the container doesn't
-		                                 // have an associated type
-		      System.out.println(el + "is swimming"); 
-		    }
+//		    for (String el : fishNames) {// Error: the container doesn't
+//		                                 // have an associated type
+//		      System.out.println(el + "is swimming"); 
+//		    }
 		 
 		 
 		    // II. trying to print something specific
