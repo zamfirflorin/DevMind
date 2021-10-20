@@ -14,13 +14,9 @@ public class RadixSort {
 		}
 	}
 
-	
-	
-	
 	public static ArrayList<String> radix(int[] numbers) {
 		ArrayList<String> mainList = new ArrayList<>();
-		int leadingZeros = getLeadingZeros(numbers);
-		String[] convertedNumbers = addLeadingZeros(numbers, leadingZeros);
+		String[] convertedNumbers = addLeadingZeros(numbers);
 		String[] result = addNumbersInQueueDescending(convertedNumbers);
 		//String[] result = addNumbersInQueueAscending(convertedNumbers);
 		
@@ -45,12 +41,12 @@ public class RadixSort {
 		return counter;
 	}
 	
-	public static String[] addLeadingZeros(int[] numbers, int leadingZeros) {
+	public static String[] addLeadingZeros(int[] numbers) {
 		String[] convertedNumbers = new String[numbers.length];
 	
 		for (int i = 0; i < numbers.length; i++) {
 			int numberLength = numberLength(numbers[i]);
-			int aux = leadingZeros - numberLength; 
+			int aux = getLeadingZeros(numbers) - numberLength; 
 			String number = "";
 			while (aux >= 1) {
 				number += "0";
