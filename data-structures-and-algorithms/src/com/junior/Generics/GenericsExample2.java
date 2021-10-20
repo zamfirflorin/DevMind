@@ -15,8 +15,8 @@ public class GenericsExample2 {
 		 
 		    // These lines throw compile error! This is good because errors
 		    // are detected as early as possible!
-		    fishNames.add(3); 
-		    fishNames.add(new Scanner(System.in));
+		   // fishNames.add(3); 
+		   // fishNames.add(new Scanner(System.in));
 		 
 		    // Can use 'String' directly instead of generic 'Object'
 		    for (String el : fishNames) {
