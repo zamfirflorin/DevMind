@@ -8,10 +8,8 @@ public class MyDoubleLinkedList<E> {
 	private DoubleLinkedListNode<E> tail = null;
 	private int size = 0;
  
-	private int getSize() {
-		return size;
-	}
- 
+
+
 	public MyDoubleLinkedList() {
 		head = null;
 		tail = null;
@@ -73,7 +71,7 @@ public class MyDoubleLinkedList<E> {
 		return true;
 	}
 	
-	int size() {
+	public int size() {
 		return this.size;
 	}
 	
