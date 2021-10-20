@@ -96,7 +96,7 @@ public class RadixSort {
         }
 		for (int k = numbers[0].length() - 1; k >= 0; k--) {
 			for (int i = 0; i < numbers.length; i++) {
-				int index = Integer.parseInt("" + numbers[i].charAt(k)) % 10;
+				int index = Integer.parseInt("" + numbers[i].charAt(k));
 				workingQueue.get(index).add(numbers[i]);
 			}
 			int idx = numbers.length - 1;
