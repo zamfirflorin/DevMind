@@ -99,11 +99,11 @@ public class RadixSort {
 				int index = Integer.parseInt("" + numbers[i].charAt(k));
 				workingQueue.get(index).add(numbers[i]);
 			}
-			int idx = numbers.length - 1;
-			for (int i = 0; i < workingQueue.size(); i++) {
+			int idx = 0;
+			for (int i = workingQueue.size() - 1; i >= 0 ; i--) {
 				
 				while (!workingQueue.get(i).isEmpty()) {
-					numbers[idx--] = workingQueue.get(i).removeFirst();
+					numbers[idx++] = workingQueue.get(i).removeFirst();
 				}
 			}
 		}
