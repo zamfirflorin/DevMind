@@ -50,7 +50,7 @@ public class CarRentalSystem {
 		} else {
 			RentedCars cars = owners.get(ownerName);
 			cars.addCar(plateNo);
-			owners.put(ownerName, cars);
+			//owners.put(ownerName, cars); //redundant
 		}
 		rentedCars.put(plateNo, ownerName);
 		
@@ -101,7 +101,7 @@ public class CarRentalSystem {
 		System.out.println("getOwner          - Afiseaza proprietarul curent al masinii");
 		System.out.println("totalRented  	  - Afiseaza numarul de masini inchiriate");
 		System.out.println("ownerTotalRented  - Afiseaza numarul de masini inchiriate de un proprietar");
-		System.out.println("ownerCarsList     - Afiseaza lista de masini inchiriate de un proprietar");
+		System.out.println("ownerCarList     - Afiseaza lista de masini inchiriate de un proprietar");
 		System.out.println("quit         	  - Inchide aplicatia");
 	}
 	
