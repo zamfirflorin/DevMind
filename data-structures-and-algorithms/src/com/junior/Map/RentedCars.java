@@ -33,9 +33,6 @@ public class RentedCars {
 		return carList;
 	}
 
-	public void setCarList(List<String> carList) {
-		this.carList = carList;
-	}
 	
 	
 	
