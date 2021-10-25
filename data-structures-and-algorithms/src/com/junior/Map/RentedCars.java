@@ -5,6 +5,38 @@ import java.util.List;
 
 public class RentedCars {
 	
-	List<String> vehicleList = new ArrayList<>();
+	private List<String> carList;
+
+
+	public RentedCars() {
+		carList = new ArrayList<>();
+	}
+
+	public void addCar(String car) {
+		carList.add(car);
+	}
+
+	public void returnCar(String car) {
+		carList.remove(car);
+	}
+	
+
+	public int size() {
+		return carList.size();
+	}
+	
+	public void showCars() {
+		carList.forEach(car -> System.out.println(car));
+	}
+
+	public List<String> getCarList() {
+		return carList;
+	}
+
+	public void setCarList(List<String> carList) {
+		this.carList = carList;
+	}
+	
+	
 	
 }

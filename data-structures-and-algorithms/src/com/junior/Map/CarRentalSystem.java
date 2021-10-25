@@ -7,7 +7,7 @@ public class CarRentalSystem {
 
 	private static Scanner sc = new Scanner(System.in);
 	HashMap<String, String> rentedCars = new HashMap<>();
-	HashMap<String, RentedCars> ownerCars = new HashMap<>();
+	HashMap<String, RentedCars> owners = new HashMap<>();
 	
 	private static String getPlateNo() {
 		System.out.println("Introduceti numarul de inmatriculare: ");
@@ -29,6 +29,7 @@ public class CarRentalSystem {
 		if (!rentedCars.containsKey(plateNo)) {
 			return "Masina nu exista";
 		}
+
 		return rentedCars.get(plateNo);
 	}
 	
@@ -37,7 +38,22 @@ public class CarRentalSystem {
 			System.out.println("Masina este deja inchiriata unui alt sofer!");
 			return;
 		}
+		if (owners.get(ownerName) != null && owners.get(ownerName).getCarList().contains(plateNo)) {
+			System.out.println("Masina este deja inchiriata lui " + ownerName);
+			return;
+		}
+
+		if (!owners.containsKey(ownerName)) {
+			RentedCars cars = new RentedCars();
+			cars.addCar(plateNo);
+			owners.put(ownerName, cars);
+		} else {
+			RentedCars cars = owners.get(ownerName);
+			cars.addCar(plateNo);
+			owners.put(ownerName, cars);
+		}
 		rentedCars.put(plateNo, ownerName);
+		
 	}
 	
 	private int totalRented() {
@@ -49,18 +65,44 @@ public class CarRentalSystem {
 			System.out.println("Masina nu exista");
 			return;
 		}
+		String owner = getOwnerName(plateNo);
+
 		rentedCars.remove(plateNo);
-		System.out.println("Masina a fost stearsa cu succes!");
+
+		//remove car from owner map
+		
+		if (owner != null && owners.containsKey(owner)) {
+			owners.get(owner).returnCar(plateNo);
+		}
+		System.out.println("Masina a fost returnata si stearsa cu succes!");
 	}
 	
+	private String getOwnerName(String plateNo) {
+		return rentedCars.get(plateNo);
+	}
+	
+	private int getCarsNo(String owner) {
+		if (owners.get(owner) == null) {
+			System.out.println("Acest owner nu exista");
+			return -1;
+		}
+		return owners.get(owner).size();
+	}
+	
+	private void getCarsList(String owner) {
+		 owners.get(owner).showCars();
+	}
+
 	private static void printCommandsList() {
-		System.out.println("help         - Afiseaza aceasta lista de comenzi");
-		System.out.println("add          - Adauga o noua pereche (masina, sofer)");
-		System.out.println("check        - Verifica daca o masina este deja luata");
-		System.out.println("remove       - Sterge o masina existenta din hashtable");
-		System.out.println("getOwner     - Afiseaza proprietarul curent al masinii");
-		System.out.println("totalRented  - Afiseaza numarul de masini inchiriate");
-		System.out.println("quit         - Inchide aplicatia");
+		System.out.println("help              - Afiseaza aceasta lista de comenzi");
+		System.out.println("add               - Adauga o noua pereche (masina, sofer)");
+		System.out.println("check             - Verifica daca o masina este deja luata");
+		System.out.println("remove            - Sterge o masina existenta din hashtable");
+		System.out.println("getOwner          - Afiseaza proprietarul curent al masinii");
+		System.out.println("totalRented  	  - Afiseaza numarul de masini inchiriate");
+		System.out.println("ownerTotalRented  - Afiseaza numarul de masini inchiriate de un proprietar");
+		System.out.println("ownerCarsList     - Afiseaza lista de masini inchiriate de un proprietar");
+		System.out.println("quit         	  - Inchide aplicatia");
 	}
 	
 	
@@ -91,6 +133,13 @@ public class CarRentalSystem {
 				break;
 			case "totalRented":
 				System.out.println(totalRented());
+				break;
+			case "ownerTotalRented":
+				System.out.println(getCarsNo(getOwnerName()));
+				break;
+			case "ownerCarList":
+				getCarsList(getOwnerName());
+				break;
 			default:
 				System.out.println("Unknown command. Choose from:");
 				printCommandsList();
