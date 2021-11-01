@@ -179,9 +179,16 @@ public class GuestService {
 
 	public static void search(GuestsList guestList) {
 		System.out.println("Incepe cautarea");
-		Scanner sc = new Scanner(System.in);
+		Scanner sc  = new Scanner(System.in);
+		try {
+		
 		String keyword = sc.next();
 		guestList.search(keyword);
+		} catch (InputMismatchException e){
+			e.printStackTrace();
+		} finally {
+			sc.close();
+		}
 	}
 	
 	private static boolean isPhoneNumberValid(String phoneNumber) {
