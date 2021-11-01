@@ -132,11 +132,9 @@ public class GuestsList {
 		return false;
 	}
 	
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!
-	//not respecting single responsability principle, searches and shows at the same time
-	public void search(String keyword) {
-		//!!!!!!!!!!!!
-		//created 2 new arrayLists
+
+	public void search(String keyword) throws RuntimeException {
+
 		ArrayList<Guest> searchPool = new ArrayList<Guest>();
 		searchPool.addAll(participantsList);
 		searchPool.addAll(waitingList);

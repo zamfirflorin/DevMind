@@ -1,29 +1,39 @@
 package com.junior.SistemDeGestiune;
 
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Main {
 
 	public static void main(String[] args) {
 		System.out.println("Bun venit! Introduceti numarul de locuri disponibile:");
-		Scanner sc = new Scanner(System.in);
-		int availableSpots = sc.nextInt();
-		GuestsList guestList = GuestService.createGuestsList(availableSpots);
-		runCommands(guestList);
-		sc.close();
+		try (Scanner sc = new Scanner(System.in)) {
+			int availableSpots = sc.nextInt();
+			GuestsList guestList = GuestService.createGuestsList(availableSpots);
+			runCommands(guestList);
+		} catch (InputMismatchException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static void runCommands(GuestsList guestList) {
 		System.out.println("Asteapta comanda: (help - Afiseaza lista de comenzi)");
-		Scanner sc = new Scanner(System.in);
-		String command = sc.next();
-		while(!command.equals("quit")) {
-			getCommand(command, guestList);
-			System.out.println("Asteapta comanda: (help - Afiseaza lista de comenzi)");
-			command = sc.next();
+		
+		try {
+			Scanner sc = new Scanner(System.in);
+			String command = sc.next();
+			while(!command.equals("quit")) {
+				getCommand(command, guestList);
+				System.out.println("Asteapta comanda: (help - Afiseaza lista de comenzi)");
+				command = sc.next();
+			}
+			System.out.println("- Aplicatia se va inchide. Va multumim!");
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
 		}
-		System.out.println("- Aplicatia se va inchide. Va multumim!");
 	}
+
 
 	private static void getCommand(String command, GuestsList guestList ) {
 		switch(command) {
