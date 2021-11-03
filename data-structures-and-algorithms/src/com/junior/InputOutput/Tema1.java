@@ -6,28 +6,32 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Scanner;
 
-public class Tema11 {
+public class Tema1 {
 	
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		String firstWord = scanner.next();
 		String replacement = scanner.next();
 		
-		try (Scanner sc = new Scanner(new BufferedReader(new FileReader("TextInput.txt"))); 
-			BufferedWriter outputFile = new BufferedWriter(new FileWriter("TextOutput.txt"))) {
+		try (Scanner sc = new Scanner(new BufferedReader(new FileReader("Input.txt"))); 
+			BufferedWriter outputFile = new BufferedWriter(new FileWriter("TextsOutput.txt"))) {
 			while(sc.hasNext()) {
 				String currentWord = sc.next();
-				if (currentWord.equals(firstWord)) {
+				if (firstWord.equals(currentWord)) {
 					currentWord = replacement;
 				}
-				outputFile.write(currentWord + " ");
+				outputFile.append(currentWord + " ");
 			}
+			outputFile.flush();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			
 			scanner.close();
 		}
 	}
+	
+
 	
 
 }
