@@ -1,0 +1,5 @@
+Cel mai scurt cuvant este: abc
+Cel mai lung cuvant este: tester
+Primul cuvant in ordine alfabetica este: tester
+Ultimul cuvant in ordine alfabetica este : abc
+Numarul total de cuvinte este : 4
