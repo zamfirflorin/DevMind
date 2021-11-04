@@ -16,7 +16,7 @@ public class RentedCars {
 		carList.add(car);
 	}
 
-	public void returnCar(String car) {
+	public void returnCar(String car) throws NoSuchCarException {
 		carList.remove(car);
 	}
 	
