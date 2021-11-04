@@ -35,11 +35,11 @@ public class Tema3 {
 		String firstAlphabeticalWord = getFirstAlphabeticalWord(words);
 		String lastAlphabeticalWord = getLastAlphabeticalWord(words);
 		int totalNumberOfWords = words.size();
-		bw.write("Cel mai scurt cuvant este: " + shortestWord);
-		bw.write("\nCel mai lung cuvant este: " + longestWord);
-		bw.write("\nPrimul cuvant in ordine alfabetica este: " + firstAlphabeticalWord);
-		bw.write("\nUltimul cuvant in ordine alfabetica este : " + lastAlphabeticalWord);
-		bw.write("\nNumarul total de cuvinte este : " + totalNumberOfWords);
+		bw.append("Cel mai scurt cuvant este: " + shortestWord);
+		bw.append("\nCel mai lung cuvant este: " + longestWord);
+		bw.append("\nPrimul cuvant in ordine alfabetica este: " + firstAlphabeticalWord);
+		bw.append("\nUltimul cuvant in ordine alfabetica este : " + lastAlphabeticalWord);
+		bw.append("\nNumarul total de cuvinte este : " + totalNumberOfWords);
 		bw.flush();
 	}
 	

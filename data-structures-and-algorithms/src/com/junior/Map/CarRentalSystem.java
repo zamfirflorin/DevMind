@@ -1,6 +1,7 @@
 package com.junior.Map;
 
 import java.util.HashMap;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class CarRentalSystem {
@@ -16,7 +17,14 @@ public class CarRentalSystem {
 	
 	private static String getOwnerName() {
 	    System.out.println("Introduceti numele proprietarului:");
-	    String ownerName = sc.nextLine();	   
+
+	    String ownerName = null;
+	    try {
+	    	sc.nextLine();
+	    } catch (NoSuchElementException e) {
+	    	e.printStackTrace();
+	    }
+	    
 	   return ownerName;
 	}
 	
@@ -38,32 +46,37 @@ public class CarRentalSystem {
 			System.out.println("Masina este deja inchiriata unui alt sofer!");
 			return;
 		}
-		if (owners.get(ownerName) != null && owners.get(ownerName).getCarList().contains(plateNo)) {
-			System.out.println("Masina este deja inchiriata lui " + ownerName);
-			return;
-		}
+		try {
+			// owners.get(ownerName) != null &&
+			if (owners.get(ownerName).getCarList().contains(plateNo)) {
+				throw new VPException("Masina este deja inchiriata lui " + ownerName);
+			}
 
-		if (!owners.containsKey(ownerName)) {
-			RentedCars cars = new RentedCars();
-			cars.addCar(plateNo);
-			owners.put(ownerName, cars);
-		} else {
-			RentedCars cars = owners.get(ownerName);
-			cars.addCar(plateNo);
-			//owners.put(ownerName, cars); //redundant
+			if (!owners.containsKey(ownerName)) {
+				RentedCars cars = new RentedCars();
+				cars.addCar(plateNo);
+				owners.put(ownerName, cars);
+			} else {
+				RentedCars cars = owners.get(ownerName);
+				cars.addCar(plateNo);
+				// owners.put(ownerName, cars); //redundant
+			}
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		} catch (VPException e) {
+			e.printStackTrace();
 		}
 		rentedCars.put(plateNo, ownerName);
-		
+
 	}
 	
 	private int totalRented() {
 		return rentedCars.size();
 	}
 	
-	private void returnCar(String plateNo) {
+	private void returnCar(String plateNo) throws NoSuchCarException {
 		if (!rentedCars.containsKey(plateNo)) {
-			System.out.println("Masina nu exista");
-			return;
+			throw new NoSuchCarException("Masina nu exista");
 		}
 		String owner = getOwnerName(plateNo);
 
@@ -83,8 +96,7 @@ public class CarRentalSystem {
 	
 	private int getCarsNo(String owner) {
 		if (owners.get(owner) == null) {
-			System.out.println("Acest owner nu exista");
-			return -1;
+			throw new NoSuchOwnerException("Acest owner nu exista");
 		}
 		return owners.get(owner).size();
 	}
@@ -122,7 +134,11 @@ public class CarRentalSystem {
 				System.out.println(isCarRented(getPlateNo()));
 				break;
 			case "remove":
-				returnCar(getPlateNo());
+				try {
+					returnCar(getPlateNo());
+				} catch (NoSuchCarException e) {
+					e.printStackTrace();
+				}
 				break;
 			case "getOwner":
 				System.out.println(getCarRent(getPlateNo()));
