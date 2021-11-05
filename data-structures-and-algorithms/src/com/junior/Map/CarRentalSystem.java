@@ -94,7 +94,7 @@ public class CarRentalSystem {
 		return rentedCars.get(plateNo);
 	}
 	
-	private int getCarsNo(String owner) {
+	private int getCarsNo(String owner) throws NoSuchOwnerException {
 		if (owners.get(owner) == null) {
 			throw new NoSuchOwnerException("Acest owner nu exista");
 		}
@@ -151,7 +151,12 @@ public class CarRentalSystem {
 				System.out.println(totalRented());
 				break;
 			case "ownerTotalRented":
-				System.out.println(getCarsNo(getOwnerName()));
+				try {
+					System.out.println(getCarsNo(getOwnerName()));
+				} catch (NoSuchOwnerException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 			case "ownerCarList":
 				getCarsList(getOwnerName());
