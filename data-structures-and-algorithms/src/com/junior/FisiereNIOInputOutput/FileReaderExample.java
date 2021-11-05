@@ -1,4 +1,4 @@
-package com.junior.InputOutput;
+package com.junior.FisiereNIOInputOutput;
 
 import java.io.FileReader;
 import java.io.IOException;
