@@ -1,4 +1,4 @@
-package com.junior.InputOutput;
+package com.junior.FisiereNIOInputOutput;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
