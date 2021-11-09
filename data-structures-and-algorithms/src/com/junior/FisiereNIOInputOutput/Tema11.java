@@ -10,17 +10,17 @@ public class Tema11 {
 	
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		String firstWord = scanner.next();
+		String find = scanner.next();
 		String replacement = scanner.next();
 		
 		try (Scanner sc = new Scanner(new BufferedReader(new FileReader("TextInput.txt"))); 
 			BufferedWriter outputFile = new BufferedWriter(new FileWriter("TextOutput.txt"))) {
-			while(sc.hasNext()) {
-				String currentWord = sc.next();
-				if (currentWord.equals(firstWord)) {
-					currentWord = replacement;
+			while(sc.hasNextLine()) {
+				String currentLine = sc.nextLine();
+				outputFile.write(currentLine.replaceAll(find, replacement));
+				if (sc.hasNextLine()) {
+					outputFile.newLine();
 				}
-				outputFile.write(currentWord + " ");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
