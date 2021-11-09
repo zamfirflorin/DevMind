@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class JSON_ARRAY {
 
-	ArrayList<Object> arr;
+	ArrayList<JSON_OBJECT> arr;
 
-	public JSON_ARRAY(ArrayList<Object> arr) {
+	public JSON_ARRAY(ArrayList<JSON_OBJECT> arr) {
 		this.arr = arr;
 	}
 	

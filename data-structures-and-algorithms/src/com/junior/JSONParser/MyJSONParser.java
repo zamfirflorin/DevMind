@@ -1,14 +1,19 @@
 package com.junior.JSONParser;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class MyJSONParser {
 	
-	public String json = "example.json";
-	public String input = "input.txt";
-	public String output = "output.txt";
+	public String json = "exampleJson.json";
+	public String inputFile = "inputJson.txt";
+	public String outputFile = "outputJson.txt";
+	
+	public ArrayDeque<Character> stack = new ArrayDeque<>();
 
 	public static void get(String... args) {
 
@@ -22,20 +27,14 @@ public class MyJSONParser {
 		
 	}
 	
-	//citim de la tastatura un input de intrare
-	//daca comanda este get atunci facem un get
-	//daca comanda este put atunci facem un put
-	//daca comanda este del atunci facem un delete
-	
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		String cmd;
 		ArrayList<String> commands = new ArrayList<>();
 		
-		
-		for (String s : commands) {
-			System.out.print(s + " ");
+		while (sc.hasNext()) {
+			String command = sc.next();
+			commands.add(command);
 		}
 	}
 
