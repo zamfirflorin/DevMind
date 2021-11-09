@@ -1,3 +1,5 @@
+package com.junior.C31_Serializare;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.EOFException;

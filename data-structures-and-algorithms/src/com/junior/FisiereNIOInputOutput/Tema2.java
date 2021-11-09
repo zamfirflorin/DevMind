@@ -24,9 +24,9 @@ public class Tema2 {
 			
 			while (firstFile.hasNext() && secondFile.hasNext()) {
 				if (isReadFromFirst) 
-					op1 = Integer.parseInt(firstFile.next());
+					op1 = firstFile.nextInt();
 				if (isReadFromSecond) 
-					op2 = Integer.parseInt(secondFile.next());
+					op2 = secondFile.nextInt();
 
 				if (op1 <= op2) {
 					bw.append(op1 + " ");
@@ -52,7 +52,6 @@ public class Tema2 {
             while (secondFile.hasNext()) {
             	bw.append(secondFile.nextInt() + " ");
             }
-			bw.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

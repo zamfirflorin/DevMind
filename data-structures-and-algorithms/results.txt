@@ -1,5 +1,5 @@
-Cel mai scurt cuvant este: lm
-Cel mai lung cuvant este: defgh
+Cel mai scurt cuvant este: abc
+Cel mai lung cuvant este: anbdakd
 Primul cuvant in ordine alfabetica este: abc
-Ultimul cuvant in ordine alfabetica este : lm
+Ultimul cuvant in ordine alfabetica este : test
 Numarul total de cuvinte este : 5
