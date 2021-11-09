@@ -1,4 +1,4 @@
-package com.junior.HighPerformanceEventCorrelation;
+package com.junior.JSONParser;
 
 import java.util.ArrayList;
 import java.util.Scanner;
