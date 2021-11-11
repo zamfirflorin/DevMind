@@ -6,9 +6,15 @@ public class JSON_ARRAY {
 
 	ArrayList<JSON_OBJECT> arr;
 
-	public JSON_ARRAY(ArrayList<JSON_OBJECT> arr) {
-		this.arr = arr;
+	public JSON_ARRAY() {
+		this.arr = new ArrayList<>();
 	}
+	
+	public void add(JSON_OBJECT json) {
+		arr.add(json);
+	}
+	
+	
 	
 	
 	

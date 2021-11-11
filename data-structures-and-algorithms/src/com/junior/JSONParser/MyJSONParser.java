@@ -14,6 +14,12 @@ public class MyJSONParser {
 	public String outputFile = "outputJson.txt";
 	
 	public ArrayDeque<Character> stack = new ArrayDeque<>();
+	
+	public void populateStack(ArrayDeque<Character> stack, ArrayList<Character> data) { 
+		
+
+		
+	}
 
 	public static void get(String... args) {
 
@@ -24,6 +30,10 @@ public class MyJSONParser {
 	}
 	
 	public static void del(ArrayList<String> keys) { 
+		
+	}
+	
+	public static void readDataFromFile(String inputFile) {
 		
 	}
 	
