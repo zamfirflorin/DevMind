@@ -1,6 +1,7 @@
 package com.junior.JSONParser;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayDeque;
@@ -33,8 +34,18 @@ public class MyJSONParser {
 		
 	}
 	
-	public static void readDataFromFile(String inputFile) {
-		
+	public static StringBuilder readDataFromFile(String inputFile) throws NullPointerException{
+		StringBuilder sb = null;
+		try {
+			BufferedReader inputData = new BufferedReader(new FileReader(inputFile));
+			sb = new StringBuilder();
+			while (inputData.readLine() != null) {
+				sb.append(inputData.readLine());
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return sb;
 	}
 	
 
