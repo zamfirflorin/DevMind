@@ -11,11 +11,52 @@ import java.util.Scanner;
 public class MyJSONParser {
 	
 	public String json = "exampleJson.json";
-	public String inputFile = "inputJson.txt";
+	public static String inputFile = "inputJson.txt";
 	public String outputFile = "outputJson.txt";
+	public static JSON_ARRAY jsonArray = new JSON_ARRAY();
 	
-	public ArrayDeque<Character> stack = new ArrayDeque<>();
+	public static ArrayDeque<Character> stack = new ArrayDeque<>();
 	
+	public static void main(String[] args) throws FileNotFoundException {
+
+		StringBuilder data = readDataFromFile(inputFile);
+		String str = "a ad a dadsadkjhasd     adjhsdkj akd    dfahsdfb";
+		
+		for (Character c : data.toString().toCharArray()) {
+			if (c != ' ') {
+				stack.add(c);
+			}
+		}
+		
+		System.out.println(stack);
+	}
+	
+	public static StringBuilder readDataFromFile(String inputFile) throws NullPointerException{
+		StringBuilder sb = null;
+		try {
+			Scanner scanner = new Scanner(new BufferedReader(new FileReader(inputFile)));
+			sb = new StringBuilder();
+			while (scanner.hasNextLine()) {
+				sb.append(scanner.nextLine());
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return sb;
+	}
+	
+	public static void convertStringToJson(StringBuilder data) {
+		
+		for (int i = 0; i < data.length(); i++) {
+			if (data.charAt(i) == '{') {
+				JSON_OBJECT jsonObj = new JSON_OBJECT();
+				
+				jsonArray.add(JSON_OBJECT);
+			}
+		}
+		
+	}
+
 	public void populateStack(ArrayDeque<Character> stack, ArrayList<Character> data) { 
 		
 
@@ -34,29 +75,7 @@ public class MyJSONParser {
 		
 	}
 	
-	public static StringBuilder readDataFromFile(String inputFile) throws NullPointerException{
-		StringBuilder sb = null;
-		try {
-			BufferedReader inputData = new BufferedReader(new FileReader(inputFile));
-			sb = new StringBuilder();
-			while (inputData.readLine() != null) {
-				sb.append(inputData.readLine());
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return sb;
-	}
-	
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		ArrayList<String> commands = new ArrayList<>();
-		
-		while (sc.hasNext()) {
-			String command = sc.next();
-			commands.add(command);
-		}
-	}
+
 
 }
