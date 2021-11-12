@@ -36,7 +36,8 @@ public class CarRentalSystem implements Serializable {
 		}
 	}
 
-	public  void readFromBinaryFile() throws IOException {
+	@SuppressWarnings("unchecked")
+	public  void readFromBinaryFile() throws IOException, ClassNotFoundException {
 		try (ObjectInputStream binaryFileIn = new ObjectInputStream(
 				new BufferedInputStream(new FileInputStream(fileName)))) {
 			rentedCars = (HashMap<String, String>) binaryFileIn.readObject();
@@ -150,6 +151,7 @@ public class CarRentalSystem implements Serializable {
 		System.out.println("totalRented  	  - Afiseaza numarul de masini inchiriate");
 		System.out.println("ownerTotalRented  - Afiseaza numarul de masini inchiriate de un proprietar");
 		System.out.println("ownerCarList     - Afiseaza lista de masini inchiriate de un proprietar");
+		System.out.println("fetchData     	- Recupereaza datale folosite anterior");
 		System.out.println("quit         	  - Inchide aplicatia");
 	}
 	
@@ -169,6 +171,16 @@ public class CarRentalSystem implements Serializable {
 			case "check":
 				System.out.println(isCarRented(getPlateNo()));
 				break;
+			case "fetchData":
+				try {
+					readFromBinaryFile();
+					System.out.println("Fisierul a fost incarcat");   
+				} catch (IOException e) {
+                    System.out.println("File not found");
+                    System.out.println(e.getMessage());
+                } catch (ClassNotFoundException e) {
+					System.out.println(e.getMessage());
+				} 
 			case "remove":
 				try {
 					returnCar(getPlateNo());
