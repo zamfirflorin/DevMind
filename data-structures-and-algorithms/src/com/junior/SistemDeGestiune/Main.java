@@ -1,5 +1,6 @@
 package com.junior.SistemDeGestiune;
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -8,13 +9,20 @@ public class Main {
 
 	public static void main(String[] args) {
 		System.out.println("Bun venit! Introduceti numarul de locuri disponibile:");
-		try (Scanner sc = new Scanner(System.in)) {
-			int availableSpots = sc.nextInt();
-			GuestsList guestList = GuestService.createGuestsList(availableSpots);
-			runCommands(guestList);
-		} catch (InputMismatchException e) {
-			e.printStackTrace();
+		int availableSpots;
+		Scanner sc = new Scanner(System.in);
+		while (true) {
+			try {
+				availableSpots = sc.nextInt();
+				break;
+			} catch (InputMismatchException e) {
+				sc.nextLine();
+				System.out.println("Introduceti un numar valid de locuri disponibile");
+			}
+
 		}
+		GuestsList guestList = GuestService.createGuestsList(availableSpots);
+		runCommands(guestList);
 	}
 	
 	public static void runCommands(GuestsList guestList) {
@@ -27,6 +35,15 @@ public class Main {
 				getCommand(command, guestList);
 				System.out.println("Asteapta comanda: (help - Afiseaza lista de comenzi)");
 				command = sc.next();
+				if (command.equals("quit")) {
+					try {
+						GuestService.save(guestList);
+						System.out.println("Datele au fost salvate");
+					} catch (IOException e) {
+						System.out.println("Datele nu au fost salvate");
+						System.out.println(e.getMessage());
+					}
+				}
 			}
 			System.out.println("- Aplicatia se va inchide. Va multumim!");
 		} catch (NoSuchElementException e) {
@@ -36,6 +53,7 @@ public class Main {
 
 
 	private static void getCommand(String command, GuestsList guestList ) {
+
 		switch(command) {
 		case "help": 
 			System.out.println(""
@@ -51,6 +69,8 @@ public class Main {
 					+ "waitlist_no - Numarul de persoane din lista de asteptare\r\n"
 					+ "subscribe_no - Numarul total de persoane inscrise\r\n"
 					+ "search - Cauta toti invitatii conform sirului de caractere introdus\r\n"
+					+ "reset - Resteaza datele\r\n"
+					+ "restore - Restabileste datele\r\n"
 					+ "quit - Inchide aplicatia");
 			break;
 		case "add":
@@ -85,6 +105,18 @@ public class Main {
 			break;
 		case "search":
 			GuestService.search(guestList);
+			break;
+		case "restore":
+			try {
+				GuestService.restore(guestList);
+				System.out.println("Data has been restored");
+			} catch (IOException e) {
+				System.out.println(e.getMessage());
+			}
+			break;
+		case "reset":
+				GuestService.reset(guestList);
+				System.out.println("Data has been reseted");
 			break;
 		case "quit":
 			break;

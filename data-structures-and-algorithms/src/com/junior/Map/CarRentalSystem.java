@@ -40,7 +40,6 @@ public class CarRentalSystem implements Serializable{
 		}
 	}
 	
-
 	@SuppressWarnings("unchecked")
 	public  void readFromBinaryFile() throws IOException {
 		try (ObjectInputStream binaryFileIn = new ObjectInputStream(

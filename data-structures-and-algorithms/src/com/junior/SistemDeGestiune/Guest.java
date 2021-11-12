@@ -1,8 +1,11 @@
 package com.junior.SistemDeGestiune;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Guest {
+public class Guest implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private String lastName;
 	private String firstName;
