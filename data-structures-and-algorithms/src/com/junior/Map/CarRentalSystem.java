@@ -2,22 +2,16 @@ package com.junior.Map;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-import com.junior.C31_Serializare.Person;
-
-public class CarRentalSystem implements Serializable {
+public class CarRentalSystem implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private static String fileName = "CarRental.dat";
@@ -26,9 +20,7 @@ public class CarRentalSystem implements Serializable {
 	HashMap<String, String> rentedCars = new HashMap<>();
 	HashMap<String, RentedCars> owners = new HashMap<>();
 	
-	
-	
-	public void writeToBinaryFile(List<Person> data) throws IOException {
+	public void writeToBinaryFile() throws IOException {
 		try (ObjectOutputStream binaryFileOut = new ObjectOutputStream(
 				new BufferedOutputStream(new FileOutputStream(fileName)))) {
 			binaryFileOut.writeObject(rentedCars);
@@ -37,7 +29,7 @@ public class CarRentalSystem implements Serializable {
 	}
 
 	@SuppressWarnings("unchecked")
-	public  void readFromBinaryFile() throws IOException, ClassNotFoundException {
+	public  void readFromBinaryFile() throws IOException {
 		try (ObjectInputStream binaryFileIn = new ObjectInputStream(
 				new BufferedInputStream(new FileInputStream(fileName)))) {
 			rentedCars = (HashMap<String, String>) binaryFileIn.readObject();
@@ -54,14 +46,7 @@ public class CarRentalSystem implements Serializable {
 	
 	private static String getOwnerName() {
 	    System.out.println("Introduceti numele proprietarului:");
-
-	    String ownerName = null;
-	    try {
-	    	sc.nextLine();
-	    } catch (NoSuchElementException e) {
-	    	e.printStackTrace();
-	    }
-	    
+	    String ownerName = sc.nextLine();	   
 	   return ownerName;
 	}
 	
@@ -69,10 +54,10 @@ public class CarRentalSystem implements Serializable {
 		return rentedCars.containsKey(plateNo);
 	}
 	
-	private String getCarRent(String plateNo) {
+	private String getCarRent(String plateNo) throws NoSuchCarException {
 		//3
 		if (!rentedCars.containsKey(plateNo)) {
-			return "Masina nu exista";
+			throw new NoSuchCarException("Masina nu exista");
 		}
 
 		return rentedCars.get(plateNo);
@@ -83,37 +68,32 @@ public class CarRentalSystem implements Serializable {
 			System.out.println("Masina este deja inchiriata unui alt sofer!");
 			return;
 		}
-		try {
-			// 
-			if (owners.get(ownerName) != null && owners.get(ownerName).getCarList().contains(plateNo)) {
-				throw new VPException("Masina este deja inchiriata lui " + ownerName);
-			}
+		if (owners.get(ownerName) != null && owners.get(ownerName).getCarList().contains(plateNo)) {
+			System.out.println("Masina este deja inchiriata lui " + ownerName);
+			return;
+		}
 
-			if (!owners.containsKey(ownerName)) {
-				RentedCars cars = new RentedCars();
-				cars.addCar(plateNo);
-				owners.put(ownerName, cars);
-			} else {
-				RentedCars cars = owners.get(ownerName);
-				cars.addCar(plateNo);
-				// owners.put(ownerName, cars); //redundant
-			}
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-		} catch (VPException e) {
-			e.printStackTrace();
+		if (!owners.containsKey(ownerName)) {
+			RentedCars cars = new RentedCars();
+			cars.addCar(plateNo);
+			owners.put(ownerName, cars);
+		} else {
+			RentedCars cars = owners.get(ownerName);
+			cars.addCar(plateNo);
+			//owners.put(ownerName, cars); //redundant
 		}
 		rentedCars.put(plateNo, ownerName);
-
+		
 	}
 	
 	private int totalRented() {
 		return rentedCars.size();
 	}
 	
-	private void returnCar(String plateNo) throws NoSuchCarException {
+	private void returnCar(String plateNo) {
 		if (!rentedCars.containsKey(plateNo)) {
-			throw new NoSuchCarException("Masina nu exista");
+			System.out.println("Masina nu exista");
+			return;
 		}
 		String owner = getOwnerName(plateNo);
 
@@ -131,9 +111,10 @@ public class CarRentalSystem implements Serializable {
 		return rentedCars.get(plateNo);
 	}
 	
-	private int getCarsNo(String owner) throws NoSuchOwnerException {
+	private int getCarsNo(String owner) {
 		if (owners.get(owner) == null) {
-			throw new NoSuchOwnerException("Acest owner nu exista");
+			System.out.println("Acest owner nu exista");
+			return -1;
 		}
 		return owners.get(owner).size();
 	}
@@ -151,7 +132,7 @@ public class CarRentalSystem implements Serializable {
 		System.out.println("totalRented  	  - Afiseaza numarul de masini inchiriate");
 		System.out.println("ownerTotalRented  - Afiseaza numarul de masini inchiriate de un proprietar");
 		System.out.println("ownerCarList     - Afiseaza lista de masini inchiriate de un proprietar");
-		System.out.println("fetchData     	- Recupereaza datale folosite anterior");
+		System.out.println("previousData      - Reincarca datele din trecut");
 		System.out.println("quit         	  - Inchide aplicatia");
 	}
 	
@@ -171,27 +152,32 @@ public class CarRentalSystem implements Serializable {
 			case "check":
 				System.out.println(isCarRented(getPlateNo()));
 				break;
-			case "fetchData":
+			case "remove":
+				returnCar(getPlateNo());
+				break;
+			case "previousData":
 				try {
 					readFromBinaryFile();
-					System.out.println("Fisierul a fost incarcat");   
+					System.out.println("Fostele date au fost reincarcate");
 				} catch (IOException e) {
-                    System.out.println("File not found");
-                    System.out.println(e.getMessage());
-                } catch (ClassNotFoundException e) {
+					System.out.println("Datele nu au fost incarcate");
 					System.out.println(e.getMessage());
-				} 
-			case "remove":
-				try {
-					returnCar(getPlateNo());
-				} catch (NoSuchCarException e) {
-					e.printStackTrace();
 				}
 				break;
 			case "getOwner":
-				System.out.println(getCarRent(getPlateNo()));
+				try {
+					System.out.println(getCarRent(getPlateNo()));
+				} catch (NoSuchCarException e) {
+					System.out.println(e.getMessage());
+				}
 				break;
 			case "quit":
+				try {
+					writeToBinaryFile();
+				} catch (IOException e) {
+					System.out.println("Informatiile nu au fost salvate");
+					System.out.println(e.getMessage());
+				}
 				System.out.println("Aplicatia se inchide...");
 				quit = true;
 				break;
@@ -199,12 +185,7 @@ public class CarRentalSystem implements Serializable {
 				System.out.println(totalRented());
 				break;
 			case "ownerTotalRented":
-				try {
-					System.out.println(getCarsNo(getOwnerName()));
-				} catch (NoSuchOwnerException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				System.out.println(getCarsNo(getOwnerName()));
 				break;
 			case "ownerCarList":
 				getCarsList(getOwnerName());

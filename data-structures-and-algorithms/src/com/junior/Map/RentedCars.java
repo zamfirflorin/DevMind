@@ -20,7 +20,7 @@ public class RentedCars implements Serializable{
 		carList.add(car);
 	}
 
-	public void returnCar(String car) throws NoSuchCarException {
+	public void returnCar(String car) {
 		carList.remove(car);
 	}
 	
