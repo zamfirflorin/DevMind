@@ -20,6 +20,18 @@ public class CarRentalSystem implements Serializable{
 	HashMap<String, String> rentedCars = new HashMap<>();
 	HashMap<String, RentedCars> owners = new HashMap<>();
 	
+	
+	private void reset() {
+		rentedCars = new HashMap<>();
+		owners = new HashMap<>();
+		System.out.println("Datele au fost resetate");
+		try {
+			writeToBinaryFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void writeToBinaryFile() throws IOException {
 		try (ObjectOutputStream binaryFileOut = new ObjectOutputStream(
 				new BufferedOutputStream(new FileOutputStream(fileName)))) {
@@ -27,6 +39,7 @@ public class CarRentalSystem implements Serializable{
 			binaryFileOut.writeObject(owners);
 		}
 	}
+	
 
 	@SuppressWarnings("unchecked")
 	public  void readFromBinaryFile() throws IOException {
@@ -132,13 +145,20 @@ public class CarRentalSystem implements Serializable{
 		System.out.println("totalRented  	  - Afiseaza numarul de masini inchiriate");
 		System.out.println("ownerTotalRented  - Afiseaza numarul de masini inchiriate de un proprietar");
 		System.out.println("ownerCarList     - Afiseaza lista de masini inchiriate de un proprietar");
-		System.out.println("previousData      - Reincarca datele din trecut");
+		System.out.println("reset            - Reincarca datele din trecut");
 		System.out.println("quit         	  - Inchide aplicatia");
 	}
 	
 	
 	public void run() {
 		boolean quit = false;
+		try {
+			readFromBinaryFile();
+			System.out.println("Fostele date au fost reincarcate");
+		} catch (IOException e) {
+			System.out.println("Datele nu au fost incarcate");
+			System.out.println(e.getMessage());
+		}
 		while (!quit) {
 			System.out.println("Asteapta comanda: (help - Afiseaza lista de comenzi)");
 			String command = sc.nextLine();
@@ -155,14 +175,8 @@ public class CarRentalSystem implements Serializable{
 			case "remove":
 				returnCar(getPlateNo());
 				break;
-			case "previousData":
-				try {
-					readFromBinaryFile();
-					System.out.println("Fostele date au fost reincarcate");
-				} catch (IOException e) {
-					System.out.println("Datele nu au fost incarcate");
-					System.out.println(e.getMessage());
-				}
+			case "reset":
+				reset();
 				break;
 			case "getOwner":
 				try {
@@ -197,6 +211,8 @@ public class CarRentalSystem implements Serializable{
 		}
 	}
 	
+
+
 	public static void main(String[] args) {
 		new CarRentalSystem().run();
 	}
