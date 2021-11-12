@@ -1,14 +1,50 @@
 package com.junior.Map;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class CarRentalSystem {
+import com.junior.C31_Serializare.Person;
 
+public class CarRentalSystem implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	private static String fileName = "CarRental.dat";
+	
 	private static Scanner sc = new Scanner(System.in);
 	HashMap<String, String> rentedCars = new HashMap<>();
 	HashMap<String, RentedCars> owners = new HashMap<>();
+	
+	
+	
+	public void writeToBinaryFile(List<Person> data) throws IOException {
+		try (ObjectOutputStream binaryFileOut = new ObjectOutputStream(
+				new BufferedOutputStream(new FileOutputStream(fileName)))) {
+			binaryFileOut.writeObject(rentedCars);
+			binaryFileOut.writeObject(owners);
+		}
+	}
+
+	public  void readFromBinaryFile() throws IOException {
+		try (ObjectInputStream binaryFileIn = new ObjectInputStream(
+				new BufferedInputStream(new FileInputStream(fileName)))) {
+			rentedCars = (HashMap<String, String>) binaryFileIn.readObject();
+			owners = (HashMap<String, RentedCars>) binaryFileIn.readObject();
+		} catch (ClassNotFoundException e) {
+			System.out.println("A class not found exception: " + e.getMessage());
+		}
+	}
 	
 	private static String getPlateNo() {
 		System.out.println("Introduceti numarul de inmatriculare: ");

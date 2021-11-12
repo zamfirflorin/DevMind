@@ -1,9 +1,13 @@
 package com.junior.Map;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RentedCars {
+public class RentedCars implements Serializable{
+	
+	
+	 private static final long serialVersionUID = 1L;
 	
 	private List<String> carList;
 
