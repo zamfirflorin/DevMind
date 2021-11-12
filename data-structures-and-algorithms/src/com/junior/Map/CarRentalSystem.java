@@ -84,8 +84,8 @@ public class CarRentalSystem implements Serializable {
 			return;
 		}
 		try {
-			// owners.get(ownerName) != null &&
-			if (owners.get(ownerName).getCarList().contains(plateNo)) {
+			// 
+			if (owners.get(ownerName) != null && owners.get(ownerName).getCarList().contains(plateNo)) {
 				throw new VPException("Masina este deja inchiriata lui " + ownerName);
 			}
 
