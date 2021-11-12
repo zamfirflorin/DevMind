@@ -1,9 +1,13 @@
 package com.junior.Map;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RentedCars {
+public class RentedCars implements Serializable{
+	
+	
+	 private static final long serialVersionUID = 1L;
 	
 	private List<String> carList;
 
@@ -16,7 +20,7 @@ public class RentedCars {
 		carList.add(car);
 	}
 
-	public void returnCar(String car) throws NoSuchCarException {
+	public void returnCar(String car) {
 		carList.remove(car);
 	}
 	
