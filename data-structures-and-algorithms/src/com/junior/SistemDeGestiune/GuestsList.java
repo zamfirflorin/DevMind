@@ -1,12 +1,63 @@
 package com.junior.SistemDeGestiune;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class GuestsList {
+import com.junior.Map.RentedCars;
+
+public class GuestsList implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private int availableSpots;
 	private ArrayList<Guest> participantsList;
 	private ArrayList<Guest> waitingList;
+	
+	
+	private static String fileName = "sistemGestiune.dat";
+	
+	
+	public  void reset() {
+		participantsList = new ArrayList<>();
+		waitingList = new ArrayList<>();
+		this.availableSpots = 0; 
+		System.out.println("Datele au fost resetate");
+		try {
+			writeToBinaryFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void writeToBinaryFile() throws IOException {
+		try (ObjectOutputStream binaryFileOut = new ObjectOutputStream(
+				new BufferedOutputStream(new FileOutputStream(fileName)))) {
+			binaryFileOut.writeObject(participantsList);
+			binaryFileOut.writeObject(waitingList);
+			binaryFileOut.writeInt(availableSpots);
+			
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public  void readFromBinaryFile() throws IOException {
+		try (ObjectInputStream binaryFileIn = new ObjectInputStream(
+				new BufferedInputStream(new FileInputStream(fileName)))) {
+			participantsList = (ArrayList<Guest>) binaryFileIn.readObject();
+			waitingList = (ArrayList<Guest>) binaryFileIn.readObject();
+			availableSpots = binaryFileIn.read();
+		} catch (ClassNotFoundException e) {
+			System.out.println("A class not found exception: " + e.getMessage());
+		}
+	}
 	
 	public GuestsList(int availableSpots) {
 		this.availableSpots = availableSpots;

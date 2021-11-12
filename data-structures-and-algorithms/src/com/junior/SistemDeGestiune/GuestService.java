@@ -1,10 +1,14 @@
 package com.junior.SistemDeGestiune;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class GuestService {
+public class GuestService implements Serializable {
 
+	public static final long serialVersionUID = 1L;
+	
 	public static GuestsList createGuestsList(int availableSpots) {
 		GuestsList guestsList = new GuestsList(availableSpots);
 		return guestsList;
@@ -149,6 +153,18 @@ public class GuestService {
 		for (Guest guest : guestList.getParticipantsList()) {
 			System.out.println(guest.toString());
 		}
+	}
+	
+	public static void reset(GuestsList guestList) {
+		guestList.reset();
+	}
+	
+	public static void save(GuestsList guestList) throws IOException {
+		guestList.writeToBinaryFile();
+	}
+	
+	public static void restore(GuestsList guestList) throws IOException {
+		guestList.readFromBinaryFile();
 	}
 
 	public static void waitlist(GuestsList guestList) {
