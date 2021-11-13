@@ -19,32 +19,55 @@ public class MyJSONParser {
 	public static JSON_ARRAY jsonArray = new JSON_ARRAY();
 	static int index  = 0;
 	
-	public static ArrayDeque<Character> stack = new ArrayDeque<>();
+	public static ArrayDeque<Character> charactersStack = new ArrayDeque<>();
+	public static ArrayDeque<JSON_FIELD> jsons = new ArrayDeque<>();
+	public static ArrayDeque<Character> firstParanthesisStack = new ArrayDeque<>();
+	public static ArrayDeque<Character> paranthesisStack = new ArrayDeque<>();
 	
 	public static void main(String[] args) throws FileNotFoundException {
 
 		StringBuilder data = readDataFromFile(inputFile);
-		String str = "a ad a dadsadkjhasd     adjhsdkj akd    dfahsdfb";
-		
+
 		for (Character c : data.toString().toCharArray()) {
 			if (c != ' ') {
-				stack.add(c);
+				charactersStack.add(c);
 			}
+			if (c == '{') {
+				paranthesisStack.push('}');
+			} else if (c == '[') {
+				paranthesisStack.push(']');
+			}
+			
+			if (c == '{') {
+				firstParanthesisStack.push(c);
+			} else if (c == '[') {
+				firstParanthesisStack.push(c);
+			}
+			
 		}
-		
-		System.out.println(stack);
+
+		System.out.println(charactersStack);
+		System.out.println(firstParanthesisStack);
+		System.out.println(paranthesisStack);
 	}
 	
 	public static void createObject(Character ch) {
-		if (ch == '{') {
-			createJsonObject();
-		} else if (ch == '[') {
-			createJsonArray();
+		if (ch == '{' && paranthesisStack.peek() == '}') {
+			createField();
+			paranthesisStack.pop();
+		} else if (ch == '[' && paranthesisStack.peek() == '}') {
+			createField();
+			paranthesisStack.pop();
 		}
 	}
 	
-	private static void createJsonArray() {
+	private static void createField() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	private static void createJsonArray() {
+		
 		
 	}
 
@@ -70,29 +93,31 @@ public class MyJSONParser {
 	public static void convertStringToJson(StringBuilder data) {
 		while (index < data.length()) {
 			if (data.charAt(index) == '{') {
-				JSON_OBJECT jsonObj = readJSONObject(index, data);
-				stack.add(data.charAt(index));
+				JSON_FIELD field = readJSONObject(index, data);
+				charactersStack.add(data.charAt(index));
 				index++;
 			} else if(data.charAt(index) == '[') {
-				JSON_ARRAY jsonArr = new JSON_ARRAY();
+				JSON_FIELD jsonArr = new JSON_ARRAY();
 			}
 		}
 	}
 
-	private static JSON_OBJECT readJSONObject(int index, StringBuilder data) {
+	private static JSON_OBJECT<String, Object> readJSONObject(int index, StringBuilder data) {
 		
 		StringBuilder jsonObjData = new StringBuilder();
 		while (data.charAt(index) != '}') {
 			jsonObjData.append(data.charAt(index));
 			index++;
 		}
-		JSON_OBJECT<String, JSON_OBJECT> jo = new JSON_OBJECT<>(processJSONLine2(jsonObjData));
+		JSON_OBJECT<String, Object> jo = new JSON_OBJECT<>(processJSONLine2(jsonObjData));
 		return jo;
 	}
+	
+	
 
 	
-	public static HashMap<String, JSON_OBJECT> processJSONLine2(StringBuilder line) {
-		HashMap<String, JSON_OBJECT> map = new HashMap<>();
+	public static HashMap<String, Object> processJSONLine2(StringBuilder line) {
+		HashMap<String, Object> map = new HashMap<>();
 		int index = 0;
 		while (index < line.length()) {
 			StringBuilder key = new StringBuilder();
@@ -124,7 +149,7 @@ public class MyJSONParser {
 			index++;
 			String aKey = key.toString();
 			Object obj = value.toString().trim();
-			map.put(aKey, (JSON_OBJECT) obj);
+			map.put(aKey,  obj);
 		}
 		return map;
 	}
