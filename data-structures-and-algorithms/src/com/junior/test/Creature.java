@@ -1,4 +1,6 @@
-abstract class Creature  implements Comparable<Creature> {
+package com.junior.test;
+
+public abstract class Creature  implements Comparable<Creature> {
     private Abilities abilities;
     private String nickname;
     private long score;
@@ -8,17 +10,7 @@ abstract class Creature  implements Comparable<Creature> {
         this.nickname = nickname;
         this.score = score;
     }
-    
-    @Override 
-    public String getNickname() {
-        return this.nickname;
-    }
-    
-    @Override
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-    
+ 
     public void updateScore(long amount) throws NumberFormatException {
         if (amount < 0) 
             throw new NumberFormatException("Expecting positive bonus                           value, got:" + amount);

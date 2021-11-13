@@ -3,9 +3,10 @@ package com.junior.JSONParser;
 import java.util.HashMap;
 import java.util.Map;
 
-public class JSON_OBJECT<String, V extends JSON_OBJECT> implements JSON_FIELD {
 
-	Map<String, V> map;
+public class JSON_OBJECT<K, V> implements JSON_FIELD {
+
+	Map<K, V> map;
 
 	public JSON_OBJECT(Map<K, V> map) {
 		super();

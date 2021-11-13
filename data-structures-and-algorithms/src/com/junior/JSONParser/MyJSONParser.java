@@ -86,13 +86,13 @@ public class MyJSONParser {
 			jsonObjData.append(data.charAt(index));
 			index++;
 		}
-		JSON_OBJECT<String, Object> jo = new JSON_OBJECT<>(processJSONLine2(jsonObjData));
+		JSON_OBJECT<String, JSON_OBJECT> jo = new JSON_OBJECT<>(processJSONLine2(jsonObjData));
 		return jo;
 	}
 
 	
-	public static HashMap<String, Object> processJSONLine2(StringBuilder line) {
-		HashMap<String, Object> map = new HashMap<>();
+	public static HashMap<String, JSON_OBJECT> processJSONLine2(StringBuilder line) {
+		HashMap<String, JSON_OBJECT> map = new HashMap<>();
 		int index = 0;
 		while (index < line.length()) {
 			StringBuilder key = new StringBuilder();
@@ -124,7 +124,7 @@ public class MyJSONParser {
 			index++;
 			String aKey = key.toString();
 			Object obj = value.toString().trim();
-			map.put(aKey, obj);
+			map.put(aKey, (JSON_OBJECT) obj);
 		}
 		return map;
 	}
