@@ -2,7 +2,7 @@ package com.junior.JSONParser;
 
 import java.util.ArrayList;
 
-public class JSON_ARRAY {
+public class JSON_ARRAY implements JSON_FIELD {
 
 	ArrayList<JSON_OBJECT> arr;
 
@@ -19,3 +19,4 @@ public class JSON_ARRAY {
 	
 	
 }
+
