@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 public class JSON_ARRAY implements IJsonField {
 
-	ArrayList<JSON_OBJECT> arr;
+	ArrayList<IJsonField> arr;
 
 	public JSON_ARRAY() {
 		this.arr = new ArrayList<>();
 	}
 	
-	public void add(JSON_OBJECT json) {
+	@Override
+	public void add(IJsonField json) {
 		arr.add(json);
 	}
 
@@ -19,6 +20,8 @@ public class JSON_ARRAY implements IJsonField {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 	
 	
 	
