@@ -2,7 +2,7 @@ package com.junior.JSONParser;
 
 import java.util.ArrayList;
 
-public class JSON_ARRAY implements JSON_FIELD {
+public class JSON_ARRAY implements IJsonField {
 
 	ArrayList<JSON_OBJECT> arr;
 

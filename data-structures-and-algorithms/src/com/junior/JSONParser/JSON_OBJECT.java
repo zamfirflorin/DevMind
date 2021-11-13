@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class JSON_OBJECT<K, V> implements JSON_FIELD {
+public class JSON_OBJECT<K, V> implements IJsonField {
 
 	Map<K, V> map;
 

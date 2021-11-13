@@ -1,6 +1,6 @@
 package com.junior.JSONParser;
 
-public interface JSON_FIELD {
+public interface IJsonField {
 
 	String toField();
 }
