@@ -13,6 +13,12 @@ public class JSON_ARRAY implements JSON_FIELD {
 	public void add(JSON_OBJECT json) {
 		arr.add(json);
 	}
+
+	@Override
+	public String toField() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	

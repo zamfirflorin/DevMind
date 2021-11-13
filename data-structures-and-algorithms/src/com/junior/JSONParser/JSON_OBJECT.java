@@ -24,6 +24,12 @@ public class JSON_OBJECT<K, V> implements JSON_FIELD {
 	public V get(K key) {
 		return map.get(key);
 	}
+
+	@Override
+	public String toField() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	
