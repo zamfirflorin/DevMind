@@ -3,27 +3,40 @@ package com.junior.JSONParser;
 import java.util.HashMap;
 import java.util.Map;
 
-public class JSON_OBJECT<String, V extends JSON_OBJECT> implements JSON_FIELD {
 
-	Map<String, V> map;
+public class JSON_OBJECT<String, Object> implements IJsonField {
 
-	public JSON_OBJECT(Map<K, V> map) {
+	Map<String, Object> map;
+
+	public JSON_OBJECT() {
 		super();
-		this.map = new HashMap<K, V>();
+		this.map = new HashMap<String, Object>();
 	}
 	
-	public void put(K key, V obj) {
-		map.put(key, obj);
+	public void put(String key, java.lang.Object obj) {
+		map.put(key, (Object) obj);
 	}
 	
-	public boolean contains(K key) {
+	public boolean contains(String key) {
 		return map.containsKey(key);
 	}
 	
-	public V get(K key) {
+	public Object get(String key) {
 		return map.get(key);
 	}
-	
+
+
+	public String stringValue(String string) {
+		return string;
+	}
+
+	@Override
+	public void add(IJsonField json) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	
 	
 	

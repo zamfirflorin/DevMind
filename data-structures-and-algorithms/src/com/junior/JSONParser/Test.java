@@ -36,6 +36,50 @@ public class Test {
 		
 
 	}
+	
+	public static HashMap<String, Object> processJSONLine(StringBuilder line, IJsonField json) {
+		HashMap<String, Object> map = new HashMap<>();
+		int index = 0;
+		while (index < line.length()) {
+			StringBuilder key = new StringBuilder();
+			StringBuilder value = new StringBuilder();
+			if (line.charAt(index) == '"') {
+				index += 1;
+				while(index < line.length() && line.charAt(index) != '"') {
+					key.append(line.charAt(index));
+					index++;
+				}
+				
+				while (index < line.length() && line.charAt(index) != ':') {
+					index++;
+				}
+				index += 1;
+				if (index < line.length() && line.charAt(index) == '"') {
+					index += 1;
+					while (index < line.length() && line.charAt(index) != '"') {
+						value.append(line.charAt(index));
+						index++;
+					}
+				} else if (index < line.length() && line.charAt(index) == '[') {
+					
+				}
+				else if (index < line.length() && line.charAt(index) == '{') {
+					
+				}
+				else {
+					while (index < line.length() && line.charAt(index) != ',') {
+						value.append(line.charAt(index));
+						index++;
+					}
+				}
+			}
+			index++;
+			String aKey = key.toString();
+			Object obj = value.toString().trim();
+			map.put(aKey, obj);
+		}
+		return map;
+	}
 
 	
 	public static HashMap<String, Object> processJSONLine2(StringBuilder line) {
