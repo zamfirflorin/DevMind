@@ -28,45 +28,31 @@ public class MyJSONParser {
 	public static void main(String[] args) throws FileNotFoundException {
 
 		StringBuilder data = readDataFromFile(inputFile);
-
 		for (Character c : data.toString().toCharArray()) {
 			if (c != ' ') {
 				charactersStack.add(c);
 			}
 			if (c == '{') {
-				closingParanthesisStack.push('}');
+				openingParanthesisStack.offer(c);
+				closingParanthesisStack.offer('}');
 			} else if (c == '[') {
-				closingParanthesisStack.push(']');
+				openingParanthesisStack.offer(c);
+				closingParanthesisStack.offer(']');
 			}
-			
-			if (c == '{') {
-				openingParanthesisStack.push(c);
-			} else if (c == '[') {
-				openingParanthesisStack.push(c);
-			}
-			
 		}
 
+		
+		
+		
 		System.out.println(charactersStack);
 		System.out.println(openingParanthesisStack);
 		System.out.println(closingParanthesisStack);
+		
+		createJsonObject(data, jsonArray);
+		jsonArray.toString();
 	}
+
 	
-	private static void createField() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private static void createJsonArray() {
-		
-		
-	}
-
-	private static void createJsonObject() {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public static StringBuilder readDataFromFile(String inputFile) throws NullPointerException{
 		StringBuilder sb = null;
 		try {
@@ -81,43 +67,47 @@ public class MyJSONParser {
 		return sb;
 	}
 	
-	public void createJsonObject(StringBuilder data, IJsonField json) {
-		while (index < data.length()) {
+	
+	public static IJsonField createJsonObject(StringBuilder data, IJsonField json) {
+		index = 0;
+		IJsonField field = null;
+		while (index < data.length() && !closingParanthesisStack.isEmpty()) {
 			if (data.charAt(index) == '{' && openingParanthesisStack.peek() == '{' && closingParanthesisStack.peek() == '}' ) {
-				IJsonField jsonObj = readJSONObject(index, data, '}', json);
+				IJsonField jsonObj = readJSONObject(data, '}', json);
 				json.add(jsonObj);
-				index++;
 				openingParanthesisStack.pop();
 				closingParanthesisStack.pop();
 			} else if(data.charAt(index) == '[' && openingParanthesisStack.peek() == '[' && closingParanthesisStack.peek() == ']') {
 				IJsonField jsonArr = new JSON_ARRAY();
 				json.add(jsonArr);
-				index++;
 				openingParanthesisStack.pop();
 				closingParanthesisStack.pop();
+			} else {
+				index++;
 			}
+			
 		}
+		return field;
 	}
 
-	private JSON_OBJECT<String, IJsonField> readJSONObject(int index, StringBuilder data,  char endingChar, IJsonField json) {
-		StringBuilder jsonObjData = new StringBuilder();
+	private static JSON_OBJECT<String, IJsonField> readJSONObject(StringBuilder data,  char endingChar, IJsonField json) {
+		StringBuilder line = new StringBuilder();
 		while (data.charAt(index) != endingChar) {
-			jsonObjData.append(data.charAt(index));
+			line.append(data.charAt(index));
 			index++;
 		}
-		JSON_OBJECT<String, IJsonField> jo = processJSONLine(jsonObjData, json);
+		JSON_OBJECT<String, IJsonField> jo = processJSONLine(line, json);
 		return jo;
 	}
 	
-	
 
-	
-	public JSON_OBJECT<String, IJsonField> processJSONLine(StringBuilder line, IJsonField json) {
+	public static JSON_OBJECT<String, IJsonField> processJSONLine(StringBuilder line, IJsonField json) {
 		JSON_OBJECT<String, IJsonField> map = new JSON_OBJECT<>();
 		int index = 0;
 		while (index < line.length()) {
 			StringBuilder key = new StringBuilder();
 			StringBuilder value = new StringBuilder();
+			IJsonField field = null;
 			if (line.charAt(index) == '"') {
 				index += 1;
 				while(index < line.length() && line.charAt(index) != '"') {
@@ -136,10 +126,12 @@ public class MyJSONParser {
 						index++;
 					}
 				} else if (index < line.length() && line.charAt(index) == '[') {
-					json.createJsonObject();
+					IJsonField innerObject = createJsonObject(json, '[');
+					field = innerObject;
 				}
 				else if (index < line.length() && line.charAt(index) == '{') {
-					json.createJsonObject();
+					IJsonField innerObject = createJsonObject(json, '[');
+					field = innerObject;
 				}
 				else {
 					while (index < line.length() && line.charAt(index) != ',') {
@@ -150,22 +142,28 @@ public class MyJSONParser {
 			}
 			index++;
 			String aKey = key.toString();
-			Object obj =  value.toString().trim();
-			map.put(aKey,  (IJsonField) obj);
+			Object obj =  field == null ? value.toString().trim() : field;
+			map.put(aKey, obj);
 		}
 		return map;
 	}
-
-	public static void get(String... args) {
-
+	
+	private static IJsonField createJsonObject(IJsonField json, char c) {
+		IJsonField inner = null;
+		if (c == '{') {
+			inner = new JSON_OBJECT<String, IJsonField>();
+		} else if (c == '[') {
+			inner = new JSON_ARRAY();
+		}
+		json.add(inner);
+		return json;
 	}
 	
-	public static void put(ArrayList<String> keys, Object value) {
-		
-	}
-
-	public static void del(ArrayList<String> keys) { 
-		
-	}
+	
+	
+	//initialize array
+		//if { add an object in the array
+			//read fields
+				//if [ value 
 
 }

@@ -15,17 +15,6 @@ public class JSON_ARRAY implements IJsonField {
 		arr.add(json);
 	}
 
-	@Override
-	public String toField() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	
-	
-	
-	
 	
 }
 

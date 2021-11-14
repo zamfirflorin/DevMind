@@ -4,34 +4,36 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class JSON_OBJECT<String, K extends IJsonField> implements IJsonField {
+public class JSON_OBJECT<String, Object> implements IJsonField {
 
-	Map<String, IJsonField> map;
+	Map<String, Object> map;
 
 	public JSON_OBJECT() {
 		super();
-		this.map = new HashMap<String, IJsonField>();
+		this.map = new HashMap<String, Object>();
 	}
 	
-	public void put(String key, IJsonField obj) {
-		map.put(key, obj);
+	public void put(String key, java.lang.Object obj) {
+		map.put(key, (Object) obj);
 	}
 	
 	public boolean contains(String key) {
 		return map.containsKey(key);
 	}
 	
-	public IJsonField get(String key) {
+	public Object get(String key) {
 		return map.get(key);
+	}
+
+
+	public String stringValue(String string) {
+		return string;
 	}
 
 	@Override
 	public void add(IJsonField json) {
-		map.put(, json);
-	}
-	
-	public String stringValue(String string) {
-		return string;
+		// TODO Auto-generated method stub
+		
 	}
 
 
